@@ -1,0 +1,26 @@
+what,kind,bundleId,bundleVersion,description,time
+activated,editor,org.eclipse.jdt.ui,3.4.0.v20080603-2000,org.eclipse.jdt.ui.CompilationUnitEditor,1246115292517
+executed,command,org.eclipse.ui.workbench.texteditor,3.4.0.v20080603-2000,org.eclipse.ui.edit.text.goto.lineEnd,1246115307843
+executed,command,org.eclipse.ui,3.4.0.I20080610-1200,org.eclipse.ui.edit.text.contentAssist.proposals,1246115309509
+executed,command,org.eclipse.ui,3.4.0.I20080610-1200,org.eclipse.ui.edit.text.contentAssist.proposals,1246115462499
+activated,editor,org.eclipse.jdt.ui,3.4.0.v20080603-2000,org.eclipse.jdt.ui.CompilationUnitEditor,1246115524174
+activated,editor,org.eclipse.jdt.ui,3.4.0.v20080603-2000,org.eclipse.jdt.ui.CompilationUnitEditor,1246115536166
+executed,command,org.eclipse.ui.workbench.texteditor,3.4.0.v20080603-2000,org.eclipse.ui.edit.text.select.lineStart,1246115573351
+no handler,command,org.eclipse.datatools.sqltools.result,,org.eclipse.datatools.sqltools.result.removeAllInstances,1246115573416
+executed,command,org.eclipse.ui.workbench.texteditor,3.4.0.v20080603-2000,org.eclipse.ui.edit.text.goto.lineEnd,1246115573853
+executed,command,org.eclipse.ui,3.4.0.I20080610-1200,org.eclipse.ui.edit.delete,1246115574008
+executed,command,org.eclipse.ui,3.4.0.I20080610-1200,org.eclipse.ui.file.save,1246115574680
+activated,editor,org.eclipse.jdt.ui,3.4.0.v20080603-2000,org.eclipse.jdt.ui.CompilationUnitEditor,1246115588110
+activated,editor,org.eclipse.jdt.ui,3.4.0.v20080603-2000,org.eclipse.jdt.ui.CompilationUnitEditor,1246115593596
+deactivated,workbench,org.eclipse.ui.workbench,3.4.0.I20080606-1300,,1246115601560
+activated,workbench,org.eclipse.ui.workbench,3.4.0.I20080606-1300,,1246115601740
+activated,view,org.eclipse.ui.console,3.3.0.v20080529-1300,org.eclipse.ui.console.ConsoleView,1246115601755
+deactivated,workbench,org.eclipse.ui.workbench,3.4.0.I20080606-1300,,1246115603763
+activated,workbench,org.eclipse.ui.workbench,3.4.0.I20080606-1300,,1246115634158
+activated,editor,org.eclipse.jdt.ui,3.4.0.v20080603-2000,org.eclipse.jdt.ui.CompilationUnitEditor,1246115634580
+deactivated,workbench,org.eclipse.ui.workbench,3.4.0.I20080606-1300,,1246115928906
+activated,workbench,org.eclipse.ui.workbench,3.4.0.I20080606-1300,,1246115929636
+executed,command,org.eclipse.ui,3.4.0.I20080610-1200,org.eclipse.ui.file.save,1246115965963
+executed,command,org.eclipse.ui.workbench.texteditor,3.4.0.v20080603-2000,org.eclipse.ui.edit.text.goto.lineEnd,1246115966642
+executed,command,org.eclipse.ui,3.4.0.I20080610-1200,org.eclipse.ui.file.save,1246116013990
+executed,command,org.eclipse.ui.workbench.texteditor,3.4.0.v20080603-2000,org.eclipse.ui.edit.text.goto.lineEnd,1246116015391

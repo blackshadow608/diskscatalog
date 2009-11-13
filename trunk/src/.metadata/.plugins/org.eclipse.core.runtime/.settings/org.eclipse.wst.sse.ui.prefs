@@ -1,0 +1,5 @@
+#Mon Apr 20 20:23:03 GMT+03:00 2009
+useAnnotationsPrefPage=true
+eclipse.preferences.version=1
+hoverModifiers=combinationHover|true|0;problemHover|false|0;documentationHover|false|0;annotationHover|true|Shift;
+useQuickDiffPrefPage=true

@@ -1,0 +1,91 @@
+package al.catalog.ui.view.table;
+
+import java.util.List;
+
+import javax.swing.table.DefaultTableModel;
+
+import al.catalog.model.tree.IDBTreeModelListener;
+import al.catalog.model.tree.types.ITreeNode;
+
+public class CustomTableModel extends DefaultTableModel implements IDBTreeModelListener {
+	
+	private ITreeNode openedNode;
+	private ITreeNode activeNode;
+	
+	public CustomTableModel() {
+		
+	}	
+
+	public int getRowCount() {
+		if(openedNode != null && openedNode.getChildren() != null) {
+			return openedNode.getChildren().size();
+		}
+		return 0;
+	}
+
+	public Object getValueAt(int rowIndex, int columnIndex) {
+		if(columnIndex < 0) {
+			return openedNode.getChildren().get(rowIndex);			
+		}
+		return openedNode.getChildren().get(rowIndex);		
+	}
+
+	public boolean isCellEditable(int rowIndex, int columnIndex) {
+		return false;
+	}
+
+	public void setValueAt(Object value, int rowIndex, int columnIndex) {
+				
+	}
+
+	public void activeNodeWasChanged(ITreeNode node) {
+		activeNode = node;		
+	}
+
+	public void activeNodeWasChanged(ITreeNode node, Object source) {
+		activeNode = node;		
+	}
+
+	public void activeNodesWasChanged(List<ITreeNode> nodes) {
+		
+	}
+
+	public void activeNodesWasChanged(List<ITreeNode> nodes, Object source) {
+		
+	}
+
+	public void nodeStructureWasChanged(ITreeNode node) {
+		
+	}
+
+	public void nodeWasChanged(ITreeNode node) {
+		
+	}
+
+	public void nodeWasInserted(ITreeNode node, ITreeNode parent) {
+		
+	}
+
+	public void nodeWasRemoved(ITreeNode node, ITreeNode parent, int index) {
+		
+	}
+
+	public void onAfterChangeNode(ITreeNode node) {
+		
+	}
+
+	public void onBeforeChangeNode(ITreeNode node) {
+		
+	}
+
+	public void openedNodeWasChanged(ITreeNode node) {
+		openedNodeWasChanged(node, null);
+	}
+
+	public void openedNodeWasChanged(ITreeNode node, Object source) {
+		//TODO Исправить - переводим фокус  с таблицы на дерево и в тот момент, когда в дереве уже вызывается fireOpenedNodeChanged вызывается здесь fireTableDataChanged(), который устанавливает активный узел в null.
+		//TODO Аналогично CustomListModel создать нужный Event и правильно отреагировать, чтобы valueChanged не вызывался. 		
+		openedNode = node;		
+		this. fireTableDataChanged();
+	}
+}

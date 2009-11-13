@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename local variable &apos;button&apos; in &apos;al.catalog.TestFrame.createGUI()&apos; to &apos;button1&apos;&#x0D;&#x0A;- Original project: &apos;CatalogDB&apos;&#x0D;&#x0A;- Original element: &apos;al.catalog.TestFrame.createGUI().button&apos;&#x0D;&#x0A;- Renamed element: &apos;button&apos;&#x0D;&#x0A;- Update references to refactored element" description="Rename local variable &apos;button&apos;" id="org.eclipse.jdt.ui.rename.local.variable" input="/src&lt;al.catalog{TestFrame.java[TestFrame~createGUI@button!395!434!403!408!QJButton;" name="button1" references="true" stamp="1251131165161" version="1.0"/>
+</session>

@@ -1,0 +1,10 @@
+what,kind,bundleId,bundleVersion,description,time
+stopped,bundle,org.eclipse.jst.server.generic.oc4j,1.5.205.v200805140145,org.eclipse.jst.server.generic.oc4j,1250530756042
+stopped,bundle,org.eclipse.jst.server.websphere.core,1.0.301.v200805140145,org.eclipse.jst.server.websphere.core,1250530756073
+stopped,bundle,org.eclipse.jst.server.generic.ui,1.0.305.v200805140145,org.eclipse.jst.server.generic.ui,1250530756089
+stopped,bundle,org.eclipse.jst.server.generic.core,1.0.305.v200805140145,org.eclipse.jst.server.generic.core,1250530756120
+stopped,bundle,org.eclipse.mylyn.ide.ant,3.0.0.v20080619-1900,org.eclipse.mylyn.ide.ant,1250530756135
+stopped,bundle,org.eclipse.datatools.connectivity.oda.template.ui,3.0.6.v200805152355,org.eclipse.datatools.connectivity.oda.template.ui,1250530756151
+stopped,bundle,org.eclipse.mylyn.pde.ui,3.0.0.v20080619-1900,org.eclipse.mylyn.pde.ui,1250530756167
+stopped,bundle,org.eclipse.pde.api.tools.ui,1.0.0.v20080603,org.eclipse.pde.api.tools.ui,1250530756198
+stopped,bundle,org.eclipse.pde.runtime,3.4.0.v20080530-1200,org.eclipse.pde.runtime,1250530756198

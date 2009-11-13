@@ -1,0 +1,26 @@
+what,kind,bundleId,bundleVersion,description,time
+activated,editor,net.sf.jadclipse,3.3.0,net.sf.jadclipse.JadclipseClassFileEditor,1246732541355
+activated,editor,net.sf.jadclipse,3.3.0,net.sf.jadclipse.JadclipseClassFileEditor,1246732550629
+executed,command,org.eclipse.ui,3.4.0.I20080610-1200,org.eclipse.ui.navigate.backwardHistory,1246732550644
+executed,command,org.eclipse.ui,3.4.0.I20080610-1200,org.eclipse.ui.navigate.backwardHistory,1246732552102
+executed,command,org.eclipse.ui,3.4.0.I20080610-1200,org.eclipse.ui.navigate.backwardHistory,1246732554030
+executed,command,org.eclipse.ui,3.4.0.I20080610-1200,org.eclipse.ui.navigate.backwardHistory,1246732554713
+deactivated,workbench,org.eclipse.ui.workbench,3.4.0.I20080606-1300,,1246732563045
+activated,workbench,org.eclipse.ui.workbench,3.4.0.I20080606-1300,,1246732683103
+activated,editor,org.eclipse.jdt.ui,3.4.0.v20080603-2000,org.eclipse.jdt.ui.CompilationUnitEditor,1246732684977
+executed,command,org.eclipse.ui.workbench.texteditor,3.4.0.v20080603-2000,org.eclipse.ui.edit.text.goto.lineEnd,1246732688595
+executed,command,org.eclipse.ui.workbench.texteditor,3.4.0.v20080603-2000,org.eclipse.ui.edit.text.select.lineStart,1246732689474
+executed,command,org.eclipse.ui,3.4.0.I20080610-1200,org.eclipse.ui.edit.delete,1246732689652
+executed,command,org.eclipse.ui.workbench.texteditor,3.4.0.v20080603-2000,org.eclipse.ui.edit.text.goto.lineEnd,1246732690019
+executed,command,org.eclipse.ui.workbench.texteditor,3.4.0.v20080603-2000,org.eclipse.ui.edit.text.goto.lineEnd,1246732690173
+executed,command,org.eclipse.ui,3.4.0.I20080610-1200,org.eclipse.ui.edit.delete,1246732690202
+executed,command,org.eclipse.ui,3.4.0.I20080610-1200,org.eclipse.ui.file.save,1246732690375
+executed,command,org.eclipse.ui.workbench.texteditor,3.4.0.v20080603-2000,org.eclipse.ui.edit.text.goto.lineEnd,1246732691409
+no handler,command,org.eclipse.ui.workbench.texteditor,3.4.0.v20080603-2000,org.eclipse.ui.edit.text.goto.lineEnd,1246732698429
+executed,command,org.eclipse.ui.workbench.texteditor,3.4.0.v20080603-2000,org.eclipse.ui.edit.text.goto.lineEnd,1246732699484
+executed,command,org.eclipse.ui,3.4.0.I20080610-1200,org.eclipse.ui.file.save,1246732700251
+executed,command,org.eclipse.ui.workbench.texteditor,3.4.0.v20080603-2000,org.eclipse.ui.edit.text.goto.lineStart,1246732705186
+executed,command,org.eclipse.ui.workbench.texteditor,3.4.0.v20080603-2000,org.eclipse.ui.edit.text.goto.lineEnd,1246732706944
+executed,command,org.eclipse.ui,3.4.0.I20080610-1200,org.eclipse.ui.file.save,1246732708611
+executed,command,org.eclipse.ui.workbench.texteditor,3.4.0.v20080603-2000,org.eclipse.ui.edit.text.goto.lineEnd,1246732712458
+executed,command,org.eclipse.ui.workbench.texteditor,3.4.0.v20080603-2000,org.eclipse.ui.edit.text.goto.lineStart,1246732714426

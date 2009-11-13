@@ -1,0 +1,26 @@
+what,kind,bundleId,bundleVersion,description,time
+activated,editor,net.sf.jadclipse,3.3.0,net.sf.jadclipse.JadclipseClassFileEditor,1250107466025
+activated,editor,net.sf.jadclipse,3.3.0,net.sf.jadclipse.JadclipseClassFileEditor,1250107485775
+executed,command,org.eclipse.ui,3.4.0.I20080610-1200,org.eclipse.ui.navigate.backwardHistory,1250107485790
+activated,editor,org.eclipse.jdt.ui,3.4.0.v20080603-2000,org.eclipse.jdt.ui.CompilationUnitEditor,1250107488676
+executed,command,org.eclipse.ui,3.4.0.I20080610-1200,org.eclipse.ui.navigate.backwardHistory,1250107488739
+executed,command,org.eclipse.ui.workbench.texteditor,3.4.0.v20080603-2000,org.eclipse.ui.edit.text.delete.line,1250107491266
+executed,command,org.eclipse.ui,3.4.0.I20080610-1200,org.eclipse.ui.file.save,1250107492108
+deactivated,workbench,org.eclipse.ui.workbench,3.4.0.I20080606-1300,,1250107493403
+activated,workbench,org.eclipse.ui.workbench,3.4.0.I20080606-1300,,1250107727232
+executed,command,org.eclipse.ui,3.4.0.I20080610-1200,org.eclipse.ui.edit.copy,1250107731849
+deactivated,workbench,org.eclipse.ui.workbench,3.4.0.I20080606-1300,,1250107732582
+activated,workbench,org.eclipse.ui.workbench,3.4.0.I20080606-1300,,1250107832298
+deactivated,workbench,org.eclipse.ui.workbench,3.4.0.I20080606-1300,,1250107838881
+activated,workbench,org.eclipse.ui.workbench,3.4.0.I20080606-1300,,1250107907256
+deactivated,workbench,org.eclipse.ui.workbench,3.4.0.I20080606-1300,,1250107916678
+activated,workbench,org.eclipse.ui.workbench,3.4.0.I20080606-1300,,1250108016846
+deactivated,workbench,org.eclipse.ui.workbench,3.4.0.I20080606-1300,,1250108019810
+activated,workbench,org.eclipse.ui.workbench,3.4.0.I20080606-1300,,1250108027454
+executed,command,org.eclipse.ui,3.4.0.I20080610-1200,org.eclipse.ui.edit.text.contentAssist.proposals,1250108037750
+executed,command,org.eclipse.ui.workbench.texteditor,3.4.0.v20080603-2000,org.eclipse.ui.edit.text.select.lineStart,1250108052850
+no handler,command,org.eclipse.datatools.sqltools.result,,org.eclipse.datatools.sqltools.result.removeAllInstances,1250108052928
+executed,command,org.eclipse.ui,3.4.0.I20080610-1200,org.eclipse.ui.edit.delete,1250108053755
+executed,command,org.eclipse.ui,3.4.0.I20080610-1200,org.eclipse.ui.edit.delete,1250108054192
+executed,command,org.eclipse.ui,3.4.0.I20080610-1200,org.eclipse.ui.edit.delete,1250108054722
+executed,command,org.eclipse.ui,3.4.0.I20080610-1200,org.eclipse.ui.edit.delete,1250108055331

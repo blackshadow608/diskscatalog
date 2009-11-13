@@ -1,0 +1,26 @@
+what,kind,bundleId,bundleVersion,description,time
+activated,workbench,org.eclipse.ui.workbench,3.4.0.I20080606-1300,,1250413131478
+executed,command,org.eclipse.ui,3.4.0.I20080610-1200,org.eclipse.ui.edit.text.contentAssist.proposals,1250413173054
+executed,command,org.eclipse.ui.workbench.texteditor,3.4.0.v20080603-2000,org.eclipse.ui.edit.text.goto.lineEnd,1250413176266
+executed,command,org.eclipse.ui,3.4.0.I20080610-1200,org.eclipse.ui.file.save,1250413176470
+deactivated,workbench,org.eclipse.ui.workbench,3.4.0.I20080606-1300,,1250413179761
+activated,workbench,org.eclipse.ui.workbench,3.4.0.I20080606-1300,,1250413227902
+executed,command,org.eclipse.ui.workbench.texteditor,3.4.0.v20080603-2000,org.eclipse.ui.edit.text.select.lineStart,1250413229686
+no handler,command,org.eclipse.datatools.sqltools.result,,org.eclipse.datatools.sqltools.result.removeAllInstances,1250413229755
+executed,command,org.eclipse.ui.workbench.texteditor,3.4.0.v20080603-2000,org.eclipse.ui.edit.text.goto.lineEnd,1250413230611
+executed,command,org.eclipse.ui,3.4.0.I20080610-1200,org.eclipse.ui.edit.delete,1250413230822
+executed,command,org.eclipse.ui,3.4.0.I20080610-1200,org.eclipse.ui.file.save,1250413231024
+activated,view,org.eclipse.ui.console,3.3.0.v20080529-1300,org.eclipse.ui.console.ConsoleView,1250413246948
+activated,editor,org.eclipse.jdt.ui,3.4.0.v20080603-2000,org.eclipse.jdt.ui.CompilationUnitEditor,1250413258617
+activated,editor,org.eclipse.jdt.ui,3.4.0.v20080603-2000,org.eclipse.jdt.ui.CompilationUnitEditor,1250413271423
+closed,editor,org.eclipse.jdt.ui,3.4.0.v20080603-2000,org.eclipse.jdt.ui.CompilationUnitEditor,1250413271424
+deactivated,workbench,org.eclipse.ui.workbench,3.4.0.I20080606-1300,,1250413288170
+activated,workbench,org.eclipse.ui.workbench,3.4.0.I20080606-1300,,1250413291281
+activated,view,org.eclipse.ui.console,3.3.0.v20080529-1300,org.eclipse.ui.console.ConsoleView,1250413291398
+deactivated,workbench,org.eclipse.ui.workbench,3.4.0.I20080606-1300,,1250413293573
+activated,workbench,org.eclipse.ui.workbench,3.4.0.I20080606-1300,,1250413375576
+deactivated,workbench,org.eclipse.ui.workbench,3.4.0.I20080606-1300,,1250413377077
+activated,workbench,org.eclipse.ui.workbench,3.4.0.I20080606-1300,,1250413410676
+activated,editor,org.eclipse.jdt.ui,3.4.0.v20080603-2000,org.eclipse.jdt.ui.CompilationUnitEditor,1250413411667
+activated,view,org.eclipse.jdt.ui,3.4.0.v20080603-2000,org.eclipse.jdt.ui.PackageExplorer,1250413415985
+opened,editor,org.eclipse.jdt.ui,3.4.0.v20080603-2000,org.eclipse.jdt.ui.CompilationUnitEditor,1250413418802

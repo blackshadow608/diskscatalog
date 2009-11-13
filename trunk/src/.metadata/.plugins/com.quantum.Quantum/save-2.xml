@@ -1,0 +1,36 @@
+<?xml version="1.0" ?>
+<SAVED_DATA>
+	<bookmarks>
+		<jdbcDriver className="org.hsqldb.jdbcDriver" name="HSQL Database Engine Driver" type="HSQLDB" version="1.8.0">
+			<jar fileName="C:\Documents and Settings\Alexander_Levin\Desktop\catalog\lib\hsqldb.jar" />
+		</jdbcDriver>
+		<jdbcDriver className="org.apache.derby.jdbc.EmbeddedDriver" name="org.apache.derby.jdbc.EmbeddedDriver" type="DERBY" version="">
+			<jar fileName="C:/Program Files/eclipse-jee-europa-win32/file::C::/Program Files/eclipse-jee-europa-win32/plugins/com.quantum.derby_3.3.9.jar!/lib/derby.jar" />
+		</jdbcDriver>
+		<jdbcDriver className="sun.jdbc.odbc.JdbcOdbcDriver" name="sun.jdbc.odbc.JdbcOdbcDriver" type="JDBC_ODBC_BRIDGE" version="" />
+		<jdbcDriver className="sun.jdbc.odbc.JdbcOdbcDriver" name="sun.jdbc.odbc.JdbcOdbcDriver" type="MS_ACCESS" version="" />
+		<bookmark>
+			<name>CatDB server</name>
+			<username>sa</username>
+			<password />
+			<prompt>false</prompt>
+			<connect>jdbc:hsqldb:hsql://localhost/CatDB</connect>
+			<autoCommit>true</autoCommit>
+			<autoCommitPreference>Always True</autoCommitPreference>
+			<autoCommitIgnoreView>false</autoCommitIgnoreView>
+			<quoteAll>false</quoteAll>
+			<sendQueryAsIs>false</sendQueryAsIs>
+			<stripNewline>false</stripNewline>
+			<shutdownOnDisconnect>false</shutdownOnDisconnect>
+			<defaultEncoding />
+			<driver>org.hsqldb.jdbcDriver</driver>
+			<type>HSQLDB</type>
+			<substituteVariables>false</substituteVariables>
+			<variablesRegexp>\$\{(.*?)\}</variablesRegexp>
+			<driverLocation>C:\Documents and Settings\Alexander_Levin\Desktop\catalog\lib\hsqldb.jar</driverLocation>
+			<Other_Schemas schemaRule="useAll" />
+			<quickList />
+			<queryList />
+		</bookmark>
+	</bookmarks>
+</SAVED_DATA>

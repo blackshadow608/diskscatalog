@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Main-Class: al.catalog.Main
+Class-Path: ./lib/hsqldb.jar ./res/
+
