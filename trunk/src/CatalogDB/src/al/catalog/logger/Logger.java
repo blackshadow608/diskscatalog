@@ -3,7 +3,7 @@ package al.catalog.logger;
 /**
  * Примитивный логер для внутреннего пользования.
  * 
- * @author Alexander_Levin
+ * @author Alexander Levin
  */
 public class Logger {
 	
