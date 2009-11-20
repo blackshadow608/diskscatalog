@@ -1,28 +1,35 @@
 package al.catalog;
 
-import java.util.Set;
-
 import javax.swing.JDialog;
 import javax.swing.JFrame;
-import javax.swing.UIDefaults;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
 
 import al.catalog.logger.Logger;
 import al.catalog.model.DBManager;
 import al.catalog.ui.CatalogFrame;
 
+/**
+ * Точка входа приложения, с которой начинается выполнение приложения.
+ * 
+ * @author Alexander Levin
+ */
 public class Main {
 	
 	private static final String SERVER_MODE = "serverMode=true";
 	
 	
 	public Main(String[] args) {
+		/*
+		 * Настраиваем логер.
+		 */
 		Logger.enable();
 		Logger.setShowLineNumbers(true);
 		Logger.disable();
 		
-		DBManager dbManager = new DBManager();		
+		DBManager dbManager = new DBManager();
+		
+		/*
+		 * Читаем и проверяем параметры консоли.
+		 */
 		if (args != null && args.length > 0) {
 			if (args != null) {
 				for (int i = 0; i < args.length; i++) {
@@ -38,14 +45,15 @@ public class Main {
 		JDialog.setDefaultLookAndFeelDecorated(true);
 		
 		new CatalogFrame(dbManager);
-				
-		/*UIDefaults uiDefaults = UIManager.getLookAndFeelDefaults();
-		Set keySet = uiDefaults.keySet();
-		for(Object key : keySet) {
-			System.out.println(key);			
-		}*/
 	}
 	
+	/**
+	 * Точка входа приложения.
+	 * 
+	 * @param args -
+	 *            <b>String[]</b> параметры командной строки, передаваемые
+	 *            приложению во время запуска.
+	 */
 	public static void main(String[] args) {
 		new Main(args);
 	}
