@@ -3,9 +3,11 @@ package al.catalog;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.ListSelectionModel;
 
 public class TestFrame extends JFrame {
 
@@ -20,24 +22,17 @@ public class TestFrame extends JFrame {
 		JPanel panel = new JPanel();
 		panel.setLayout(new BorderLayout());
 
-		JButton northButton = new JButton("PAGE_START (NORTH)");
-		panel.add(northButton, BorderLayout.PAGE_START);
+		String[] data = { "Windows XP", "Windows Vista", "Mac OS", "Chrome OS",
+				"Ubuntu", "Linux", "Unix", "Solaris", "Windows 98", "Windows 95", "Windows 2000", "Windows 2003"};
 		
-		JButton westButton = new JButton("LINE_START (WEST)");
-		panel.add(westButton, BorderLayout.LINE_START);
-		
-		JButton eastButton = new JButton("LINE_END (EAST)");
-		panel.add(eastButton, BorderLayout.LINE_END);
-		
-		JButton centerButton = new JButton("CENTER");
-		panel.add(centerButton, BorderLayout.CENTER);
-		
-		JButton southButton = new JButton("PAGE_END (SOUTH)");
-		panel.add(southButton, BorderLayout.PAGE_END);
+		JList list = new JList(data);
+		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);		
 
+		panel.add(new JScrollPane(list), BorderLayout.CENTER);
+		
 		getContentPane().add(panel);
 
-		setPreferredSize(new Dimension(550, 300));
+		setPreferredSize(new Dimension(250, 200));
 	}
 
 	public static void main(String[] args) {
