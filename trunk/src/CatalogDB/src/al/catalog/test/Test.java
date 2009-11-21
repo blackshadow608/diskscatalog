@@ -21,7 +21,7 @@ public class Test {
 		JPanel panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel, 1));
 		
-		List icons = new ArrayList();
+		List<String> icons = new ArrayList<String>();
 		
 		icons.add("FileView.floppyDriveIcon");
 		icons.add("Tree.openIcon");
@@ -59,7 +59,7 @@ public class Test {
 			System.out.println(icon);									
 		}
 		
-		Map defaults = UIManager.getLookAndFeelDefaults();
+		Map<?, ?> defaults = UIManager.getLookAndFeelDefaults();
 		
 		System.out.println("--------------UIDefaults-------------");
 		
