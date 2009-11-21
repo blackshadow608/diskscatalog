@@ -9,7 +9,7 @@ import javax.swing.UIManager;
  * Утилитный класс, основная задача которого сводится к показу ключей для Look
  * and feel из UIDefaults.
  * 
- * @author Alexander_Levin
+ * @author Alexander Levin
  */
 public class UIDefaultsKeysShower {
 	
