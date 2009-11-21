@@ -8,6 +8,7 @@ import al.catalog.model.tree.types.file.FileNode;
 import al.catalog.model.tree.types.file.FolderNode;
 import al.catalog.model.tree.types.images.ImageNode;
 import al.catalog.model.tree.types.images.ImgCategoryNode;
+import al.catalog.ui.resource.ResourceManager;
 
 /**
  * Класс <b>TypeDeterminant</b> - утилитный класс для определения типа узла.
@@ -18,13 +19,18 @@ import al.catalog.model.tree.types.images.ImgCategoryNode;
  */
 public class TypeDeterminant {
 
-	private static Map<Class, String> types = new HashMap<Class, String>();
+	private static Map<Class<?>, String> types = new HashMap<Class<?>, String>();
+	
+	private static final String FILE = "nodeType.file";
+	private static final String FOLDER = "nodeType.folder";
+	private static final String IMAGE = "nodeType.image";
+	private static final String CATEGORY = "nodeType.category";
 
 	static {
-		types.put(FileNode.class, "Файл");
-		types.put(FolderNode.class, "Папка с файлами");
-		types.put(ImageNode.class, "Образ");
-		types.put(ImgCategoryNode.class, "Категория");
+		types.put(FileNode.class, ResourceManager.getString(FILE));
+		types.put(FolderNode.class, ResourceManager.getString(FOLDER));
+		types.put(ImageNode.class, ResourceManager.getString(IMAGE));
+		types.put(ImgCategoryNode.class, ResourceManager.getString(CATEGORY));
 	}
 
 	/**
