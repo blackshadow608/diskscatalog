@@ -11,7 +11,7 @@ public class ResourceManager {
 	private ResourceBundle resourceBundle;
 	
 	private ResourceManager() {
-		Locale locale = new Locale("ru", "RU");
+		Locale locale = new Locale("ru", "RU");		
 		resourceBundle = ResourceBundle.getBundle("messages", locale);		
 	}
 	
@@ -25,11 +25,13 @@ public class ResourceManager {
 	protected String getMessage(String key) {
 		String string = resourceBundle.getString(key);
 		String message = "";
+		
 		try {
 			message = new String(string.getBytes("ISO-8859-1"), "UTF-8");			
 		} catch (UnsupportedEncodingException e) {			
 			e.printStackTrace();
-		}		
+		}	
+		
 		return message;
 	}
 }
