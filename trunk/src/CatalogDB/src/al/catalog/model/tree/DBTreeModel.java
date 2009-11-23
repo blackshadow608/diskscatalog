@@ -78,11 +78,11 @@ public class DBTreeModel {
 	 * @param className
 	 *            - <b>Class</b> класс, который должен иметь создаваемый узел.
 	 */
-	public void createNode(Class className) {
+	public void createNode(Class<?> className) {
 		new CreateNodeAction(this, className).execute();
 	}
 	
-	public void createNode(Class className, IActionCallback callback) {
+	public void createNode(Class<?> className, IActionCallback callback) {
 		new CreateNodeAction(this, className, callback).execute();
 	}
 

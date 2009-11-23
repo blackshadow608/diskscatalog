@@ -1,7 +1,6 @@
 package al.catalog.ui.view;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 
 import javax.swing.BorderFactory;
 import javax.swing.JComponent;
@@ -19,7 +18,6 @@ import al.catalog.ui.view.list.CustomList;
 import al.catalog.ui.view.list.CustomListCellRenderer;
 import al.catalog.ui.view.table.ActiveTableItemListener;
 import al.catalog.ui.view.table.CustomTable;
-import al.catalog.ui.view.table.CustomTableModel;
 import al.catalog.ui.view.table.DBTreeModelListener;
 
 /**

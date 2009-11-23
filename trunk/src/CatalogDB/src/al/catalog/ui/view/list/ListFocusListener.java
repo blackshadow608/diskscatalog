@@ -3,8 +3,6 @@ package al.catalog.ui.view.list;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 
-import javax.swing.JTree;
-
 import al.catalog.logger.Logger;
 import al.catalog.ui.action.ActionManager;
 

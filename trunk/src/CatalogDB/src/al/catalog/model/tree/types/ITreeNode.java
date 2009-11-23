@@ -8,7 +8,7 @@ import java.util.List;
  * 
  * @author Alexander Levin
  */
-public interface ITreeNode extends Comparable {
+public interface ITreeNode extends Comparable<ITreeNode> {
 	
 	/**
 	 * Возвращает дочерние ITreeNode узлы данного узла.

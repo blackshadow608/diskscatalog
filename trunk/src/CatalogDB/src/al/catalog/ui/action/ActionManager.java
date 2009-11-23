@@ -412,7 +412,7 @@ public class ActionManager implements IConnectionListener, IDBActionListener, IH
         		upOneLevelAction.setEnabled(false);        		
         	}
         } else if (nodes != null) {
-        	List<String> classes = new ArrayList();
+        	List<String> classes = new ArrayList<String>();
         	boolean containsRoot = false;
         	for (ITreeNode node : nodes) {
         		if (node != null) {

@@ -166,7 +166,7 @@ public abstract class AbstractTreeNode implements ITreeNode {
 	
 	abstract public boolean canHaveChildren();
 	
-	public int compareTo(Object obj) {
+	public int compareTo(ITreeNode obj) {
 		if (obj instanceof AbstractTreeNode) {
 			AbstractTreeNode objNode = (AbstractTreeNode) obj;
 			int compareByType = 0;

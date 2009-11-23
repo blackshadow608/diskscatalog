@@ -16,7 +16,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
-import javax.swing.JRootPane;
 
 import al.catalog.model.DBAction;
 import al.catalog.ui.resource.ResourceManager;
