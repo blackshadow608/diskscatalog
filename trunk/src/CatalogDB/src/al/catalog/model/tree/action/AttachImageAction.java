@@ -19,9 +19,9 @@ import al.catalog.model.tree.types.images.ImageNode;
 import al.catalog.ui.resource.ResourceManager;
 
 /**
- * Action, который отвечает за сохранение образа, то есть просмотр всех поддиректорий и файлов
- * указанной директории и сохранении информации о них в базе данных. Просмотр и сохранение выполняются
- * в отдельном потоке.  
+ * Action, который отвечает за сохранение образа, то есть просмотр всех
+ * поддиректорий и файлов указанной директории и сохранении информации о них в
+ * базе данных. Просмотр и сохранение выполняются в отдельном потоке.
  * 
  * @author Alexander Levin
  */
@@ -193,5 +193,9 @@ public class AttachImageAction extends DBTreeModelAction {
 	
 	public String getProgressText() {
 		return ResourceManager.getString(PROGRESS_TEXT);
+	}
+
+	public boolean isCancelable() {
+		return true;
 	}
 }

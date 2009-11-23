@@ -69,4 +69,8 @@ public class OpenConnectionAction extends DBAction {
 	public String getProgressText() {
 		return ResourceManager.getString(PROGRESS_TEXT);
 	}
+
+	public boolean isCancelable() {
+		return false;
+	}
 }

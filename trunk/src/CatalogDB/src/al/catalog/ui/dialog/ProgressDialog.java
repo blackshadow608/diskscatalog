@@ -16,6 +16,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
+import javax.swing.JRootPane;
 
 import al.catalog.model.DBAction;
 import al.catalog.ui.resource.ResourceManager;
@@ -42,6 +43,8 @@ public class ProgressDialog extends JDialog implements WindowListener {
     private JLabel label;
     private DBAction dbAction;
     
+    private JPanel contentPane;
+    
     private boolean wasAborted = false;
     
     public ProgressDialog(JFrame owner, DBAction dbAction) {
@@ -56,7 +59,7 @@ public class ProgressDialog extends JDialog implements WindowListener {
     }
     
     public void createContent() {
-        JPanel contentPane = new JPanel();
+        contentPane = new JPanel();
         contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
         contentPane.setBorder(BorderFactory.createEmptyBorder(VGAP, HGAP, VGAP, HGAP));
         
@@ -89,6 +92,10 @@ public class ProgressDialog extends JDialog implements WindowListener {
             }
         });
         buttonsPane.add(buttonCancel);
+        
+        if(!dbAction.isCancelable()) {
+        	buttonCancel.setEnabled(false);
+        }
         
         contentPane.add(buttonsPane, BorderLayout.SOUTH);
         

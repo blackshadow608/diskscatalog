@@ -408,9 +408,11 @@ public class DBManager implements IConnectionProvider {
 	}
 	
 	/**
-	 * Вызывается после выполнения dbAction.
+	 * Вызывается после выполнения dbAction. Оповещает всех заинтересованных
+	 * слушателей о том, что выполнение Action'а завершилось.
 	 * 
-	 * @param dbAction - DBAction, который выполнился.
+	 * @param dbAction -
+	 *            DBAction, выполнение которого завершилось.
 	 */
 	public void fireAfterAction(DBAction dbAction) {
 		for (IDBActionListener listener : actionListeners) {

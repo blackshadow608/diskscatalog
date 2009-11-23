@@ -10,6 +10,11 @@ import al.catalog.model.tree.manager.ManagerFactory;
 import al.catalog.model.tree.types.ITreeNode;
 import al.catalog.ui.resource.ResourceManager;
 
+/**
+ * Action, который создает новый узел.
+ * 
+ * @author Alexander Levin
+ */
 public class CreateNodeAction extends DBAction {
 	
 	private static final String PROGRESS_TEXT = "createNodeAction.progressText";
@@ -18,15 +23,15 @@ public class CreateNodeAction extends DBAction {
 	
 	private DBTreeModel dbModel;
 	private ITreeNode treeNode;
-	private Class className;
+	private Class<?> className;
 	
-	public CreateNodeAction(DBTreeModel dbModel, Class className) {
+	public CreateNodeAction(DBTreeModel dbModel, Class<?> className) {
 		super(dbModel.getDBManager());
 		this.dbModel = dbModel;		
 		this.className = className;
 	}
 	
-	public CreateNodeAction(DBTreeModel dbModel, Class className, IActionCallback callback) {
+	public CreateNodeAction(DBTreeModel dbModel, Class<?> className, IActionCallback callback) {
 		this(dbModel, className);
 		this.callback = callback;
 	}
@@ -52,7 +57,8 @@ public class CreateNodeAction extends DBAction {
 	}
 	
 	public void unexecute() {
-		dbManager.rollback(savepoint);		
+		dbManager.rollback(savepoint);
+		
 		ITreeNode parent = treeNode.getParent();
 		List<ITreeNode> children = parent.getChildren();		
 		int index = 0;
@@ -76,5 +82,9 @@ public class CreateNodeAction extends DBAction {
 	
 	public String getProgressText() {
 		return ResourceManager.getString(PROGRESS_TEXT);
+	}
+
+	public boolean isCancelable() {
+		return false;
 	}
 }

@@ -66,22 +66,7 @@ public class DetachImageAction extends DBTreeModelAction {
 				
 				children = image.getChildren();
 				
-				for (ITreeNode child : children) {
-					/*if (child instanceof FolderNode) {
-						FolderNode folder = (FolderNode) child;
-						try {
-							folderDAO.remove(folder);
-						} catch (DAOException e) {
-							e.printStackTrace();
-						}
-					} else if (child instanceof FileNode) {
-						FileNode file = (FileNode) child;
-						try {
-							fileDAO.remove(file);
-						} catch (DAOException e) {
-							e.printStackTrace();
-						}
-					}*/
+				for (ITreeNode child : children) {					
 					remove(child);
 				}
 				
@@ -89,12 +74,6 @@ public class DetachImageAction extends DBTreeModelAction {
 					image.setChildren(null);					
 					SwingUtilities.invokeLater(new Runnable() {
 						public void run() {
-							if (firstExecute) {
-								//TODO Пересмотреть работу механизма
-								/*setOpenedNodes(dbModel.getOpenedNodes().get(0));
-								setActiveNodes(dbModel.getActiveNodes().get(0));*/
-							}
-							
 							dbModel.fireChangeStructureNode(image);
 							dbModel.fireChangeOpenedNode(image);
 							
@@ -160,5 +139,9 @@ public class DetachImageAction extends DBTreeModelAction {
 	
 	public String getProgressText() {
 		return ResourceManager.getString(PROGRESS_TEXT);
+	}
+
+	public boolean isCancelable() {
+		return true;
 	}
 }

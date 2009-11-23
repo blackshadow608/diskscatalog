@@ -5,6 +5,11 @@ import al.catalog.model.DBException;
 import al.catalog.model.DBManager;
 import al.catalog.ui.resource.ResourceManager;
 
+/**
+ * Action, который закрывает соединение с базой данных.
+ * 
+ * @author Alexander Levin
+ */
 public class CloseConnectionAction extends DBAction {
 	
 	private Thread thread;
@@ -26,7 +31,6 @@ public class CloseConnectionAction extends DBAction {
 			private boolean isInterrupted = false;
 
 			public void run() {
-
 				try {
 					dbManager.close();
 				} catch (DBException e) {
@@ -58,5 +62,9 @@ public class CloseConnectionAction extends DBAction {
 	
 	public String getProgressText() {
 		return ResourceManager.getString(PROGRESS_TEXT);
+	}
+
+	public boolean isCancelable() {
+		return false;
 	}
 }

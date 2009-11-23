@@ -152,4 +152,8 @@ public class UpdateNodeAction extends DBTreeModelAction {
 	public void abort() {
 		
 	}
+
+	public boolean isCancelable() {
+		return false;
+	}
 }

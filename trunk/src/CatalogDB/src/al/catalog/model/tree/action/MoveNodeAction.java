@@ -80,9 +80,7 @@ public class MoveNodeAction extends DBTreeModelAction {
 				dbModel.fireRemoveNode(treeNode, newParent, index);				
 			}						
 		}
-		
-		/*dbModel.fireChangeActiveNode(treeNode);
-		dbModel.fireChangeOpenedNode(treeNode);*/
+				
 		isExecuted = false;		
 	}
 	
@@ -122,5 +120,9 @@ public class MoveNodeAction extends DBTreeModelAction {
 	
 	public String getProgressText() {
 		return ResourceManager.getString(PROGRESS_TEXT);
+	}
+
+	public boolean isCancelable() {
+		return false;
 	}
 }
