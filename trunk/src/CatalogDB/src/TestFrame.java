@@ -1,14 +1,16 @@
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.Dimension;
 
+import javax.swing.DefaultListCellRenderer;
+import javax.swing.Icon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
+import javax.swing.UIManager;
 
 public class TestFrame extends JFrame {
 
@@ -29,21 +31,23 @@ public class TestFrame extends JFrame {
 				"Windows 2003" };
 
 		final JList list = new JList(data);
+		
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		
+		list.setCellRenderer(new DefaultListCellRenderer() {
+			public Component getListCellRendererComponent(JList list,
+					Object value, int index, boolean isSelected,
+					boolean cellHasFocus) {				
+				Component component = super.getListCellRendererComponent(
+						list, value, index, isSelected, cellHasFocus);
+				JLabel label = (JLabel) component;
+				Icon icon = UIManager.getIcon("Tree.closedIcon");
+				label.setIcon(icon);
+				return label;
+			}
+		});
 
 		panel.add(new JScrollPane(list), BorderLayout.CENTER);
-
-		final JLabel label = new JLabel(" ");
-
-		panel.add(label, BorderLayout.SOUTH);
-
-		list.addListSelectionListener(
-				new ListSelectionListener() {
-					public void valueChanged(ListSelectionEvent e) {
-						Object element = list.getSelectedValue();
-						label.setText(element.toString());
-					}
-				});
 
 		getContentPane().add(panel);
 
