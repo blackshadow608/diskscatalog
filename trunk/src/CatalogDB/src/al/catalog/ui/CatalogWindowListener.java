@@ -6,10 +6,23 @@ import java.awt.event.WindowListener;
 import al.catalog.model.DBException;
 import al.catalog.model.DBManager;
 
+/**
+ * Слушает оконные события основного окан приложения. Основная задача -
+ * отслеживать событие закрытия окна и при возникновении такого события
+ * закрывать соединение с базой данных.
+ * 
+ * @author Alexander Levin
+ */
 public class CatalogWindowListener implements WindowListener {
 	
 	protected DBManager dbManager;
 	
+	/**
+	 * Создает новый <b>CatalogWindowListener</b> с параметром <b>DBManager</b>,
+	 * через который и происходит закоытие соединения с базой данных.
+	 * 
+	 * @param dbManager - ссылка на <b>DBManager</b>, который управляет базой данных.
+	 */
 	public CatalogWindowListener(DBManager dbManager) {
 		this.dbManager = dbManager;				
 	}
