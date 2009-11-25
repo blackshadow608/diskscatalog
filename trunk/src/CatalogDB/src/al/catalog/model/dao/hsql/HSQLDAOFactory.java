@@ -13,6 +13,12 @@ import al.catalog.model.dao.IFolderDAO;
 import al.catalog.model.dao.IImageDAO;
 import al.catalog.model.dao.IImgCategoryDAO;
 
+/**
+ * Реализация фабрики <b>DAOFactory</b> для конкретной базы данных, а именно
+ * HSQL DB.
+ * 
+ * @author Alexander Levin
+ */
 public class HSQLDAOFactory extends DAOFactory {
 	
 	private IConnectionProvider conProvider;
@@ -58,6 +64,23 @@ public class HSQLDAOFactory extends DAOFactory {
 		return conProvider;
 	}
 	
+	/**
+	 * Возвращает уникальный идентификатор, который потребуется для вставки
+	 * новых записей в таблицу.
+	 * 
+	 * @param connection -
+	 *            соединение <b>Connection</b>, через которое метод
+	 *            осуществляет получение идентификатора из таблицы.
+	 * @param tableName -
+	 *            строковое <b>String</b> имя таблицы, для которой требуется
+	 *            получить уникальный идентификатор.
+	 * 
+	 * @return целый <b>int</b> уникальный идентификатор.
+	 * 
+	 * @throws DAOException
+	 *             исключительная ситуация, которая выбрасывается, если что-то
+	 *             не так.
+	 */
 	public static int getUniqueId(Connection connection, String tableName) throws DAOException {
 		int id = 0;
 		String query = "SELECT MAX(ID) AS MAX_ID FROM " + tableName;		

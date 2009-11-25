@@ -18,11 +18,9 @@ import al.catalog.model.tree.types.images.ImageNode;
 
 public class HSQLFileDAO implements IFileDAO {
 	
-	/*private DAOFactory daoFactory;*/
 	private IConnectionProvider conProvider;
 	
 	public HSQLFileDAO(DAOFactory daoFactory) {
-		/*this.daoFactory = daoFactory;*/
 		this.conProvider = daoFactory.getConnectionProvider();
 	}
 
