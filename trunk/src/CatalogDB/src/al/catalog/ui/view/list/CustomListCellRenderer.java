@@ -73,11 +73,6 @@ public class CustomListCellRenderer extends DefaultListCellRenderer {
 				setIcon(UIManager.getIcon("Tree.leafIcon"));
 			}
 
-			/*
-			 * int maxWidth = 110; int maxHeight = 50; setPreferredSize(new
-			 * Dimension(maxWidth, maxHeight));
-			 */
-
 			String fullText = (value == null) ? "" : value.toString();
 			String partText = fullText;
 
@@ -108,15 +103,7 @@ public class CustomListCellRenderer extends DefaultListCellRenderer {
 				if (isSelected) {
 					border = UIManager.getBorder("List.focusSelectedCellHighlightBorder");
 				}
-				if (border == null) {
-					// border =
-					// UIManager.getBorder("List.focusCellHighlightBorder");
-					/*
-					 * border =
-					 * BorderFactory.createCompoundBorder(BorderFactory.
-					 * createLineBorder(new Color(-10255681)),
-					 * BorderFactory.createEmptyBorder(1, 1, 1, 1));
-					 */
+				if (border == null) {					
 					border = BorderFactory.createCompoundBorder(UIManager.getBorder("List.focusCellHighlightBorder"),
 								BorderFactory.createEmptyBorder(1, 1, 1, 1));
 				}
@@ -134,8 +121,6 @@ public class CustomListCellRenderer extends DefaultListCellRenderer {
 		this.type = type;
 		
 		if (type == TYPE_ICONS) {
-			//int maxWidth = 110;
-			//int maxHeight = 50;
 			int maxWidth = 120;
 			int maxHeight = 50;
 			setPreferredSize(new Dimension(maxWidth, maxHeight));
