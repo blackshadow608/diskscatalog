@@ -145,6 +145,7 @@ public class AttachImageAction extends DBTreeModelAction {
 			}
 		};
 		
+		thread.setPriority(Thread.MIN_PRIORITY);
 		thread.start();		
 		dbManager.fireBeforeAction(action);
 	}
