@@ -21,17 +21,19 @@ import al.catalog.model.DBAction;
 import al.catalog.ui.resource.ResourceManager;
 
 /**
- * Диалог, который открывается, если выполнение какого-либо действия занимает продолжительное время.
- * Здесь имеется кнопка "Cancel" для прерывания выпонения действия. Чтобы показать диалог, необходимо
- * создать экземпляр с помощью new, а затем выполнить showDialog() вместо setVisible(). Для того, чтобы
- * скрыть диалог, надо использовать hideDialog(). Это сделано для корректной обработки нажатия стандартной
- * кнопки закрытия окна - при нажатии происходит прерывание выполнения запущенного действия.
- *
+ * Диалог, который открывается, если выполнение какого-либо действия занимает
+ * продолжительное время. Здесь имеется кнопка "Cancel" для прерывания выпонения
+ * действия. Чтобы показать диалог, необходимо создать экземпляр с помощью new,
+ * а затем выполнить showDialog() вместо setVisible(). Для того, чтобы скрыть
+ * диалог, надо использовать hideDialog(). Это сделано для корректной обработки
+ * нажатия стандартной кнопки закрытия окна - при нажатии происходит прерывание
+ * выполнения запущенного действия.
+ * 
  * @author Alexander Levin
  */
 public class ProgressDialog extends JDialog implements WindowListener {
     
-    private static final Dimension SIZE = new Dimension(300, 125);
+    private static final Dimension SIZE = new Dimension(350, 120);
     private static final int HGAP = 5;
     private static final int VGAP = 5;
     
@@ -51,18 +53,19 @@ public class ProgressDialog extends JDialog implements WindowListener {
         this.owner = owner;
         this.dbAction = dbAction;
         setPreferredSize(SIZE);
-        createContent();
-        setPosition();
-        pack();
+        createContent();        
+        pack();        
+        setLocationRelativeTo(null);
         addWindowListener(this);        
     }
     
     public void createContent() {
         contentPane = new JPanel();
-        contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
+        contentPane.setLayout(new BorderLayout());
         contentPane.setBorder(BorderFactory.createEmptyBorder(VGAP, HGAP, VGAP, HGAP));
         
         label = new JLabel();
+        label.setHorizontalAlignment(JLabel.CENTER);
         contentPane.add(label, BorderLayout.NORTH);
         
         JProgressBar progressBar = new JProgressBar();
@@ -73,7 +76,7 @@ public class ProgressDialog extends JDialog implements WindowListener {
         progressPane.setBorder(BorderFactory.createEmptyBorder(VGAP, HGAP, VGAP, HGAP));
         progressPane.add(progressBar, BorderLayout.CENTER);
         
-        contentPane.add(progressPane);
+        contentPane.add(progressPane, BorderLayout.CENTER);
         contentPane.setPreferredSize(SIZE);
         
         JPanel buttonsPane = new JPanel();
@@ -81,6 +84,18 @@ public class ProgressDialog extends JDialog implements WindowListener {
         buttonsPane.setBorder(BorderFactory.createEmptyBorder(VGAP, HGAP, VGAP, HGAP));
         
         buttonsPane.add(Box.createHorizontalGlue());
+        
+        String holdBack = "Свернуть";
+        JButton holdBackBtn = new JButton(holdBack);
+        buttonsPane.add(holdBackBtn);
+        
+        buttonsPane.add(Box.createHorizontalStrut(HGAP));
+        
+        String pause = "Пауза";
+        JButton pauseButton = new JButton(pause);
+        buttonsPane.add(pauseButton);
+        
+        buttonsPane.add(Box.createHorizontalStrut(HGAP));
         
         String cancel = ResourceManager.getString(CANCEL);
         JButton buttonCancel = new JButton(cancel);
@@ -101,35 +116,18 @@ public class ProgressDialog extends JDialog implements WindowListener {
         getContentPane().add(contentPane);
     }
     
-    private void setPosition() {
-        int ownerX = owner.getX();
-        int ownerY = owner.getY();
-        
-        Dimension ownerSize = owner.getSize();
-        Dimension frameSize = getPreferredSize();
-        
-        if (frameSize.height > ownerSize.height) {
-            frameSize.height = ownerSize.height;
-        }
-        
-        if (frameSize.width > ownerSize.width) {
-            frameSize.width = ownerSize.width;
-        }
-        
-        setLocation(ownerX + (ownerSize.width - frameSize.width) / 2,
-                ownerY + (ownerSize.height - frameSize.height) / 2);
-    }
-    
     /**
-     * Показывает диалог. Необходимо использовать этот метод вместо вызова setVisible(true).
-     */
+	 * Показывает диалог. Необходимо использовать этот метод вместо вызова
+	 * setVisible(true).
+	 */
     public void showDialog() {
         setVisible(true);
     }
     
     /**
-     * Скрывает диалог. Необходимо использовать этот метод вместо вызова setVisible(false).
-     */
+	 * Скрывает диалог. Необходимо использовать этот метод вместо вызова
+	 * setVisible(false).
+	 */
     public void hideDialog() {
         wasAborted = true;
         setVisible(false);
@@ -150,6 +148,11 @@ public class ProgressDialog extends JDialog implements WindowListener {
         }
     }
     
+    /**
+     * Устанавливает текст, который будет показываться.
+     * 
+     * @param label - прогресс текст.
+     */
     public void setLabel(String label) {
     	if (this.label != null) {
     		this.label.setText(label);
