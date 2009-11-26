@@ -25,7 +25,7 @@ public class ProgressActionListener implements IDBActionListener {
         actionAlreadyExecuted = true;
         if (progressDialog != null) {
             try {
-                Thread.sleep(500);
+                Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -41,7 +41,7 @@ public class ProgressActionListener implements IDBActionListener {
         showDialogThread = new Thread() {
             public void run() {
                 try {
-                    Thread.sleep(200);
+                    Thread.sleep(100);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
