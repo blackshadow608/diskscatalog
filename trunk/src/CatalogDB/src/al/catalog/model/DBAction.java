@@ -72,13 +72,19 @@ public abstract class DBAction {
 	/**
 	 * Содержит код, который исполняется при прерывании выполнения действия.
 	 */
-	abstract public void abort();
+	public void abort() {
+		
+	}
+	
+	public void pause() {
+		
+	}
     
 	/**
 	 * Возвращает текст, который должен будет отображаться в прогресс-диалоге или, например,
 	 * в логах приложения при выполнении данного action'а.
 	 * 
-	 * @return прогресс текст
+	 * @return прогресс текст.
 	 */
 	abstract public String getProgressText();
 	
@@ -90,4 +96,14 @@ public abstract class DBAction {
 	 *         процессе его выполнения и <b>false</b>, если нет.
 	 */
 	abstract public boolean isCancelable();
+	
+	/**
+	 * Возвращает флаг, который говорит о том, можно ли остановить выполнение
+	 * action'а на время, чтобы далее прололжить его. Другими словами - можно ил
+	 * поставить action на паузу или нет.
+	 * 
+	 * @return - <b>true</b>, если действие может быть поставлено на паузу,
+	 *         <b>false</b>, если нет.
+	 */
+	abstract public boolean isPausable();
 }

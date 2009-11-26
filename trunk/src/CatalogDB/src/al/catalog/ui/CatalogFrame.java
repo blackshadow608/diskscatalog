@@ -20,6 +20,7 @@ import al.catalog.model.DBManager;
 import al.catalog.model.tree.DBTreeModel;
 import al.catalog.ui.action.ActionManager;
 import al.catalog.ui.popup.PopupMenuHelper;
+import al.catalog.ui.progress.ProgressActionListener;
 import al.catalog.ui.resource.ResourceManager;
 import al.catalog.ui.tree.CatalogTree;
 import al.catalog.ui.view.ViewPanel;
@@ -39,6 +40,7 @@ public class CatalogFrame extends JFrame {
 	private DBManager dbManager;
 	private JTree tree;
 	private ViewPanel viewPanel;
+	private JPanel contentPane;
 	
 	public CatalogFrame(DBManager dbManager) {
 		this.dbManager = dbManager;
@@ -59,7 +61,10 @@ public class CatalogFrame extends JFrame {
         addWindowListener(new CatalogWindowListener(dbManager));
     }
 	
-	private void createGUI() {
+	private void createGUI() {		
+		contentPane = new JPanel();
+		contentPane.setLayout(new BorderLayout());
+		
 		DBTreeModel dbModel = dbManager.getTreeModel();				
 				
 		tree = new CatalogTree(dbManager);
@@ -106,35 +111,13 @@ public class CatalogFrame extends JFrame {
 		splitPane.setDividerSize(DIVIDER_SIZE);
 		splitPane.setDividerLocation(DIVIDER_POS);
 		
-		getContentPane().add(splitPane);
+		contentPane.add(splitPane, BorderLayout.CENTER);
 		
 		CatalogToolBar toolBar = new CatalogToolBar(actionManager);
 		
-		getContentPane().add(toolBar, BorderLayout.PAGE_START);
+		contentPane.add(toolBar, BorderLayout.PAGE_START);
 		
-		JPanel statusBar = new JPanel();
-		statusBar.setLayout(new BorderLayout());
-		
-		JPanel progressPanel = new JPanel();
-		progressPanel.add(new JLabel("Открытие соединения..."));
-		
-		JProgressBar progressBar = new JProgressBar();
-        progressBar.setIndeterminate(true);
-        progressPanel.add(progressBar);
-        
-        JButton pauseButton = new JButton("Пауза");
-        pauseButton.setFocusable(false);
-        progressPanel.add(pauseButton);
-        
-        JButton cancelButton = new JButton("Отмена");
-        cancelButton.setFocusable(false);
-        progressPanel.add(cancelButton);        
-		
-		statusBar.add(progressPanel, BorderLayout.EAST);
-		
-		statusBar.setBorder(BorderFactory.createMatteBorder(1, 1, 0, 0, new Color(166, 166, 166)));
-		
-		getContentPane().add(statusBar, BorderLayout.PAGE_END);
+		getContentPane().add(contentPane);
 	}
 	
 	private void customizeFont() {		
@@ -160,5 +143,15 @@ public class CatalogFrame extends JFrame {
 	
 	public ViewPanel getViewPanel() {
 		return viewPanel;
+	}
+	
+	public void showProgressBar(JPanel progressBar) {
+		contentPane.add(progressBar, BorderLayout.SOUTH);
+		contentPane.revalidate();
+	}
+	
+	public void hideProgressBar(JPanel progressBar) {
+		contentPane.remove(progressBar);
+		contentPane.revalidate();
 	}
 }

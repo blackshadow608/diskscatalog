@@ -17,10 +17,6 @@ public class SaveChangesAction extends DBAction {
 		this.action = this;
 	}
 
-	public void abort() {
-		
-	}
-
 	public void execute() {
 		thread = new Thread() {
 
@@ -64,6 +60,10 @@ public class SaveChangesAction extends DBAction {
 	}
 
 	public boolean isCancelable() {
+		return false;
+	}
+	
+	public boolean isPausable() {
 		return false;
 	}
 }

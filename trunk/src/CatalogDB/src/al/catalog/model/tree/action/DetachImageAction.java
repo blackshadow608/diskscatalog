@@ -132,6 +132,10 @@ public class DetachImageAction extends DBTreeModelAction {
 		dbManager.getTreeModel().fireChangeOpenedNode(image);
 	}
 	
+	public void pause() {
+		
+	}
+	
 	public void runGarbageCollector() {
 	      Runtime r = Runtime.getRuntime();
 	      r.gc();
@@ -142,6 +146,10 @@ public class DetachImageAction extends DBTreeModelAction {
 	}
 
 	public boolean isCancelable() {
+		return true;
+	}
+	
+	public boolean isPausable() {
 		return true;
 	}
 }

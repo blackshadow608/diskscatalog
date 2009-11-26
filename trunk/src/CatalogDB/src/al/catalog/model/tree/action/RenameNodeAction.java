@@ -94,16 +94,16 @@ public class RenameNodeAction extends DBTreeModelAction {
 			e.printStackTrace();			
 		}		
 	}
-
-	public void abort() {
-		
-	}
 	
 	public String getProgressText() {
 		return ResourceManager.getString(PROGRESS_TEXT);
 	}
 
 	public boolean isCancelable() {
+		return false;
+	}
+	
+	public boolean isPausable() {
 		return false;
 	}
 }

@@ -186,6 +186,10 @@ public class AttachImageAction extends DBTreeModelAction {
 		dbManager.getTreeModel().fireChangeStructureNode(image);
 	}
 	
+	public void pause() {
+		
+	}
+	
 	public void runGarbageCollector() {
 	      Runtime r = Runtime.getRuntime();
 	      r.gc();
@@ -196,6 +200,10 @@ public class AttachImageAction extends DBTreeModelAction {
 	}
 
 	public boolean isCancelable() {
+		return true;
+	}
+	
+	public boolean isPausable() {
 		return true;
 	}
 }

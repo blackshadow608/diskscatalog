@@ -16,14 +16,6 @@ public class OpenConnectionAction extends DBAction {
 		super(dbManager);
 		this.action = this;
 	}
-	
-	public void abort() {
-		try {
-			dbManager.close();
-		} catch (DBException e) {
-			e.printStackTrace();
-		}		
-	}
 
 	public void execute() {
 		thread = new Thread() {
@@ -71,6 +63,10 @@ public class OpenConnectionAction extends DBAction {
 	}
 
 	public boolean isCancelable() {
+		return false;
+	}
+	
+	public boolean isPausable() {
 		return false;
 	}
 }

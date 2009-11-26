@@ -112,10 +112,6 @@ public class RemoveNodeAction extends DBAction {
 			e.printStackTrace();			
 		}		
 	}
-
-	public void abort() {
-		
-	}
 	
 	public String getProgressText() {
 		return ResourceManager.getString(PROGRESS_TEXT);
@@ -123,5 +119,9 @@ public class RemoveNodeAction extends DBAction {
 
 	public boolean isCancelable() {
 		return true;
+	}
+	
+	public boolean isPausable() {
+		return false;
 	}
 }
