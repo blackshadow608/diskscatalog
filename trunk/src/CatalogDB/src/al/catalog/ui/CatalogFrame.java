@@ -6,8 +6,11 @@ import java.awt.Dimension;
 import java.awt.Font;
 
 import javax.swing.BorderFactory;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JProgressBar;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTree;
@@ -108,6 +111,30 @@ public class CatalogFrame extends JFrame {
 		CatalogToolBar toolBar = new CatalogToolBar(actionManager);
 		
 		getContentPane().add(toolBar, BorderLayout.PAGE_START);
+		
+		JPanel statusBar = new JPanel();
+		statusBar.setLayout(new BorderLayout());
+		
+		JPanel progressPanel = new JPanel();
+		progressPanel.add(new JLabel("Открытие соединения..."));
+		
+		JProgressBar progressBar = new JProgressBar();
+        progressBar.setIndeterminate(true);
+        progressPanel.add(progressBar);
+        
+        JButton pauseButton = new JButton("Пауза");
+        pauseButton.setFocusable(false);
+        progressPanel.add(pauseButton);
+        
+        JButton cancelButton = new JButton("Отмена");
+        cancelButton.setFocusable(false);
+        progressPanel.add(cancelButton);        
+		
+		statusBar.add(progressPanel, BorderLayout.EAST);
+		
+		statusBar.setBorder(BorderFactory.createMatteBorder(1, 1, 0, 0, new Color(166, 166, 166)));
+		
+		getContentPane().add(statusBar, BorderLayout.PAGE_END);
 	}
 	
 	private void customizeFont() {		
