@@ -29,7 +29,7 @@ public interface IImageDAO {
 	 * качестве параметра категория.
 	 * 
 	 * @param parentCategory -
-	 *            родительская категория <b>ImgCategoryNode</b>.
+	 *            родительская категория <b>ImgCategoryNode</b></b>.
 	 * 
 	 * @return список образов указанной категории.
 	 * 
@@ -80,7 +80,34 @@ public interface IImageDAO {
 	 */
 	public ImageNode remove(ImageNode image) throws DAOException;
 
+	/**
+	 * Обновляет информацию в базе данных об узле <b>ImageNode</b>, ссылка на
+	 * который переадется методу в качестве параметра.
+	 * 
+	 * @param image -
+	 *            <b>ImageNode</b> узел, информацию о котором необходимо
+	 *            изменить в базе данных.
+	 * 
+	 * @return <b>ImageNode</b> узел, информация о котором было обновления в
+	 *         базе данных.
+	 * 
+	 * @throws DAOException,
+	 *             который выбрасывается, если в процессе работы метода возникла
+	 *             исключительная ситуация.
+	 */
 	public ImageNode update(ImageNode image) throws DAOException;
 	
+	/**
+	 * Возвращает из базы данных родительскую категорию <b>ImgCategory</b> узла
+	 * <b>ImageNode</b>, который передается методу в качестве параметра.
+	 * 
+	 * @param image - <b>ImageNode</b> узел, родительскую категорию которого необходимо получить из базы данных.
+	 * 
+	 * @return родительская <b>ImgСategoryNode</b> категория. 
+	 * 
+	 * @throws DAOException,
+	 *             который выбрасывается, если в процессе работы метода возникла
+	 *             исключительная ситуация.
+	 */
 	public ImgCategoryNode getParent(ImageNode image) throws DAOException;
 }
