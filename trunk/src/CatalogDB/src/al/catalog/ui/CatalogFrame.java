@@ -6,11 +6,8 @@ import java.awt.Dimension;
 import java.awt.Font;
 
 import javax.swing.BorderFactory;
-import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JProgressBar;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTree;
@@ -145,11 +142,25 @@ public class CatalogFrame extends JFrame {
 		return viewPanel;
 	}
 	
+	/**
+	 * Показывает в нижней части основного окна приложения панель прогресса
+	 * выполнения, ссылка на которую передается методу в качестве параметра.
+	 * 
+	 * @param progressBar - ссылка на <b>JPanel</b> панель прогресса выполнения.
+	 */
 	public void showProgressBar(JPanel progressBar) {
 		contentPane.add(progressBar, BorderLayout.SOUTH);
 		contentPane.revalidate();
 	}
 	
+	/**
+	 * Скрывает панель прогресса выполнения, ссылка на которую передается методу
+	 * в качестве параметра.
+	 * 
+	 * @param progressBar -
+	 *            ссылка на <b>JPanel</b> прогресс панель, которую необходимо
+	 *            скрыть.
+	 */
 	public void hideProgressBar(JPanel progressBar) {
 		if(progressBar != null) {
 			contentPane.remove(progressBar);
