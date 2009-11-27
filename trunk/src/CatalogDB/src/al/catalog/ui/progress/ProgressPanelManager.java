@@ -3,15 +3,36 @@ package al.catalog.ui.progress;
 import al.catalog.model.DBAction;
 import al.catalog.ui.CatalogFrame;
 
+/**
+ * Класс <b>ProgressPanelManager</b> управляет панелью прогресса выполнения
+ * задач.
+ * 
+ * @author Alexander Levin
+ */
 public class ProgressPanelManager {
 	
 	private CatalogFrame owner;
 	private ProgressPanel progressPanel;
 	
+	/**
+	 * Создает новый менеджер панели прогресса выполнения.
+	 * 
+	 * @param owner -
+	 *            ссылка <b>CatalogFrame</b>, в нижней части которого будет
+	 *            показывать панель прогресса выполнения.
+	 */
 	public ProgressPanelManager(CatalogFrame owner) {
 		this.owner = owner;
 	}
 	
+	/**
+	 * Показывает панель прогресса выполнения задачи <b>DBAction</b>, ссылка на
+	 * которую передается методу в качестве параметра.
+	 * 
+	 * @param action -
+	 *            ссылка <b>DBAction</b>, для которого будет показана панель
+	 *            прогресса выполнения.
+	 */
 	public void showProgressBar(DBAction action) {
 		if(progressPanel == null) {
 			progressPanel = new ProgressPanel(this);
@@ -20,8 +41,14 @@ public class ProgressPanelManager {
 		owner.showProgressBar(progressPanel);
 	}
 	
-	public void hideProgressBar() {		
-		owner.hideProgressBar(progressPanel);		
+	/**
+	 * Скрывает панель прогресса, которая отображается в нижней части основного
+	 * окна приложения.
+	 */
+	public void hideProgressBar() {
+		if(progressPanel != null) {
+			owner.hideProgressBar(progressPanel);			
+		}				
 	}
 
 }
