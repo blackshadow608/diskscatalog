@@ -151,7 +151,9 @@ public class CatalogFrame extends JFrame {
 	}
 	
 	public void hideProgressBar(JPanel progressBar) {
-		contentPane.remove(progressBar);
-		contentPane.revalidate();
+		if(progressBar != null) {
+			contentPane.remove(progressBar);
+			contentPane.revalidate();			
+		}		
 	}
 }

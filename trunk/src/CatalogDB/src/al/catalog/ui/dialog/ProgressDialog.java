@@ -18,6 +18,7 @@ import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 
 import al.catalog.model.DBAction;
+import al.catalog.ui.progress.ProgressPanelManager;
 import al.catalog.ui.resource.ResourceManager;
 
 /**
@@ -40,18 +41,19 @@ public class ProgressDialog extends JDialog implements WindowListener {
     private static final String CANCEL = "progressDialog.cancel";
     private static final String TITLE = "progressDialog.title";
     
-    private JFrame owner;
     private JLabel label;
-    private DBAction dbAction;
+    private DBAction action;
+    private ProgressPanelManager progressManager;
     
     private JPanel contentPane;
     
     private boolean wasAborted = false;
+    private boolean inBackground = false;
     
-    public ProgressDialog(JFrame owner, DBAction dbAction) {
+    public ProgressDialog(JFrame owner, DBAction dbAction, ProgressPanelManager progressManager) {
         super(owner, ResourceManager.getString(TITLE), true);
-        this.owner = owner;
-        this.dbAction = dbAction;
+        this.action = dbAction;
+        this.progressManager = progressManager;
         setPreferredSize(SIZE);
         createContent();        
         pack();        
@@ -87,12 +89,19 @@ public class ProgressDialog extends JDialog implements WindowListener {
         
         String holdBack = "Свернуть";
         JButton holdBackBtn = new JButton(holdBack);
+        holdBackBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	holdBack();
+                progressManager.showProgressBar(action);                
+            }
+        });
         buttonsPane.add(holdBackBtn);
         
         buttonsPane.add(Box.createHorizontalStrut(HGAP));
         
         String pause = "Пауза";
         JButton pauseButton = new JButton(pause);
+        pauseButton.setEnabled(false);
         buttonsPane.add(pauseButton);
         
         buttonsPane.add(Box.createHorizontalStrut(HGAP));
@@ -101,13 +110,13 @@ public class ProgressDialog extends JDialog implements WindowListener {
         JButton buttonCancel = new JButton(cancel);
         buttonCancel.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                dbAction.abort();
-                hideDialog();
+            	hideDialog();
+                action.abort();                
             }
         });
         buttonsPane.add(buttonCancel);
         
-        if(!dbAction.isCancelable()) {
+        if(!action.isCancelable()) {
         	buttonCancel.setEnabled(false);
         }
         
@@ -121,7 +130,8 @@ public class ProgressDialog extends JDialog implements WindowListener {
 	 * setVisible(true).
 	 */
     public void showDialog() {
-        setVisible(true);
+    	inBackground = false;
+        setVisible(true);        
     }
     
     /**
@@ -134,16 +144,21 @@ public class ProgressDialog extends JDialog implements WindowListener {
         dispose();
     }
     
+    public void holdBack() {
+    	inBackground = true;
+    	setVisible(false);
+    }
+    
     public void windowClosed(WindowEvent e) {
-        if (!wasAborted) {
-            dbAction.abort();
+        if (!wasAborted && !inBackground) {
+            action.abort();
             wasAborted = true;
         }
     }
     
     public void windowClosing(WindowEvent e) {
-        if (!wasAborted) {
-            dbAction.abort();
+    	if (!wasAborted && !inBackground) {
+            action.abort();
             wasAborted = true;
         }
     }

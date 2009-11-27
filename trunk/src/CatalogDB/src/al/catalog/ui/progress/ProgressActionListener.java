@@ -23,36 +23,47 @@ public class ProgressActionListener implements IDBActionListener {
     
     public void afterActionExecuting(DBAction dbAction) {       
         actionAlreadyExecuted = true;
+        
         if (progressDialog != null) {
+        	/*
+			 * Чтобы диалог прогресса выполнения и прогресс панель не мелькали,
+			 * а показывались хотя бы секунду.
+			 */
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+            /*
+			 * Как только выполнения action'а завершено, нужно скрыть диалог и
+			 * прогресс панель.
+			 */
             progressManager.hideProgressBar();
-            //progressDialog.hideDialog();            
+            progressDialog.hideDialog();            
         }
     }
     
     public void beforeActionExecuting(final DBAction action) {
         actionAlreadyExecuted = false;
-        progressDialog = new ProgressDialog(owner, action);
+        progressDialog = new ProgressDialog(owner, action, progressManager);
         final String progressText = action.getProgressText();
+        
         showDialogThread = new Thread() {
             public void run() {
+            	
                 try {
                     Thread.sleep(100);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+                
                 if (!actionAlreadyExecuted) {
-                	progressManager.showProgressBar(action);
-                	
-                    //progressDialog.setLabel(progressText);
-                    //progressDialog.showDialog();
+                    progressDialog.setLabel(progressText);
+                    progressDialog.showDialog();
                 }
             }
         };
+        
         showDialogThread.start();
     }
     

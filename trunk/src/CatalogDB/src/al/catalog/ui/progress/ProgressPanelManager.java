@@ -20,10 +20,7 @@ public class ProgressPanelManager {
 		owner.showProgressBar(progressPanel);
 	}
 	
-	public void hideProgressBar() {
-		if(progressPanel != null) {
-			owner.getContentPane().remove(progressPanel);			
-		}
+	public void hideProgressBar() {		
 		owner.hideProgressBar(progressPanel);		
 	}
 
