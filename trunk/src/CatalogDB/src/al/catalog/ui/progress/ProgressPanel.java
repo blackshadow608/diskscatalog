@@ -13,6 +13,13 @@ import javax.swing.JProgressBar;
 
 import al.catalog.model.DBAction;
 
+/**
+ * Класс <b>ProgressPanel</b> представляет собой панель, на которой
+ * отображается прогресс выполнения задачи, а также управляющие компоненты для
+ * отмены выполняемой задачи, прерывания и дальнейшего возобновления выполнения.
+ * 
+ * @author Alexander Levin
+ */
 public class ProgressPanel extends JPanel {
 
 	private DBAction action;
@@ -21,6 +28,13 @@ public class ProgressPanel extends JPanel {
 	private JButton pauseButton;
 	private JButton cancelButton;
 
+	/**
+	 * Создает новую панель отображения прогресса выполнения задачи.
+	 * 
+	 * @param progressManager -
+	 *            ссылка <b>ProgressManager</b>, который управляет показом и
+	 *            скрытием панели прогресса.
+	 */
 	public ProgressPanel(final ProgressPanelManager progressManager) {
 		setLayout(new BorderLayout());
 
@@ -53,6 +67,14 @@ public class ProgressPanel extends JPanel {
 				new Color(166, 166, 166)));
 	}
 
+	/**
+	 * Устанвливает <b>DBAction</b>, прогресс выполнения которого будет
+	 * показывать панель.
+	 * 
+	 * @param action -
+	 *            <b>DBAction</b>, для которого нужно показать прогресс
+	 *            выполнения на панели.
+	 */
 	public void setAction(DBAction action) {
 		this.action = action;
 		progressLabel.setText(action.getProgressText());
@@ -60,6 +82,13 @@ public class ProgressPanel extends JPanel {
 		cancelButton.setEnabled(action.isCancelable());
 	}
 
+	/**
+	 * Возвращает ссылку на <b>DBAction</b>, для которого панель показывает
+	 * прогресс выполнения.
+	 * 
+	 * @return ссылка на <b>DBAction</b>, для которого показывается прогресс
+	 *         выполнения.
+	 */
 	public DBAction getAction() {
 		return action;
 	}
