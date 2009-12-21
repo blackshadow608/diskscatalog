@@ -1,8 +1,8 @@
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
@@ -39,31 +39,31 @@ public class TestFrame extends JFrame {
 
 		boxesPanel.add(italicBox);
 
-		italicBox.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		italicBox.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
 				updateText();
 			}
 		});
 
 		boxesPanel.add(boldBox);
 
-		boldBox.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		boldBox.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
 				updateText();
 			}
 		});
 
 		boxesPanel.add(underlineBox);
 
-		underlineBox.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		underlineBox.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
 				updateText();
 			}
 		});
-
+						
 		panel.add(boxesPanel, BorderLayout.SOUTH);
-		getContentPane().add(panel);
 		setPreferredSize(new Dimension(250, 200));
+		getContentPane().add(panel);
 	}
 
 	public void updateText() {
