@@ -46,7 +46,7 @@ public class ProgressActionListener implements IDBActionListener {
     public void beforeActionExecuting(final DBAction action) {
         actionAlreadyExecuted = false;
         progressDialog = new ProgressDialog(owner, action, progressManager);
-        final String progressText = action.getProgressText();
+        //final String progressText = action.getProgressText();
         
         showDialogThread = new Thread() {
             public void run() {
@@ -57,10 +57,12 @@ public class ProgressActionListener implements IDBActionListener {
                     e.printStackTrace();
                 }
                 
-                if (!actionAlreadyExecuted) {
+                /*if (!actionAlreadyExecuted) {
                     progressDialog.setLabel(progressText);
                     progressDialog.showDialog();
-                }
+                }*/
+                
+                progressManager.showProgressBar(action);
             }
         };
         
