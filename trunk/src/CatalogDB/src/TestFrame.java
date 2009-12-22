@@ -1,17 +1,16 @@
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
 
 public class TestFrame extends JFrame {
+	
+	private JLabel label;
 	
 	public TestFrame() {
 		super("Test frame");
@@ -23,42 +22,23 @@ public class TestFrame extends JFrame {
 
 		JPanel panel = new JPanel();
 		panel.setLayout(new BorderLayout());
+		panel.setFocusable(true);
 
-		JTextField textField = new JTextField(20);
-		panel.add(textField, BorderLayout.NORTH);
+		label = new JLabel();
+		label.setFont(new Font("Calibri", Font.PLAIN, 20));
+		label.setHorizontalAlignment(JLabel.CENTER);
 		
-		textField.addKeyListener(new KeyListener() {
-
-			public void keyPressed(KeyEvent e) {
-				
-			}
+		panel.addKeyListener(new KeyAdapter() {
 
 			public void keyReleased(KeyEvent e) {
-				
-			}
-
-			public void keyTyped(KeyEvent e) {
-				
+				label.setText(e.getKeyText(e.getKeyCode()));				
 			}
 			
 		});
 		
-		textField.addKeyListener(new KeyAdapter() {
-			
-			public void keyPressed(KeyEvent e) {
+		panel.add(label, BorderLayout.CENTER);
 				
-			}
-			
-		});
-		
-		JTextArea textArea = new JTextArea();
-		JScrollPane scrollPane = new JScrollPane(textArea);
-		panel.add(scrollPane, BorderLayout.CENTER);
-		
-		JButton clearButton = new JButton("Clear");
-		panel.add(clearButton, BorderLayout.SOUTH);
-		
-		setPreferredSize(new Dimension(300, 300));
+		setPreferredSize(new Dimension(200, 200));
 		getContentPane().add(panel);
 	}
 	
