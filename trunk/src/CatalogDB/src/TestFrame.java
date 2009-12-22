@@ -1,24 +1,18 @@
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
-import javax.swing.JCheckBox;
+import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 public class TestFrame extends JFrame {
-
-	public static String TEST_TEXT = "Test text";
-
-	private JLabel label;
-
-	private JCheckBox italicBox = new JCheckBox("Italic");
-	private JCheckBox boldBox = new JCheckBox("Bold");
-	private JCheckBox underlineBox = new JCheckBox("Underline");
-
+	
 	public TestFrame() {
 		super("Test frame");
 		createGUI();
@@ -30,74 +24,44 @@ public class TestFrame extends JFrame {
 		JPanel panel = new JPanel();
 		panel.setLayout(new BorderLayout());
 
-		label = new JLabel(getText());
-		label.setHorizontalAlignment(JLabel.CENTER);
-		label.setFont(new Font("Calibri", Font.PLAIN, 30));
-		panel.add(label, BorderLayout.CENTER);
+		JTextField textField = new JTextField(20);
+		panel.add(textField, BorderLayout.NORTH);
+		
+		textField.addKeyListener(new KeyListener() {
 
-		JPanel boxesPanel = new JPanel();
-
-		boxesPanel.add(italicBox);
-
-		italicBox.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent e) {
-				updateText();
+			public void keyPressed(KeyEvent e) {
+				
 			}
-		});
 
-		boxesPanel.add(boldBox);
-
-		boldBox.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent e) {
-				updateText();
+			public void keyReleased(KeyEvent e) {
+				
 			}
-		});
 
-		boxesPanel.add(underlineBox);
-
-		underlineBox.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent e) {
-				updateText();
+			public void keyTyped(KeyEvent e) {
+				
 			}
+			
 		});
-						
-		panel.add(boxesPanel, BorderLayout.SOUTH);
-		setPreferredSize(new Dimension(250, 200));
+		
+		textField.addKeyListener(new KeyAdapter() {
+			
+			public void keyPressed(KeyEvent e) {
+				
+			}
+			
+		});
+		
+		JTextArea textArea = new JTextArea();
+		JScrollPane scrollPane = new JScrollPane(textArea);
+		panel.add(scrollPane, BorderLayout.CENTER);
+		
+		JButton clearButton = new JButton("Clear");
+		panel.add(clearButton, BorderLayout.SOUTH);
+		
+		setPreferredSize(new Dimension(300, 300));
 		getContentPane().add(panel);
 	}
-
-	public void updateText() {
-		label.setText(getText());
-	}
-
-	private String getText() {
-		String text = checkItalic(TEST_TEXT);
-		text = checkBold(text);
-		text = checkUnderline(text);
-		return "<html>" + text + "</html>";
-	}
-
-	private String checkItalic(String string) {
-		if (italicBox.isSelected()) {
-			return "<i>" + string + "</i>";
-		}
-		return string;
-	}
-
-	private String checkBold(String string) {
-		if (boldBox.isSelected()) {
-			return "<b>" + string + "</b>";
-		}
-		return string;
-	}
-
-	private String checkUnderline(String string) {
-		if (underlineBox.isSelected()) {
-			return "<u>" + string + "</u>";
-		}
-		return string;
-	}
-
+	
 	public static void main(String[] args) {
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
