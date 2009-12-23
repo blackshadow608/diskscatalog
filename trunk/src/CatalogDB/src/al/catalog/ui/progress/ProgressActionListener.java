@@ -4,16 +4,16 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import al.catalog.model.DBAction;
-import al.catalog.model.IDBActionListener;
+import al.catalog.model.IDBActionAdapter;
 import al.catalog.ui.CatalogFrame;
 import al.catalog.ui.dialog.ProgressDialog;
 
-public class ProgressActionListener implements IDBActionListener {
+public class ProgressActionListener extends IDBActionAdapter {
     
     private JFrame owner;
     private ProgressDialog progressDialog;
     private ProgressPanelManager progressManager;
-    private volatile boolean actionAlreadyExecuted = false;
+    //private volatile boolean actionAlreadyExecuted = false;
     private Thread showDialogThread;
     
     public ProgressActionListener(JFrame owner) {
@@ -22,7 +22,7 @@ public class ProgressActionListener implements IDBActionListener {
     }
     
     public void afterActionExecuting(DBAction dbAction) {       
-        actionAlreadyExecuted = true;
+        //actionAlreadyExecuted = true;
         
         if (progressDialog != null) {
         	/*
@@ -44,7 +44,7 @@ public class ProgressActionListener implements IDBActionListener {
     }
     
     public void beforeActionExecuting(final DBAction action) {
-        actionAlreadyExecuted = false;
+        //actionAlreadyExecuted = false;
         progressDialog = new ProgressDialog(owner, action, progressManager);
         //final String progressText = action.getProgressText();
         
@@ -71,29 +71,5 @@ public class ProgressActionListener implements IDBActionListener {
     
     public void actionThrowException(DBAction dbAction, Exception exception) {
         JOptionPane.showMessageDialog(owner, exception.getMessage(), "Exception", JOptionPane.ERROR_MESSAGE);
-    }
-    
-    public void redoBecameDisabled() {
-        
-    }
-    
-    public void redoBecameEnabled() {
-        
-    }
-    
-    public void someActionWasAdded() {
-        
-    }
-    
-    public void undoBecameDisabled() {
-        
-    }
-    
-    public void undoBecameEnabled() {
-        
-    }
-    
-    public void actionWasAborted(DBAction dbAction) {
-        
     }
 }
