@@ -23,7 +23,7 @@ public class Main {
 		 */
 		Logger.enable();
 		Logger.setShowLineNumbers(true);
-		Logger.disable();
+		//Logger.disable();
 		
 		DBManager dbManager = new DBManager();
 		
