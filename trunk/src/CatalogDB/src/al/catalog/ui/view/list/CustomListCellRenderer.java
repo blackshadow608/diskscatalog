@@ -21,6 +21,13 @@ import al.catalog.model.tree.types.file.FolderNode;
 import al.catalog.model.tree.types.images.ImageNode;
 import al.catalog.model.tree.types.images.ImgCategoryNode;
 
+/**
+ * Класс <b>CustomListCellRenderer</b> представляет собой кастомизированный
+ * визуализатор для отображения элементов списка. Есть возможность переключать
+ * вид на "Иконки" или "Список".
+ * 
+ * @author Alexander Levin
+ */
 public class CustomListCellRenderer extends DefaultListCellRenderer {
 	
 	protected static Border noFocusBorder = new EmptyBorder(1, 2, 1, 2);
@@ -117,6 +124,13 @@ public class CustomListCellRenderer extends DefaultListCellRenderer {
 		
 	}
 	
+	/**
+	 * Задает используемый тип, который определяет, какой режим используется для
+	 * визуализации компонентов - "Иконки" или "Список". В качестве параметров
+	 * должны передаваться константы TYPE_LIST или TYPE_ICONS.
+	 * 
+	 * @param type - тип визуализации элементов списка.
+	 */
 	public void setType(int type) {
 		this.type = type;
 		
@@ -137,6 +151,13 @@ public class CustomListCellRenderer extends DefaultListCellRenderer {
 		}
 	}
 	
+	/**
+	 * Возвращает тип, который определяет, какой режим используется для
+	 * визуализации компонентов - "Иконки" или "Список". Возвращаемый тип
+	 * представляется константой - TYPE_LIST или TYPE_ICONS.
+	 * 
+	 * @return одна из констант TYPE_LIST или TYPE_ICONS.
+	 */
 	public int getType() {
 		return type;
 	}
