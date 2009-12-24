@@ -40,6 +40,7 @@ public class CustomList extends JList {
 		setLayoutOrientation(JList.HORIZONTAL_WRAP);
 		setVisibleRowCount(0);		
 		setCellRenderer(listRenderer);
+		setDoubleBuffered(true);
 		getSelectionModel().setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 		
 		addListSelectionListener(listSelectionListener);		
@@ -179,6 +180,34 @@ public class CustomList extends JList {
 	protected void processMouseMotionEvent(MouseEvent e) {
 		if (e.getID() != MouseEvent.MOUSE_DRAGGED) {
 			super.processMouseMotionEvent(e);
+		}
+	}
+	
+	/**
+	 * Переключает режим отображения элементов в "Иконки".
+	 */
+	public void setIconsView() {
+		CustomListCellRenderer renderer = (CustomListCellRenderer) getCellRenderer();
+		int type = renderer.getType();
+		
+		if (type != CustomListCellRenderer.TYPE_ICONS) {
+			renderer.setType(CustomListCellRenderer.TYPE_ICONS);
+			setLayoutOrientation(JList.HORIZONTAL_WRAP);			
+			setCellRenderer(renderer);
+		}
+	}
+	
+	/**
+	 * Переключает режим отображения элементов в "Список".
+	 */
+	public void setListView() {
+		CustomListCellRenderer renderer = (CustomListCellRenderer) getCellRenderer();
+		int type = renderer.getType();
+				
+		if (type != CustomListCellRenderer.TYPE_LIST) {
+			renderer.setType(CustomListCellRenderer.TYPE_LIST);
+			setLayoutOrientation(JList.VERTICAL_WRAP);			
+			setCellRenderer(renderer);
 		}
 	}
 }
