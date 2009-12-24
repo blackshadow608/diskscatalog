@@ -39,7 +39,7 @@ public class ProgressActionListener extends IDBActionAdapter {
 			 * прогресс панель.
 			 */
             progressManager.hideProgressBar();
-            progressDialog.hideDialog();            
+            //progressDialog.hideDialog();
         }
     }
     
