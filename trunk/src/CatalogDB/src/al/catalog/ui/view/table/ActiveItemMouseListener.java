@@ -1,7 +1,7 @@
 package al.catalog.ui.view.table;
 
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 import javax.swing.JTable;
 
@@ -15,7 +15,7 @@ import al.catalog.model.tree.types.ITreeNode;
  *  
  * @author Alexander Levin
  */
-public class ActiveItemMouseListener implements MouseListener {
+public class ActiveItemMouseListener extends MouseAdapter {
 
 	private DBTreeModel dbModel;
 
@@ -43,21 +43,5 @@ public class ActiveItemMouseListener implements MouseListener {
 			}						
 		}
 		Logger.closeStack();
-	}
-
-	public void mouseEntered(MouseEvent e) {
-						
-	}
-
-	public void mouseExited(MouseEvent e) {
-		
-	}
-
-	public void mousePressed(MouseEvent e) {		
-		
-	}
-
-	public void mouseReleased(MouseEvent e) {
-		
 	}
 }
