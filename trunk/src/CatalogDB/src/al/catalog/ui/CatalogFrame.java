@@ -26,7 +26,7 @@ public class CatalogFrame extends JFrame {
 	
 	public static final Font FONT = new Font("Verdana", Font.PLAIN, 11);
 	
-	private static final Dimension SIZE = new Dimension(900, 600);
+	private static final Dimension SIZE = new Dimension(700, 400);
 	private static final String TITLE = "mainFrame.title";
 	
 	private static final int DIVIDER_SIZE = 8;

@@ -87,7 +87,7 @@ public class TableItemsChangingListener implements IDBTreeModelListener {
 			table.getSelectionModel().removeSelectionInterval(0, tableModel.getSize() - 1);
 			for (ITreeNode node : nodesList) {
 				int index = tableModel.getIndexOf(node);
-				table.setSelectedIndex(index);
+				table.getSelectionModel().addSelectionInterval(index, index);
 				if (index >= 0) {
 					haveSelected = true;
 				}

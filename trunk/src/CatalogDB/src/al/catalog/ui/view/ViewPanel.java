@@ -60,7 +60,7 @@ public class ViewPanel extends JPanel {
 		ActiveTableItemListener tableItemListener = new ActiveTableItemListener(
 				dbModel, table);
 		table.getSelectionModel().setSelectionMode(
-				ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+				ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 		table.addMouseListener(tableItemListener);
 
 		DBTreeModelListener listener = new DBTreeModelListener(table);
@@ -79,11 +79,12 @@ public class ViewPanel extends JPanel {
 	 */
 	public void setIconsView() {
 		list.setIconsView();
-		active = list;
+		active = list;		
 		removeAll();
 		add(listScrollPanel, BorderLayout.CENTER);
 		revalidate();
 		listScrollPanel.repaint();
+		list.requestFocus();
 	}
 
 	/**
@@ -96,6 +97,7 @@ public class ViewPanel extends JPanel {
 		add(listScrollPanel, BorderLayout.CENTER);
 		revalidate();
 		listScrollPanel.repaint();
+		list.requestFocus();
 	}
 
 	/**
@@ -107,6 +109,7 @@ public class ViewPanel extends JPanel {
 		add(tableScrollPanel, BorderLayout.CENTER);
 		revalidate();
 		tableScrollPanel.repaint();
+		table.requestFocus();
 	}
 
 	public JComponent getActive() {

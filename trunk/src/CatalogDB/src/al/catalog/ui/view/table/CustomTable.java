@@ -27,7 +27,7 @@ public class CustomTable extends JTable {
 				}
 			}
 
-			public void keyReleased(KeyEvent e) {				
+			public void keyReleased(KeyEvent e) {
 				
 			}
 
@@ -97,9 +97,20 @@ public class CustomTable extends JTable {
 	public Object getLastSelectedValue() {
 		return lastSelValue;
 	}
+	
+	public void updateLastSelectedValue() {
+		
+	}
 
 	public int getLastSelectedIndex() {
 		return lastSelIndex;
+	}
+	
+	public void updateLastSelectedIndex() {
+		int index = getSelectedRow();
+		if (index >= 0) {
+			setLastSelectedIndex(index);
+		}		
 	}
 
 	public void selectLast() {

@@ -58,10 +58,7 @@ public class ActiveTableItemListener extends MouseAdapter {
 	private void fireSelection() {		
 		Logger.openStack("ActiveTableItemListener: fireSelection()");
 		
-		int index = table.getSelectedRow();
-		if (index >= 0) {
-			table.setLastSelectedIndex(index);
-		}
+		table.updateLastSelectedIndex();
 		
 		int[] selectedRows = table.getSelectedRows();
 		List<ITreeNode> activeNodes = null;
@@ -73,6 +70,7 @@ public class ActiveTableItemListener extends MouseAdapter {
 				activeNodes.add((ITreeNode)selectedValue);
 			}			
 		}
+		
 		dbModel.setActiveNodes(activeNodes);
 		dbModel.fireChangeActiveNodes(activeNodes, table);
 		Logger.closeStack();

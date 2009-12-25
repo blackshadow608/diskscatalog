@@ -12,6 +12,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.event.ListDataEvent;
 import javax.swing.event.ListDataListener;
 
+import al.catalog.logger.Logger;
 import al.catalog.model.tree.DBTreeModel;
 import al.catalog.model.tree.types.ITreeNode;
 import al.catalog.ui.CatalogFrame;
@@ -127,7 +128,7 @@ public class CustomList extends JList {
 		return lastSelIndex;
 	}
 
-	public void selectLast() {
+	/*public void selectLast() {
 		int size = getModel().getSize();
 		
 		setSelectedIndex(lastSelIndex);
@@ -153,6 +154,40 @@ public class CustomList extends JList {
 			setSelectedIndex(0);
 			transferFocus();
 		}
+	}*/
+	
+	public void selectLast() {
+		Logger.openStack("CustomList: selectLast()");
+		
+		int size = getModel().getSize();
+		
+		setSelectedIndex(lastSelIndex);
+		
+		Logger.logIntoStack("lastSelIndex: " + lastSelIndex);
+		
+		if (lastSelIndex < 0) {
+			if (size == 0) {
+				transferFocus();
+			} else {
+				setSelectedIndex(0);
+			}
+		}
+		
+		if (lastSelIndex >= size) {
+			lastSelIndex = size - 1;
+			setSelectedIndex(lastSelIndex);
+		}		
+		
+		if(lastSelIndex >= 0 && size == 0) {
+			transferFocus();			
+		}
+		
+		if(lastSelIndex < 0) {
+			setSelectedIndex(0);
+			transferFocus();
+		}
+		
+		Logger.closeStack();
 	}
 
 	protected void processMouseEvent(MouseEvent e) {

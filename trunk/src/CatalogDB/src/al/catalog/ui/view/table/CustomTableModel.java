@@ -43,7 +43,12 @@ public class CustomTableModel extends DefaultTableModel implements IDBTreeModelL
 		if(columnIndex == TREE_NODE_COLUMN_INDEX) {
 			return openedNode.getChildren().get(rowIndex);
 		}
-		return openedNode.getChildren().get(rowIndex);
+		
+		if(rowIndex < openedNode.getChildren().size()) {
+			return openedNode.getChildren().get(rowIndex);			
+		}
+		
+		return null;
 	}
 
 	public boolean isCellEditable(int rowIndex, int columnIndex) {

@@ -36,6 +36,7 @@ public class RemoveAction extends CustomAction {
 		Object[] options = {ResourceManager.getString(YES), ResourceManager.getString(NO)};
 		int n = JOptionPane.showOptionDialog(frame, question, ResourceManager.getString(KEY), JOptionPane.YES_NO_OPTION,
 				JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+		
 		if (n == JOptionPane.YES_OPTION) {
 			if (dbModel != null) {
 				dbModel.removeNode();
