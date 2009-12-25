@@ -2,6 +2,8 @@ package al.catalog.ui.view.list;
 
 import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.JList;
@@ -11,6 +13,7 @@ import javax.swing.event.ListDataEvent;
 import javax.swing.event.ListDataListener;
 
 import al.catalog.model.tree.DBTreeModel;
+import al.catalog.model.tree.types.ITreeNode;
 import al.catalog.ui.CatalogFrame;
 import al.catalog.ui.action.ActionManager;
 import al.catalog.ui.popup.ListPopupMouseListener;
@@ -29,11 +32,10 @@ public class CustomList extends JList {
 		setBorder(BorderFactory.createEmptyBorder(CatalogFrame.BORDER, CatalogFrame.BORDER, CatalogFrame.BORDER, CatalogFrame.BORDER));
 		
 		ListCellRenderer listRenderer = new CustomListCellRenderer();
-		ActiveListItemListener listSelectionListener = new ActiveListItemListener(dbModel);
+		ActiveListItemListener listSelectionListener = new ActiveListItemListener(dbModel, this);
 		ListFocusListener listFocusListener = new ListFocusListener(actionManager);
 		
 		ListPopupMouseListener listMouseListener = new ListPopupMouseListener(this, actionManager);
-		ActiveItemMouseListener activeItemListener = new ActiveItemMouseListener(dbModel);
 		
 		actionManager.setProperty(ActionManager.PROPERTY_VIEW_PANEL, this);
 		
@@ -43,9 +45,8 @@ public class CustomList extends JList {
 		setDoubleBuffered(true);
 		getSelectionModel().setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 		
-		addListSelectionListener(listSelectionListener);		
+		addMouseListener(listSelectionListener);		
 		addFocusListener(listFocusListener);
-		addMouseListener(activeItemListener);
 		addMouseListener(listMouseListener);
 		
 		listChangeListener = new ListItemsChangingListener(this);		
@@ -98,6 +99,24 @@ public class CustomList extends JList {
 
 	public void setLastSelectedValue(Object value) {
 		lastSelValue = value;
+	}
+	
+	/**
+	 * Запоминает текущее выделенное value. В данном случае под value понимается
+	 * ITreeNode.
+	 */
+	public void updateLastSelectedValue() {
+		lastSelValue = getSelectedValue();
+	}
+	
+	/**
+	 * Запоминает индекс текущего выделенного элемента.
+	 */
+	public void updateLastSelectedIndex() {
+		int index = getSelectedIndex();		
+		if (index >= 0) {
+			setLastSelectedIndex(index);
+		}		
 	}
 
 	public Object getLastSelectedValue() {
@@ -209,5 +228,19 @@ public class CustomList extends JList {
 			setLayoutOrientation(JList.VERTICAL_WRAP);			
 			setCellRenderer(renderer);
 		}
+	}
+	
+	public List<ITreeNode> getSelectedNodes() {
+		Object[] selectedValues = getSelectedValues();
+		List<ITreeNode> selectedNodes = null;
+		
+		if (selectedValues.length > 0) {
+			selectedNodes = new ArrayList<ITreeNode>(selectedValues.length);
+			for (int i = 0; i < selectedValues.length; i++) {
+				selectedNodes.add((ITreeNode)selectedValues[i]);				
+			}			
+		}	
+		
+		return selectedNodes;
 	}
 }

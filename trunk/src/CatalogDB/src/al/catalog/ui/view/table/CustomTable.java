@@ -36,9 +36,6 @@ public class CustomTable extends JTable {
 			}
 		});
 		
-		ActiveItemMouseListener activeItemListener = new ActiveItemMouseListener(dbModel);
-		addMouseListener(activeItemListener);
-		
 		TableFocusListener focusListener = new TableFocusListener(actionManager);
 		addFocusListener(focusListener);
 		
