@@ -28,7 +28,7 @@ public class TreeFocusListener implements FocusListener {
 	}
 
 	public void focusGained(FocusEvent e) {
-		Logger.openStack("TreeFocusListener: focusGained()");
+		Logger.openStack();
 		TreePath path = tree.getSelectionPath();
 		ITreeNode selectedNode = null;
 		

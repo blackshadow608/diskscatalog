@@ -119,7 +119,7 @@ public class DBTreeModel {
 	}
 
 	public void setActiveNode(ITreeNode node) {
-		Logger.openStack("DBTreeModel: setActiveNode()");
+		Logger.openStack();
 		if (node == null) {
 			activeNodes = null;
 		} else {
@@ -133,13 +133,13 @@ public class DBTreeModel {
 	}
 
 	public void setActiveNodes(List<ITreeNode> activeNodes) {
-		Logger.openStack("DBTreeModel: setActiveNodes()");
+		Logger.openStack();
 		this.activeNodes = activeNodes;
 		Logger.closeStack();
 	}
 
 	public void addActiveNode(ITreeNode node) {
-		Logger.openStack("DBTreeModel: addActiveNode()");
+		Logger.openStack();
 		if (activeNodes == null) {
 			activeNodes = new ArrayList<ITreeNode>();
 		}
@@ -152,7 +152,7 @@ public class DBTreeModel {
 	}
 
 	public void setOpenedNode(ITreeNode node) {
-		Logger.openStack("DBTreeModel: setOpenedNode()");
+		Logger.openStack();
 		openedNode = node;
 		addToHistory(node);
 		Logger.closeStack();
@@ -175,7 +175,7 @@ public class DBTreeModel {
 	}
 
 	public void fireInsertNode(ITreeNode node, ITreeNode parent) {
-		Logger.openStack("DBTreeModel: fireInsertNode()");
+		Logger.openStack();
 		for (IDBTreeModelListener listener : listeners) {
 			listener.nodeWasInserted(node, parent);
 		}
@@ -183,7 +183,7 @@ public class DBTreeModel {
 	}
 
 	public void fireRemoveNode(ITreeNode node, ITreeNode parent, int index) {
-		Logger.openStack("DBTreeModel: fireRemoveNode()");
+		Logger.openStack();
 		for (IDBTreeModelListener listener : listeners) {
 			listener.nodeWasRemoved(node, parent, index);
 		}
@@ -191,7 +191,7 @@ public class DBTreeModel {
 	}
 
 	public void fireChangeActiveNode(ITreeNode node) {
-		Logger.openStack("DBTreeModel: fireChangeActiveNode()");
+		Logger.openStack();
 		for (IDBTreeModelListener listener : listeners) {
 			listener.activeNodeWasChanged(node);
 		}
@@ -199,7 +199,7 @@ public class DBTreeModel {
 	}
 
 	public void fireChangeActiveNode(ITreeNode node, Object source) {
-		Logger.openStack("DBTreeModel: fireChangeActiveNode()");
+		Logger.openStack();
 		for (IDBTreeModelListener listener : listeners) {
 			listener.activeNodeWasChanged(node, source);
 		}
@@ -207,7 +207,7 @@ public class DBTreeModel {
 	}
 
 	public void fireChangeActiveNodes(List<ITreeNode> nodes) {
-		Logger.openStack("DBTreeModel: fireChangeActiveNodes()");
+		Logger.openStack();
 		for (IDBTreeModelListener listener : listeners) {
 			listener.activeNodesWasChanged(nodes);			
 		}
@@ -215,7 +215,7 @@ public class DBTreeModel {
 	}
 
 	public void fireChangeActiveNodes(List<ITreeNode> nodes, Object source) {
-		Logger.openStack("DBTreeModel: fireChangeActiveNodes()");
+		Logger.openStack();
 		for (IDBTreeModelListener listener : listeners) {
 			listener.activeNodesWasChanged(nodes, source);
 		}
@@ -223,7 +223,7 @@ public class DBTreeModel {
 	}
 
 	public void fireChangeOpenedNode(ITreeNode node) {
-		Logger.openStack("DBTreeModel: fireChangeOpenedNode()");
+		Logger.openStack();
 		for (IDBTreeModelListener listener : listeners) {
 			listener.openedNodeWasChanged(node);
 		}
@@ -231,7 +231,7 @@ public class DBTreeModel {
 	}
 
 	public void fireChangeOpenedNode(ITreeNode node, Object source) {
-		Logger.openStack("DBTreeModel: fireChangeOpenedNode()");
+		Logger.openStack();
 		for (IDBTreeModelListener listener : listeners) {
 			listener.openedNodeWasChanged(node, source);
 		}
@@ -239,7 +239,7 @@ public class DBTreeModel {
 	}
 
 	public void fireChangeNode(ITreeNode node) {
-		Logger.openStack("DBTreeModel: fireChangeNode()");
+		Logger.openStack();
 		for (IDBTreeModelListener listener : listeners) {
 			listener.nodeWasChanged(node);
 		}
@@ -247,7 +247,7 @@ public class DBTreeModel {
 	}
 
 	public void fireChangeStructureNode(ITreeNode node) {
-		Logger.openStack("DBTreeModel: fireChangeStructureNode()");
+		Logger.openStack();
 		for (IDBTreeModelListener listener : listeners) {
 			listener.nodeStructureWasChanged(node);
 		}
@@ -255,7 +255,7 @@ public class DBTreeModel {
 	}
 
 	public void fireBeforeChangeNode(ITreeNode node) {
-		Logger.openStack("DBTreeModel: fireBeforeChangeNode()");
+		Logger.openStack();
 		for (IDBTreeModelListener listener : listeners) {
 			listener.onBeforeChangeNode(node);
 		}
@@ -263,7 +263,7 @@ public class DBTreeModel {
 	}
 
 	public void fireAfterChangeNode(ITreeNode node) {
-		Logger.openStack("DBTreeModel: fireAfterChangeNode()");
+		Logger.openStack();
 		for (IDBTreeModelListener listener : listeners) {
 			listener.onAfterChangeNode(node);
 		}

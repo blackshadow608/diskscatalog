@@ -120,7 +120,7 @@ public class CustomTreeModel implements TreeModel, IDBTreeModelListener, IConnec
 	}
 	
 	public void nodeWasInserted(ITreeNode newChild, ITreeNode parent) {
-		Logger.openStack("CustomTreeModel: nodeWasInserted()");
+		Logger.openStack();
 		final ITreeNode parentNode = parent;
 		final ITreeNode newChildNode = newChild;
 
@@ -139,7 +139,7 @@ public class CustomTreeModel implements TreeModel, IDBTreeModelListener, IConnec
 	}
 
 	public void nodeWasRemoved(ITreeNode child, ITreeNode parent, int index) {
-		Logger.openStack("CustomTreeModel: nodeWasRemoved()");
+		Logger.openStack();
 		final int removedIndex = index;
 		final ITreeNode childNode = child;
 		final ITreeNode parentNode = parent;
@@ -162,7 +162,7 @@ public class CustomTreeModel implements TreeModel, IDBTreeModelListener, IConnec
 	}
 	
 	public void nodeWasChanged(ITreeNode node) {
-		Logger.openStack("CustomTreeModel: nodeWasChanged()");
+		Logger.openStack();
 		if (node != null) {
 			if (node.isLogicalRoot()) {
 				Object[] path = TreePathUtil.getPathToRoot(node);
@@ -207,7 +207,7 @@ public class CustomTreeModel implements TreeModel, IDBTreeModelListener, IConnec
 	}
 
 	public void nodeStructureWasChanged(ITreeNode node) {
-		Logger.openStack("CustomTreeModel: nodeStructureWasChanged()");
+		Logger.openStack();
 		List<ITreeNode> children = node.getChildren();
 		Object[] path = TreePathUtil.getPathToRoot(node);
 		int size = 0;

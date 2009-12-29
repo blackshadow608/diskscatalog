@@ -21,19 +21,19 @@ public class ActiveListItemListener extends MouseAdapter {
 	}
 	
 	public void mousePressed(MouseEvent e) {
-		Logger.openStack("ActiveListItemListener: mousePressed()");
+		Logger.openStack();
 		fireSelection();
 		Logger.closeStack();
 	}
 
 	public void mouseReleased(MouseEvent e) {
-		Logger.openStack("ActiveListItemListener: mouseReleased()");
+		Logger.openStack();
 		fireSelection();
 		Logger.closeStack();
 	}
 	
 	public void mouseClicked(MouseEvent e) {
-		Logger.openStack("ActiveListItemListener: mouseClicked()");
+		Logger.openStack();
 		JList list = (JList) e.getSource();
 		int count = e.getClickCount();
 		int button = e.getButton();		
@@ -55,7 +55,7 @@ public class ActiveListItemListener extends MouseAdapter {
 	}
 
 	public void fireSelection() {
-		Logger.openStack("ActiveListItemListener: valueChanged()");
+		Logger.openStack();
 		
 		list.updateLastSelectedValue();
 		list.updateLastSelectedIndex();

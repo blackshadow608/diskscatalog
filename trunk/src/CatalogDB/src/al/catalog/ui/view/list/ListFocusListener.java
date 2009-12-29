@@ -22,7 +22,7 @@ public class ListFocusListener implements FocusListener {
 	}
 	
 	public void focusGained(FocusEvent e) {
-		Logger.openStack("ListFocusListener: focusGained()");
+		Logger.openStack();
 		Object tree = actionManager.getProperty(ActionManager.PROPERTY_TREE);
 		if (e.getOppositeComponent() == tree) {
 			CustomList list = (CustomList) e.getSource();			
@@ -32,7 +32,7 @@ public class ListFocusListener implements FocusListener {
 	}
 	
 	public void focusLost(FocusEvent e) {
-		Logger.openStack("ListFocusListener: focusLost()");
+		Logger.openStack();
 		Object tree = actionManager.getProperty(ActionManager.PROPERTY_TREE);
 		if (e.getOppositeComponent() == tree) {
 			CustomList list = (CustomList) e.getSource();

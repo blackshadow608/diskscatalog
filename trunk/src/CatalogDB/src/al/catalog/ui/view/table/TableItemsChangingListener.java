@@ -17,7 +17,7 @@ public class TableItemsChangingListener implements IDBTreeModelListener {
 	}
 
 	public void activeNodeWasChanged(ITreeNode node) {
-		Logger.openStack("TableItemsChangingListener: activeNodeWasChanged()");
+		Logger.openStack();
 		final ITreeNode activeNode = node;
 		CustomTableModel tableModel = (CustomTableModel) table.getModel();
 		if (activeNode != null) {
@@ -79,7 +79,7 @@ public class TableItemsChangingListener implements IDBTreeModelListener {
 	}
 
 	public void activeNodesWasChanged(List<ITreeNode> nodes) {
-		Logger.openStack("TableItemsChangingListener: activeNodesWasChanged()");
+		Logger.openStack();
 		final CustomTableModel tableModel = (CustomTableModel) table.getModel();
 		final List<ITreeNode> nodesList = nodes;
 		if (nodesList != null) {

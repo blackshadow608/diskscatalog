@@ -22,19 +22,19 @@ public class ActiveTableItemListener extends MouseAdapter {
 	}
 
 	public void mousePressed(MouseEvent e) {
-		Logger.openStack("ActiveTableItemListener: mousePressed()");
+		Logger.openStack();
 		fireSelection();
 		Logger.closeStack();
 	}
 
 	public void mouseReleased(MouseEvent e) {
-		Logger.openStack("ActiveTableItemListener: mouseReleased()");
+		Logger.openStack();
 		fireSelection();
 		Logger.closeStack();
 	}
 	
 	public void mouseClicked(MouseEvent e) {
-		Logger.openStack("ActiveTableItemListener: mouseClicked()");
+		Logger.openStack();
 		JTable table = (JTable) e.getSource();
 		int count = e.getClickCount();
 		int button = e.getButton();
@@ -56,7 +56,7 @@ public class ActiveTableItemListener extends MouseAdapter {
 	}
 	
 	private void fireSelection() {		
-		Logger.openStack("ActiveTableItemListener: fireSelection()");
+		Logger.openStack();
 		
 		table.updateLastSelectedIndex();
 		

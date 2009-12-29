@@ -80,7 +80,7 @@ public class CustomListModel implements ListModel, IDBTreeModelListener {
 	}
 	
 	public void nodeWasChanged(ITreeNode node) {
-		Logger.openStack("CustomListModel: nodeWasChanged()");
+		Logger.openStack();
 		ITreeNode parent = node.getParent();
 		List<ITreeNode> children = parent.getChildren();
 		int index = children.indexOf(node);
@@ -92,14 +92,15 @@ public class CustomListModel implements ListModel, IDBTreeModelListener {
 	}
 
 	public void nodeWasInserted(ITreeNode node, ITreeNode parent) {
-		Logger.openStack("CustomListModel: nodeWasInserted()");
+		Logger.openStack();
 		if (openedNode == parent) {
 			List<ITreeNode> children = parent.getChildren();
 			final int index = children.indexOf(node);
 			final ITreeNode treeNode = node;
 			SwingUtilities.invokeLater(new Runnable() {
 				public void run() {
-					Logger.openStack("CustomListModel: nodeWasInserted() - SwingUtilities.invokeLater");
+					Logger.openStack();
+					Logger.logIntoStack("CustomListModel: nodeWasInserted() - SwingUtilities.invokeLater");
 					List<ITreeNode> activeNodes = dbModel.getActiveNodes();					
 					ListDataEvent event = new CustomListDataEvent(this, ListDataEvent.INTERVAL_ADDED, index, index, treeNode);
 					for (ListDataListener listener : listeners) {						
@@ -115,13 +116,14 @@ public class CustomListModel implements ListModel, IDBTreeModelListener {
 	}
 
 	public void nodeWasRemoved(ITreeNode node, ITreeNode parent, int index) {
-		Logger.openStack("CustomListModel: nodeWasRemoved()");		
+		Logger.openStack();		
 		if(openedNode == parent) {
 			final int removedIndex = index;
 			final ITreeNode treeNode = node;
 			SwingUtilities.invokeLater(new Runnable() {
 				public void run() {
-					Logger.openStack("CustomListModel: nodeWasRemoved() - SwingUtilities.invokeLater");
+					Logger.openStack();
+					Logger.logIntoStack("CustomListModel: nodeWasRemoved() - SwingUtilities.invokeLater");
 					ListDataEvent event = new CustomListDataEvent(this, ListDataEvent.INTERVAL_REMOVED, removedIndex, removedIndex, treeNode);
 					for (ListDataListener listener : listeners) {
 						listener.intervalRemoved(event);
@@ -162,7 +164,7 @@ public class CustomListModel implements ListModel, IDBTreeModelListener {
 	}
 
 	public void openedNodeWasChanged(ITreeNode node) {
-		Logger.openStack("CustomListModel: openedNodeWasChanged()");
+		Logger.openStack();
 		openedNode = node;		
 		ListDataEvent listEvent = new ListDataEvent(this, ListDataEvent.CONTENTS_CHANGED, 0, 0);		
 		for (ListDataListener listener : listeners) {

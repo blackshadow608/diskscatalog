@@ -494,25 +494,25 @@ public class ActionManager implements IConnectionListener, IDBActionListener, IH
 	}
 
 	public void activeNodeWasChanged(ITreeNode node) {
-		Logger.openStack("ActionManager: activeNodeWasChanged()");
+		Logger.openStack();
 		checkActions();
 		Logger.closeStack();		
 	}
 
 	public void activeNodeWasChanged(ITreeNode node, Object source) {
-		Logger.openStack("ActionManager: activeNodeWasChanged()");
+		Logger.openStack();
 		checkActions();
 		Logger.closeStack();
 	}
 
 	public void activeNodesWasChanged(List<ITreeNode> nodes) {
-		Logger.openStack("ActionManager: activeNodesWasChanged()");
+		Logger.openStack();
 		checkActions();
 		Logger.closeStack();
 	}
 	
 	public void activeNodesWasChanged(List<ITreeNode> nodes, Object source) {
-		Logger.openStack("ActionManager: activeNodesWasChanged()");
+		Logger.openStack();
 		checkActions();
 		Logger.closeStack();		
 	}

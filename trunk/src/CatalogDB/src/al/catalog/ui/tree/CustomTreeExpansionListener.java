@@ -24,7 +24,7 @@ public class CustomTreeExpansionListener implements TreeExpansionListener {
 	}
 	
 	private void processEvent(TreeExpansionEvent event) {
-		Logger.openStack("CustomTreeExpansionListener: processEvent()");
+		Logger.openStack();
 		TreePath path = event.getPath();
 		if (path != null) {
 			JTree tree = (JTree)event.getSource();

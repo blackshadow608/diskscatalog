@@ -39,7 +39,7 @@ public class NodesChangingListener implements IDBTreeModelListener {
 	}
 	
 	public void onBeforeChangeNode(ITreeNode node) {
-		Logger.openStack("NodesChangingListener: onBeforeChangeNode()");
+		Logger.openStack();
 		if (node.hasParent()) {
 			TreePath parentPath = TreePathUtil.getTreePathToRoot(node.getParent());
 			paths = tree.getExpandedDescendants(parentPath);			
@@ -53,7 +53,7 @@ public class NodesChangingListener implements IDBTreeModelListener {
 	}
 
 	public void onAfterChangeNode(ITreeNode node) {
-		Logger.openStack("NodesChangingListener: onAfterChangeNode()");
+		Logger.openStack();
 		if (node.hasParent() && paths != null) {
 			while(paths.hasMoreElements()) {
 				TreePath path = paths.nextElement();
@@ -67,7 +67,7 @@ public class NodesChangingListener implements IDBTreeModelListener {
 	}
 
 	public void openedNodeWasChanged(ITreeNode node) {
-		Logger.openStack("NodesChangingListener: openedNodeWasChanged()");
+		Logger.openStack();
 		if (node != null) {
 			List<ITreeNode> pathList = new ArrayList<ITreeNode>();
 

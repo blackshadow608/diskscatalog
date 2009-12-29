@@ -39,7 +39,7 @@ public class ActiveTreeNodeListener implements TreeSelectionListener {
 	}
 
 	public void valueChanged(TreeSelectionEvent e) {
-		Logger.openStack("ActiveTreeNodeListener: valueChanged()");
+		Logger.openStack();
 		
 		TreePath path = tree.getSelectionPath();
 		ITreeNode selectedNode = null;

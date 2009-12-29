@@ -157,7 +157,7 @@ public class CustomList extends JList {
 	}*/
 	
 	public void selectLast() {
-		Logger.openStack("CustomList: selectLast()");
+		Logger.openStack();
 		
 		int size = getModel().getSize();
 		

@@ -15,7 +15,7 @@ private ActionManager actionManager;
 	}
 	
 	public void focusGained(FocusEvent e) {
-		Logger.openStack("TableFocusListener: focusGained()");
+		Logger.openStack();
 		Object tree = actionManager.getProperty(ActionManager.PROPERTY_TREE);
 		if (e.getOppositeComponent() == tree) {
 			CustomTable table = (CustomTable) e.getSource();			
@@ -25,7 +25,7 @@ private ActionManager actionManager;
 	}
 	
 	public void focusLost(FocusEvent e) {
-		Logger.openStack("TableFocusListener: focusLost()");
+		Logger.openStack();
 		Object tree = actionManager.getProperty(ActionManager.PROPERTY_TREE);
 		if (e.getOppositeComponent() == tree) {
 			CustomTable table = (CustomTable) e.getSource();

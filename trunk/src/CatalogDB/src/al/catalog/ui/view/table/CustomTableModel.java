@@ -92,7 +92,7 @@ public class CustomTableModel extends DefaultTableModel implements IDBTreeModelL
 	}
 
 	public void nodeWasChanged(ITreeNode node) {		
-		Logger.openStack("CustomTableModel: nodeWasChanged()");
+		Logger.openStack();
 		ITreeNode parent = node.getParent();
 		List<ITreeNode> children = parent.getChildren();
 		int index = children.indexOf(node);
@@ -106,14 +106,15 @@ public class CustomTableModel extends DefaultTableModel implements IDBTreeModelL
 	}
 
 	public void nodeWasInserted(ITreeNode node, ITreeNode parent) {
-		Logger.openStack("CustomTabletModel: nodeWasInserted()");
+		Logger.openStack();
 		if (openedNode == parent) {
 			List<ITreeNode> children = parent.getChildren();
 			final int index = children.indexOf(node);
 			final ITreeNode treeNode = node;
 			SwingUtilities.invokeLater(new Runnable() {
 				public void run() {
-					Logger.openStack("CustomTableModel: nodeWasInserted() - SwingUtilities.invokeLater");
+					Logger.openStack();
+					Logger.logIntoStack("CustomTableModel: nodeWasInserted() - SwingUtilities.invokeLater");
 					List<ITreeNode> activeNodes = dbModel.getActiveNodes();
 					
 					CustomTableModelEvent event = new CustomTableModelEvent(CustomTableModel.this, index, index,
@@ -131,13 +132,14 @@ public class CustomTableModel extends DefaultTableModel implements IDBTreeModelL
 	}
 
 	public void nodeWasRemoved(ITreeNode node, ITreeNode parent, int index) {
-		Logger.openStack("CustomTableModel: nodeWasRemoved()");		
+		Logger.openStack();		
 		if(openedNode == parent) {
 			final int removedIndex = index;
 			final ITreeNode treeNode = node;
 			SwingUtilities.invokeLater(new Runnable() {
 				public void run() {
-					Logger.openStack("CustomTableModel: nodeWasRemoved() - SwingUtilities.invokeLater");
+					Logger.openStack();
+					Logger.logIntoStack("CustomTableModel: nodeWasRemoved() - SwingUtilities.invokeLater");
 					
 					CustomTableModelEvent event = new CustomTableModelEvent(CustomTableModel.this, removedIndex, removedIndex,
 			                TableModelEvent.ALL_COLUMNS, TableModelEvent.DELETE, treeNode);
