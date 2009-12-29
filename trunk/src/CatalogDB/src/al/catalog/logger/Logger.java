@@ -56,12 +56,16 @@ public class Logger {
 			StackTraceElement[] stackTraceElements = Thread.currentThread().getStackTrace();
 			String message = "";
 			if(stackTraceElements.length >= 3) {
-				StackTraceElement element = stackTraceElements[2];  
-				message = element.getClassName() + ": " + element.getMethodName();
+				StackTraceElement element = stackTraceElements[2];
+				String className = ClassNameUtil.getClassName(element.getClassName());
+				String methodName = element.getMethodName();
+				message = className + ": " + methodName;
 			}
 			print(getTabs() + message);
 		}
 	}
+	
+	
 
 	/**
 	 * Закрывает стек и при этом сразу же выводит какое-то лог-сообщение.
