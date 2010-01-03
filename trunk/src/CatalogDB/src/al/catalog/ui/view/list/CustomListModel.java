@@ -17,12 +17,10 @@ import al.catalog.ui.view.list.event.CustomListDataEvent;
 public class CustomListModel implements ListModel, IDBTreeModelListener {
 	
 	private List<ListDataListener> listeners = new ArrayList<ListDataListener>();
-	private DBTreeModel dbModel;
 	private ITreeNode openedNode;
 	private ITreeNode activeNode;
 	
 	public CustomListModel(DBTreeModel dbModel) {
-		this.dbModel = dbModel;
 		dbModel.addListener(this);		
 	}
 
@@ -101,13 +99,10 @@ public class CustomListModel implements ListModel, IDBTreeModelListener {
 				public void run() {
 					Logger.openStack();
 					Logger.logIntoStack("CustomListModel: nodeWasInserted() - SwingUtilities.invokeLater");
-					List<ITreeNode> activeNodes = dbModel.getActiveNodes();					
 					ListDataEvent event = new CustomListDataEvent(this, ListDataEvent.INTERVAL_ADDED, index, index, treeNode);
 					for (ListDataListener listener : listeners) {						
 						listener.intervalAdded(event);
 					}					
-					dbModel.setActiveNodes(activeNodes);
-					dbModel.fireChangeActiveNodes(activeNodes);
 					Logger.closeStack();
 				}
 			});
@@ -165,7 +160,7 @@ public class CustomListModel implements ListModel, IDBTreeModelListener {
 
 	public void openedNodeWasChanged(ITreeNode node) {
 		Logger.openStack();
-		openedNode = node;		
+		openedNode = node;
 		ListDataEvent listEvent = new ListDataEvent(this, ListDataEvent.CONTENTS_CHANGED, 0, 0);		
 		for (ListDataListener listener : listeners) {
 			listener.contentsChanged(listEvent);

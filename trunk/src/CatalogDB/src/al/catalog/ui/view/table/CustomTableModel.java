@@ -22,10 +22,8 @@ public class CustomTableModel extends DefaultTableModel implements IDBTreeModelL
 	
 	private ITreeNode openedNode;
 	private ITreeNode activeNode;
-	private DBTreeModel dbModel;
 	
 	public CustomTableModel(DBTreeModel dbModel) {
-		this.dbModel = dbModel;
 		dbModel.addListener(this);
 	}	
 
@@ -115,15 +113,9 @@ public class CustomTableModel extends DefaultTableModel implements IDBTreeModelL
 				public void run() {
 					Logger.openStack();
 					Logger.logIntoStack("CustomTableModel: nodeWasInserted() - SwingUtilities.invokeLater");
-					List<ITreeNode> activeNodes = dbModel.getActiveNodes();
-					
 					CustomTableModelEvent event = new CustomTableModelEvent(CustomTableModel.this, index, index,
-			                TableModelEvent.ALL_COLUMNS, TableModelEvent.INSERT, treeNode);
-					
+			                TableModelEvent.ALL_COLUMNS, TableModelEvent.INSERT, treeNode);					
 					fireTableChanged(event);
-					
-					dbModel.setActiveNodes(activeNodes);
-					dbModel.fireChangeActiveNodes(activeNodes);
 					Logger.closeStack();
 				}
 			});

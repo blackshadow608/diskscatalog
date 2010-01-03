@@ -3,44 +3,57 @@ package al.catalog.ui.view.table;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import javax.swing.BorderFactory;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.TableCellRenderer;
 
 import al.catalog.model.tree.DBTreeModel;
+import al.catalog.ui.CatalogFrame;
 import al.catalog.ui.action.ActionManager;
 
+/**
+ * Кастомизированная для нужд приложения таблица.
+ * 
+ * @author Alexander Levin
+ */
 public class CustomTable extends JTable {
 	
 	private int lastSelIndex = 0;
 	private Object lastSelValue = null;
 	
+	private TabKeyListener tabKeyListener = new TabKeyListener();
+	
 	public CustomTable(DBTreeModel dbModel, ActionManager actionManager) {
 		super(new CustomTableModel(dbModel));
+		
 		getModel().addTableModelListener(new CustomTableModelListener(this));
 		
-		addKeyListener(new KeyListener() {
-			public void keyPressed(KeyEvent e) {
-				if(e.getKeyCode() == KeyEvent.VK_TAB) {
-					CustomTable.this.transferFocus();					
-				}
-			}
+		setRowHeight(20);
+		setShowGrid(false);
+		setDoubleBuffered(true);
+		setRowMargin(0);
+		setBorder(BorderFactory.createEmptyBorder(CatalogFrame.BORDER,
+				CatalogFrame.BORDER, CatalogFrame.BORDER, CatalogFrame.BORDER));
 
-			public void keyReleased(KeyEvent e) {
-				
-			}
-
-			public void keyTyped(KeyEvent e) {
-				
-			}
-		});
+		ActiveTableItemListener tableItemListener = new ActiveTableItemListener(dbModel, this);
+		getSelectionModel().setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+		addMouseListener(tableItemListener);
+		
+		DBTreeModelListener listener = new DBTreeModelListener(this);
+		dbModel.addListener(listener);
+		
+		addKeyListener(tabKeyListener);
 		
 		TableFocusListener focusListener = new TableFocusListener(actionManager);
 		addFocusListener(focusListener);
 		
 		TableItemsChangingListener tableChangeListener = new TableItemsChangingListener(this);
 		dbModel.addListener(tableChangeListener);
+		
+		setFillsViewportHeight(true);
 	}
 	
 	private class CustomTableModelListener implements TableModelListener {
@@ -151,4 +164,27 @@ public class CustomTable extends JTable {
 	public TableCellRenderer getCellRenderer(int row, int columnIndex) {		
 		return new ColumnRenderer();
     }
+	
+	/**
+	 * Слушатель событий клавиатуры. Как только пользователь нажимает TAB,
+	 * таблица передает фокус.
+	 * 
+	 * @author Alexander Levin
+	 */
+	private class TabKeyListener implements KeyListener {
+
+		public void keyPressed(KeyEvent e) {
+			if (e.getKeyCode() == KeyEvent.VK_TAB) {
+				CustomTable.this.transferFocus();
+			}
+		}
+
+		public void keyReleased(KeyEvent e) {
+
+		}
+
+		public void keyTyped(KeyEvent e) {
+
+		}
+	}
 }

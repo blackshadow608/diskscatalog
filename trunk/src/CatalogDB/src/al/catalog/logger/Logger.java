@@ -51,7 +51,7 @@ public class Logger {
 	 *            <b>String</b> сообщение.
 	 */
 	public synchronized static void openStack() {
-		if (isEnabled) {			
+		if (isEnabled) {
 			depth++;
 			StackTraceElement[] stackTraceElements = Thread.currentThread().getStackTrace();
 			String message = "";

@@ -18,6 +18,7 @@ import al.catalog.model.tree.types.ITreeNode;
 import al.catalog.ui.CatalogFrame;
 import al.catalog.ui.action.ActionManager;
 import al.catalog.ui.popup.ListPopupMouseListener;
+import al.catalog.ui.popup.PopupMenuHelper;
 import al.catalog.ui.view.list.event.CustomListDataEvent;
 
 public class CustomList extends JList {
@@ -31,6 +32,8 @@ public class CustomList extends JList {
 		super(new CustomListModel(dbModel));		
 		getModel().addListDataListener(new CustomListDataListener(this));
 		setBorder(BorderFactory.createEmptyBorder(CatalogFrame.BORDER, CatalogFrame.BORDER, CatalogFrame.BORDER, CatalogFrame.BORDER));
+		
+		PopupMenuHelper.createPopupMenu(this, actionManager, PopupMenuHelper.TYPE_FILE_LIST);
 		
 		ListCellRenderer listRenderer = new CustomListCellRenderer();
 		ActiveListItemListener listSelectionListener = new ActiveListItemListener(dbModel, this);

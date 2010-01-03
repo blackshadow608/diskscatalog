@@ -47,7 +47,6 @@ public class CatalogFrame extends JFrame {
 	}
 	
 	private void configWindow() {		
-		//setFocusTraversalPolicy(new CustomFocusTraversalPolicy(this));
         setPreferredSize(SIZE);
         setTitle(ResourceManager.getString(TITLE));
         setResizable(true);

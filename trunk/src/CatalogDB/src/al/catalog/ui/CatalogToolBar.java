@@ -14,6 +14,12 @@ import al.catalog.ui.action.view.UpOneLevelAction;
 import al.catalog.ui.action.view.history.BackAction;
 import al.catalog.ui.action.view.history.ForwardAction;
 
+/**
+ * Панель иснтрументов приложения, которая располагается под главным меню и
+ * содержит наиболее часто используемые команды.
+ * 
+ * @author Alexander Levin
+ */
 public class CatalogToolBar extends JToolBar {
 	
 	private ActionManager actionManager;

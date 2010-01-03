@@ -2,21 +2,17 @@ package al.catalog.ui.view;
 
 import java.awt.BorderLayout;
 
-import javax.swing.BorderFactory;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTree;
-import javax.swing.ListSelectionModel;
 
 import al.catalog.model.tree.DBTreeModel;
-import al.catalog.ui.CatalogFrame;
 import al.catalog.ui.action.ActionManager;
-import al.catalog.ui.popup.PopupMenuHelper;
 import al.catalog.ui.view.list.CustomList;
-import al.catalog.ui.view.table.ActiveTableItemListener;
+import al.catalog.ui.view.list.ListPanel;
 import al.catalog.ui.view.table.CustomTable;
-import al.catalog.ui.view.table.DBTreeModelListener;
+import al.catalog.ui.view.table.TablePanel;
 
 /**
  * Представляет собой правую панель от дерева каталога. На этой панели
@@ -29,47 +25,21 @@ import al.catalog.ui.view.table.DBTreeModelListener;
  */
 public class ViewPanel extends JPanel {
 
-	private JScrollPane listScrollPanel;
-	private JScrollPane tableScrollPanel;
+	private JScrollPane listPanel;
+	private JScrollPane tablePanel;
+
 	private CustomList list;
 	private CustomTable table;
 
 	private JComponent active;
 
-	public ViewPanel(DBTreeModel dbModel, ActionManager actionManager,
-			JTree tree) {
+	public ViewPanel(DBTreeModel dbModel, ActionManager aManager, JTree tree) {
 
-		list = new CustomList(dbModel, actionManager);
+		list = new CustomList(dbModel, aManager);
+		listPanel = new ListPanel(list);
 
-		PopupMenuHelper.createPopupMenu(list, actionManager,
-				PopupMenuHelper.TYPE_FILE_LIST);
-
-		listScrollPanel = new JScrollPane(list);
-		listScrollPanel.setBorder(BorderFactory.createEmptyBorder());
-		listScrollPanel.getVerticalScrollBar().setUnitIncrement(10);
-		listScrollPanel.getHorizontalScrollBar().setUnitIncrement(10);
-
-		table = new CustomTable(dbModel, actionManager);
-		table.setRowHeight(20);
-		table.setShowGrid(false);
-		table.setDoubleBuffered(true);
-		table.setRowMargin(0);
-		table.setBorder(BorderFactory.createEmptyBorder(CatalogFrame.BORDER,
-				CatalogFrame.BORDER, CatalogFrame.BORDER, CatalogFrame.BORDER));
-
-		ActiveTableItemListener tableItemListener = new ActiveTableItemListener(
-				dbModel, table);
-		table.getSelectionModel().setSelectionMode(
-				ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-		table.addMouseListener(tableItemListener);
-
-		DBTreeModelListener listener = new DBTreeModelListener(table);
-		dbModel.addListener(listener);
-
-		tableScrollPanel = new JScrollPane(table);
-		tableScrollPanel.setBorder(BorderFactory.createEmptyBorder());
-
-		table.setFillsViewportHeight(true);
+		table = new CustomTable(dbModel, aManager);
+		tablePanel = new TablePanel(table);
 
 		setLayout(new BorderLayout());
 	}
@@ -79,11 +49,11 @@ public class ViewPanel extends JPanel {
 	 */
 	public void setIconsView() {
 		list.setIconsView();
-		active = list;		
+		active = list;
 		removeAll();
-		add(listScrollPanel, BorderLayout.CENTER);
+		add(listPanel, BorderLayout.CENTER);
 		revalidate();
-		listScrollPanel.repaint();
+		listPanel.repaint();
 		list.requestFocus();
 	}
 
@@ -94,9 +64,9 @@ public class ViewPanel extends JPanel {
 		list.setListView();
 		active = list;
 		removeAll();
-		add(listScrollPanel, BorderLayout.CENTER);
+		add(listPanel, BorderLayout.CENTER);
 		revalidate();
-		listScrollPanel.repaint();
+		listPanel.repaint();
 		list.requestFocus();
 	}
 
@@ -106,9 +76,9 @@ public class ViewPanel extends JPanel {
 	public void setDetailedView() {
 		active = table;
 		removeAll();
-		add(tableScrollPanel, BorderLayout.CENTER);
+		add(tablePanel, BorderLayout.CENTER);
 		revalidate();
-		tableScrollPanel.repaint();
+		tablePanel.repaint();
 		table.requestFocus();
 	}
 
