@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import al.catalog.logger.Logger;
 import al.catalog.model.DBManager;
 import al.catalog.ui.CatalogFrame;
+import al.catalog.ui.action.ActionManager;
 
 /**
  * Точка входа приложения, с которой начинается выполнение приложения.
@@ -23,9 +24,15 @@ public class Main {
 		 */
 		Logger.enable();
 		Logger.setShowLineNumbers(true);
-		//Logger.disable();
+		Logger.disable();
+		
+		MainEntity mainEntity = new MainEntity();
 		
 		DBManager dbManager = new DBManager();
+		mainEntity.setDBManager(dbManager);
+		
+		ActionManager actionManager = new ActionManager(dbManager);
+		mainEntity.setActionManager(actionManager);
 		
 		/*
 		 * Читаем и проверяем параметры консоли.
@@ -36,7 +43,7 @@ public class Main {
 					String arg = args[i];
 					if (SERVER_MODE.equals(arg)) {
 						dbManager.setMode(DBManager.MODE_SERVER);						
-					}											
+					}
 				}									
 			}
 		}
@@ -44,7 +51,7 @@ public class Main {
 		JFrame.setDefaultLookAndFeelDecorated(true);
 		JDialog.setDefaultLookAndFeelDecorated(true);
 		
-		new CatalogFrame(dbManager);
+		new CatalogFrame(mainEntity);		
 	}
 	
 	/**

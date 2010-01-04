@@ -71,6 +71,10 @@ public class ActionManager implements IConnectionListener, IDBActionListener, IH
 		ActionManager actionManager = this;
 		dbManager.getTreeModel().addListener(this);
 		
+		dbManager.addConnectionListener(actionManager);
+		dbManager.addDBActionListener(actionManager);
+		dbManager.getTreeModel().addHistoryListener(actionManager);
+		
 		CustomAction action = new CreateNewImgCategoryAction(actionManager);
 		action.setEnabled(false);
 		actions.put(CreateNewImgCategoryAction.ACTION_NAME, action);

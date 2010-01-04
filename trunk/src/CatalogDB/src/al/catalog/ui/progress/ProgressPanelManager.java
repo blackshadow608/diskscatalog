@@ -11,7 +11,7 @@ import al.catalog.ui.CatalogFrame;
  */
 public class ProgressPanelManager {
 	
-	private CatalogFrame owner;
+	private CatalogFrame mainFrame;
 	private ProgressPanel progressPanel;
 	
 	/**
@@ -21,8 +21,8 @@ public class ProgressPanelManager {
 	 *            ссылка <b>CatalogFrame</b>, в нижней части которого будет
 	 *            показывать панель прогресса выполнения.
 	 */
-	public ProgressPanelManager(CatalogFrame owner) {
-		this.owner = owner;
+	public ProgressPanelManager(CatalogFrame mainFrame) {
+		this.mainFrame = mainFrame;
 	}
 	
 	/**
@@ -38,7 +38,7 @@ public class ProgressPanelManager {
 			progressPanel = new ProgressPanel(this);
 		}
 		progressPanel.setAction(action);
-		owner.showProgressBar(progressPanel);
+		mainFrame.getContentPanel().showProgressBar(progressPanel);
 	}
 	
 	/**
@@ -47,7 +47,7 @@ public class ProgressPanelManager {
 	 */
 	public void hideProgressBar() {
 		if(progressPanel != null) {
-			owner.hideProgressBar(progressPanel);			
+			mainFrame.getContentPanel().hideProgressBar(progressPanel);			
 		}				
 	}
 

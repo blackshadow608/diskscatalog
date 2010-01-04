@@ -3,8 +3,8 @@ package al.catalog.ui;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
+import al.catalog.MainEntity;
 import al.catalog.model.DBException;
-import al.catalog.model.DBManager;
 
 /**
  * Слушает оконные события основного окан приложения. Основная задача -
@@ -15,7 +15,7 @@ import al.catalog.model.DBManager;
  */
 public class CatalogWindowListener implements WindowListener {
 	
-	protected DBManager dbManager;
+	protected MainEntity mainEntity;
 	
 	/**
 	 * Создает новый <b>CatalogWindowListener</b> с параметром <b>DBManager</b>,
@@ -23,13 +23,13 @@ public class CatalogWindowListener implements WindowListener {
 	 * 
 	 * @param dbManager - ссылка на <b>DBManager</b>, который управляет базой данных.
 	 */
-	public CatalogWindowListener(DBManager dbManager) {
-		this.dbManager = dbManager;				
+	public CatalogWindowListener(MainEntity mainEntity) {
+		this.mainEntity = mainEntity;
 	}
 
 	public void windowClosed(WindowEvent event) {
 		try {
-			dbManager.close();
+			mainEntity.getDBManager().close();
 		} catch (DBException e) {
 			e.printStackTrace();
 		}
@@ -37,7 +37,7 @@ public class CatalogWindowListener implements WindowListener {
 
 	public void windowClosing(WindowEvent event) {
 		try {
-			dbManager.close();
+			mainEntity.getDBManager().close();
 		} catch (DBException e) {
 			e.printStackTrace();
 		}

@@ -1,27 +1,21 @@
 package al.catalog.ui;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 
-import javax.swing.BorderFactory;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JSplitPane;
-import javax.swing.JTree;
 import javax.swing.UIManager;
 
-import al.catalog.model.DBManager;
-import al.catalog.model.tree.DBTreeModel;
+import al.catalog.MainEntity;
 import al.catalog.ui.action.ActionManager;
-import al.catalog.ui.popup.PopupMenuHelper;
-import al.catalog.ui.progress.ProgressActionListener;
 import al.catalog.ui.resource.ResourceManager;
-import al.catalog.ui.tree.CatalogTree;
-import al.catalog.ui.view.ViewPanel;
 
+/**
+ * Основное окно приложения. Именно это окно появляется сразу после того, как
+ * запускается приложение.
+ * 
+ * @author Alexander Levin
+ */
 public class CatalogFrame extends JFrame {
 	
 	public static final Font FONT = new Font("Verdana", Font.PLAIN, 11);
@@ -29,21 +23,23 @@ public class CatalogFrame extends JFrame {
 	private static final Dimension SIZE = new Dimension(700, 400);
 	private static final String TITLE = "mainFrame.title";
 	
-	private static final int DIVIDER_SIZE = 8;
-	private static final int DIVIDER_POS = 250;
-	
 	public static final int BORDER = 5;
 	
-	private DBManager dbManager;
-	private JTree tree;
-	private ViewPanel viewPanel;
-	private JPanel contentPane;
+	private MainEntity mainEntity;
+	private ContentPanel contentPanel;
 	
-	public CatalogFrame(DBManager dbManager) {
-		this.dbManager = dbManager;
+	/**
+	 * Создает новое окно с параметром <b>DBManager</b>, ссылка на который
+	 * передается в качестве параметра.
+	 * 
+	 * @param dbManager -
+	 *            ссылка на <b>DBManager</b> менеджер базы данных.
+	 */
+	public CatalogFrame(MainEntity mainEntity) {
+		this.mainEntity = mainEntity;
 		customizeFont();
 		createGUI();
-        configWindow();
+		configWindow();
 	}
 	
 	private void configWindow() {		
@@ -54,66 +50,17 @@ public class CatalogFrame extends JFrame {
         pack();
         setVisible(true);
         setLocationRelativeTo(null);
-        addWindowListener(new CatalogWindowListener(dbManager));
+        addWindowListener(new CatalogWindowListener(mainEntity));
     }
 	
-	private void createGUI() {		
-		contentPane = new JPanel();
-		contentPane.setLayout(new BorderLayout());
+	private void createGUI() {
+		mainEntity.getActionManager().setProperty(ActionManager.PROPERTY_OWNER_FRAME, this);
 		
-		DBTreeModel dbModel = dbManager.getTreeModel();				
-				
-		tree = new CatalogTree(dbManager);
+		contentPanel = new ContentPanel(mainEntity, this);
+		getContentPane().add(contentPanel);
 		
-		ActionManager actionManager = new ActionManager(dbManager);
-		ProgressActionListener progressListener = new ProgressActionListener(this);
-		
-		dbManager.addConnectionListener(actionManager);
-		dbManager.addDBActionListener(actionManager);
-		dbManager.addDBActionListener(progressListener);
-		dbModel.addHistoryListener(actionManager);		
-		
-		actionManager.setProperty(ActionManager.PROPERTY_TREE, tree);		
-		actionManager.setProperty(ActionManager.PROPERTY_OWNER_FRAME, this);		
-		
-		CatalogMenuBar menuBar = new CatalogMenuBar(actionManager);
-		menuBar.setFocusable(false);
+		CatalogMenuBar menuBar = new CatalogMenuBar(mainEntity);		
 		setJMenuBar(menuBar);
-		
-		dbModel.addListener(menuBar);
-		
-		PopupMenuHelper.createPopupMenu(tree, actionManager, PopupMenuHelper.TYPE_TREE);
-		
-		JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
-		
-		viewPanel = new ViewPanel(dbModel, actionManager, tree);
-		viewPanel.setIconsView();
-		actionManager.setProperty(ActionManager.PROPERTY_VIEW_PANEL, viewPanel);
-		
-		JPanel treePanel = new JPanel();
-		treePanel.setBorder(BorderFactory.createEmptyBorder(CatalogFrame.BORDER, CatalogFrame.BORDER, CatalogFrame.BORDER, CatalogFrame.BORDER));
-		treePanel.setLayout(new BorderLayout());
-		treePanel.add(tree, BorderLayout.CENTER);
-		treePanel.setBackground(Color.WHITE);
-		
-		JScrollPane treeScrollPane = new JScrollPane(treePanel);		
-		treeScrollPane.setBorder(BorderFactory.createEmptyBorder());
-		
-		treeScrollPane.getVerticalScrollBar().setUnitIncrement(10);
-		treeScrollPane.getHorizontalScrollBar().setUnitIncrement(10);
-		
-		splitPane.setLeftComponent(treeScrollPane);
-		splitPane.setRightComponent(viewPanel);
-		splitPane.setDividerSize(DIVIDER_SIZE);
-		splitPane.setDividerLocation(DIVIDER_POS);
-		
-		contentPane.add(splitPane, BorderLayout.CENTER);
-		
-		CatalogToolBar toolBar = new CatalogToolBar(actionManager);
-		
-		contentPane.add(toolBar, BorderLayout.PAGE_START);
-		
-		getContentPane().add(contentPane);
 	}
 	
 	private void customizeFont() {		
@@ -133,37 +80,7 @@ public class CatalogFrame extends JFrame {
 		UIManager.put("Tree.rowHeight", 20);		
 	}
 	
-	public JTree getTree() {
-		return tree;		
-	}
-	
-	public ViewPanel getViewPanel() {
-		return viewPanel;
-	}
-	
-	/**
-	 * Показывает в нижней части основного окна приложения панель прогресса
-	 * выполнения, ссылка на которую передается методу в качестве параметра.
-	 * 
-	 * @param progressBar - ссылка на <b>JPanel</b> панель прогресса выполнения.
-	 */
-	public void showProgressBar(JPanel progressBar) {
-		contentPane.add(progressBar, BorderLayout.SOUTH);
-		contentPane.revalidate();
-	}
-	
-	/**
-	 * Скрывает панель прогресса выполнения, ссылка на которую передается методу
-	 * в качестве параметра.
-	 * 
-	 * @param progressBar -
-	 *            ссылка на <b>JPanel</b> прогресс панель, которую необходимо
-	 *            скрыть.
-	 */
-	public void hideProgressBar(JPanel progressBar) {
-		if(progressBar != null) {
-			contentPane.remove(progressBar);
-			contentPane.revalidate();			
-		}		
+	public ContentPanel getContentPanel() {
+		return contentPanel;
 	}
 }

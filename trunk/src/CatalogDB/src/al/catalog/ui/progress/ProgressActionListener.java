@@ -1,30 +1,25 @@
 package al.catalog.ui.progress;
 
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import al.catalog.model.DBAction;
 import al.catalog.model.IDBActionAdapter;
 import al.catalog.ui.CatalogFrame;
-import al.catalog.ui.dialog.ProgressDialog;
 
 public class ProgressActionListener extends IDBActionAdapter {
     
-    private JFrame owner;
-    private ProgressDialog progressDialog;
+    private CatalogFrame mainFrame;    
     private ProgressPanelManager progressManager;
-    //private volatile boolean actionAlreadyExecuted = false;
     private Thread showDialogThread;
     
-    public ProgressActionListener(JFrame owner) {
-        this.owner = owner;
-        this.progressManager = new ProgressPanelManager((CatalogFrame)owner);
+    public ProgressActionListener(CatalogFrame mainFrame) {
+        this.mainFrame = mainFrame;
+        this.progressManager = new ProgressPanelManager(mainFrame);
     }
     
-    public void afterActionExecuting(DBAction dbAction) {       
-        //actionAlreadyExecuted = true;
+    public void afterActionExecuting(DBAction dbAction) {
         
-        if (progressDialog != null) {
+        if (progressManager != null) {
         	/*
 			 * Чтобы диалог прогресса выполнения и прогресс панель не мелькали,
 			 * а показывались хотя бы секунду.
@@ -39,14 +34,10 @@ public class ProgressActionListener extends IDBActionAdapter {
 			 * прогресс панель.
 			 */
             progressManager.hideProgressBar();
-            //progressDialog.hideDialog();
         }
     }
     
     public void beforeActionExecuting(final DBAction action) {
-        //actionAlreadyExecuted = false;
-        progressDialog = new ProgressDialog(owner, action, progressManager);
-        //final String progressText = action.getProgressText();
         
         showDialogThread = new Thread() {
             public void run() {
@@ -57,11 +48,6 @@ public class ProgressActionListener extends IDBActionAdapter {
                     e.printStackTrace();
                 }
                 
-                /*if (!actionAlreadyExecuted) {
-                    progressDialog.setLabel(progressText);
-                    progressDialog.showDialog();
-                }*/
-                
                 progressManager.showProgressBar(action);
             }
         };
@@ -70,6 +56,6 @@ public class ProgressActionListener extends IDBActionAdapter {
     }
     
     public void actionThrowException(DBAction dbAction, Exception exception) {
-        JOptionPane.showMessageDialog(owner, exception.getMessage(), "Exception", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(mainFrame, exception.getMessage(), "Exception", JOptionPane.ERROR_MESSAGE);
     }
 }

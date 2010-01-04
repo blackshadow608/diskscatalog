@@ -9,6 +9,8 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JRadioButtonMenuItem;
 
+import al.catalog.MainEntity;
+import al.catalog.model.DBManager;
 import al.catalog.model.tree.IDBTreeModelListener;
 import al.catalog.model.tree.types.ITreeNode;
 import al.catalog.model.tree.types.images.ImgCategoryNode;
@@ -57,11 +59,17 @@ public class CatalogMenuBar extends JMenuBar implements IDBTreeModelListener {
 	
 	private JMenu createMenu;
 	
-	private ActionManager actionManager;
+	private MainEntity mainEntity;
 
-	public CatalogMenuBar(ActionManager actionManager) {
+	public CatalogMenuBar(MainEntity mainEntity) {
 		
-		this.actionManager = actionManager;		
+		this.mainEntity = mainEntity;
+		
+		ActionManager actionManager = mainEntity.getActionManager();
+		DBManager dbManager = mainEntity.getDBManager();
+		
+		setFocusable(false);
+		dbManager.getTreeModel().addListener(this);
 		
 		String file = ResourceManager.getString(FILE);
 		fileMenu = new JMenu(file);
@@ -246,12 +254,12 @@ public class CatalogMenuBar extends JMenuBar implements IDBTreeModelListener {
 			createMenu.removeAll();
 			
 			JMenuItem menuItem = new JMenuItem();
-			Action action = actionManager.getAction(CreateNewImgCategoryAction.ACTION_NAME);
+			Action action = mainEntity.getActionManager().getAction(CreateNewImgCategoryAction.ACTION_NAME);
 			menuItem.setAction(action);
 			createMenu.add(menuItem);
 			
 			menuItem = new JMenuItem();
-			action = actionManager.getAction(CreateNewImageAction.ACTION_NAME);
+			action = mainEntity.getActionManager().getAction(CreateNewImageAction.ACTION_NAME);
 			menuItem.setAction(action);
 			createMenu.add(menuItem);
 			
