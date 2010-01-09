@@ -2,19 +2,24 @@ package al.catalog.ui.progress;
 
 import javax.swing.JOptionPane;
 
+import al.catalog.MainEntity;
 import al.catalog.model.DBAction;
+import al.catalog.model.DBManager;
 import al.catalog.model.IDBActionAdapter;
-import al.catalog.ui.CatalogFrame;
+import al.catalog.ui.CatFrame;
 
-public class ProgressActionListener extends IDBActionAdapter {
+public class ProgressListener extends IDBActionAdapter {
     
-    private CatalogFrame mainFrame;    
+    private CatFrame mainFrame;    
     private ProgressPanelManager progressManager;
     private Thread showDialogThread;
     
-    public ProgressActionListener(CatalogFrame mainFrame) {
+    public ProgressListener(MainEntity mainEntity, CatFrame mainFrame) {
         this.mainFrame = mainFrame;
         this.progressManager = new ProgressPanelManager(mainFrame);
+        
+        DBManager dbManager = mainEntity.getDBManager();
+        dbManager.addActionListener(this);
     }
     
     public void afterActionExecuting(DBAction dbAction) {

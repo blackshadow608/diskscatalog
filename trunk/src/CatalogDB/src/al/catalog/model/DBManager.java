@@ -249,7 +249,7 @@ public class DBManager implements IConnectionProvider {
 	 * 
 	 * @param listener - добавляемый DBActionListener слушаткль.
 	 */
-	public void addDBActionListener(IDBActionListener listener) {
+	public void addActionListener(IDBActionListener listener) {
 		actionListeners.add(listener);
 	}
 	

@@ -1,7 +1,7 @@
 package al.catalog.ui.progress;
 
 import al.catalog.model.DBAction;
-import al.catalog.ui.CatalogFrame;
+import al.catalog.ui.CatFrame;
 
 /**
  * Класс <b>ProgressPanelManager</b> управляет панелью прогресса выполнения
@@ -11,7 +11,7 @@ import al.catalog.ui.CatalogFrame;
  */
 public class ProgressPanelManager {
 	
-	private CatalogFrame mainFrame;
+	private CatFrame mainFrame;
 	private ProgressPanel progressPanel;
 	
 	/**
@@ -21,7 +21,7 @@ public class ProgressPanelManager {
 	 *            ссылка <b>CatalogFrame</b>, в нижней части которого будет
 	 *            показывать панель прогресса выполнения.
 	 */
-	public ProgressPanelManager(CatalogFrame mainFrame) {
+	public ProgressPanelManager(CatFrame mainFrame) {
 		this.mainFrame = mainFrame;
 	}
 	

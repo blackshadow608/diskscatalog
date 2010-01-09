@@ -15,10 +15,10 @@ import javax.swing.event.ListDataListener;
 import al.catalog.logger.Logger;
 import al.catalog.model.tree.DBTreeModel;
 import al.catalog.model.tree.types.ITreeNode;
-import al.catalog.ui.CatalogFrame;
+import al.catalog.ui.CatFrame;
 import al.catalog.ui.action.ActionManager;
 import al.catalog.ui.popup.ListPopupMouseListener;
-import al.catalog.ui.popup.PopupMenuHelper;
+import al.catalog.ui.popup.PopupHelper;
 import al.catalog.ui.view.list.event.CustomListDataEvent;
 
 public class CustomList extends JList {
@@ -31,9 +31,9 @@ public class CustomList extends JList {
 	public CustomList(DBTreeModel dbModel, ActionManager actionManager) {		
 		super(new CustomListModel(dbModel));		
 		getModel().addListDataListener(new CustomListDataListener(this));
-		setBorder(BorderFactory.createEmptyBorder(CatalogFrame.BORDER, CatalogFrame.BORDER, CatalogFrame.BORDER, CatalogFrame.BORDER));
+		setBorder(BorderFactory.createEmptyBorder(CatFrame.BORDER, CatFrame.BORDER, CatFrame.BORDER, CatFrame.BORDER));
 		
-		PopupMenuHelper.createPopupMenu(this, actionManager, PopupMenuHelper.TYPE_FILE_LIST);
+		PopupHelper.createMenu(this, actionManager, PopupHelper.TYPE_FILE_LIST);
 		
 		ListCellRenderer listRenderer = new CustomListCellRenderer();
 		ActiveListItemListener listSelectionListener = new ActiveListItemListener(dbModel, this);

@@ -5,8 +5,9 @@ import java.awt.BorderLayout;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTree;
 
+import al.catalog.MainEntity;
+import al.catalog.model.DBManager;
 import al.catalog.model.tree.DBTreeModel;
 import al.catalog.ui.action.ActionManager;
 import al.catalog.ui.view.list.CustomList;
@@ -33,8 +34,17 @@ public class ViewPanel extends JPanel {
 
 	private JComponent active;
 
-	public ViewPanel(DBTreeModel dbModel, ActionManager aManager, JTree tree) {
+	/**
+	 * Создает новую панель <b>ViewPanel</b> с параметром <b>MainEntity</b>.
+	 * 
+	 * @param mainEntity - ссылка на <b>MainEntity</b>.
+	 */
+	public ViewPanel(MainEntity mainEntity) {
 
+		DBManager dbManager = mainEntity.getDBManager();
+		ActionManager aManager = mainEntity.getActionManager();
+		DBTreeModel dbModel = dbManager.getTreeModel();
+		
 		list = new CustomList(dbModel, aManager);
 		listPanel = new ListPanel(list);
 
@@ -42,6 +52,8 @@ public class ViewPanel extends JPanel {
 		tablePanel = new TablePanel(table);
 
 		setLayout(new BorderLayout());
+		
+		setIconsView();
 	}
 
 	/**
@@ -49,12 +61,7 @@ public class ViewPanel extends JPanel {
 	 */
 	public void setIconsView() {
 		list.setIconsView();
-		active = list;
-		removeAll();
-		add(listPanel, BorderLayout.CENTER);
-		revalidate();
-		listPanel.repaint();
-		list.requestFocus();
+		makeActive(list, listPanel);
 	}
 
 	/**
@@ -62,24 +69,23 @@ public class ViewPanel extends JPanel {
 	 */
 	public void setListView() {
 		list.setListView();
-		active = list;
-		removeAll();
-		add(listPanel, BorderLayout.CENTER);
-		revalidate();
-		listPanel.repaint();
-		list.requestFocus();
+		makeActive(list, listPanel);
 	}
 
 	/**
 	 * Переключает режим отображения элементов панели в "Детально".
 	 */
 	public void setDetailedView() {
-		active = table;
+		makeActive(table, tablePanel);
+	}
+	
+	private void makeActive(JComponent component, JScrollPane panel) {
+		active = component;
 		removeAll();
-		add(tablePanel, BorderLayout.CENTER);
+		add(panel, BorderLayout.CENTER);
 		revalidate();
-		tablePanel.repaint();
-		table.requestFocus();
+		panel.repaint();
+		component.requestFocus();				
 	}
 
 	public JComponent getActive() {

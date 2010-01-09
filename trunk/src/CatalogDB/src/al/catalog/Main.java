@@ -5,7 +5,7 @@ import javax.swing.JFrame;
 
 import al.catalog.logger.Logger;
 import al.catalog.model.DBManager;
-import al.catalog.ui.CatalogFrame;
+import al.catalog.ui.CatFrame;
 import al.catalog.ui.action.ActionManager;
 
 /**
@@ -51,7 +51,7 @@ public class Main {
 		JFrame.setDefaultLookAndFeelDecorated(true);
 		JDialog.setDefaultLookAndFeelDecorated(true);
 		
-		new CatalogFrame(mainEntity);		
+		new CatFrame(mainEntity);
 	}
 	
 	/**

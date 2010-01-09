@@ -6,7 +6,7 @@ import javax.swing.tree.TreeSelectionModel;
 
 import al.catalog.model.DBManager;
 import al.catalog.model.tree.DBTreeModel;
-import al.catalog.ui.CatalogFrame;
+import al.catalog.ui.CatFrame;
 
 public class CatalogTree extends JTree {
 	
@@ -22,7 +22,7 @@ public class CatalogTree extends JTree {
 	public CatalogTree(DBManager dbManager) {
 		this.dbManager = dbManager;
 		
-		setFont(CatalogFrame.FONT);
+		setFont(CatFrame.FONT);
 		setScrollsOnExpand(false);
 		
 		setTreeModel();
@@ -33,7 +33,7 @@ public class CatalogTree extends JTree {
 		setRenderer();
 		setListeners();
 		
-		customizeSelectionModel();		
+		customizeSelectionModel();
 	}
 	
 	private void initListeners() {

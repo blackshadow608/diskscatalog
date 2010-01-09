@@ -11,7 +11,7 @@ import javax.swing.event.TableModelListener;
 import javax.swing.table.TableCellRenderer;
 
 import al.catalog.model.tree.DBTreeModel;
-import al.catalog.ui.CatalogFrame;
+import al.catalog.ui.CatFrame;
 import al.catalog.ui.action.ActionManager;
 
 /**
@@ -35,8 +35,8 @@ public class CustomTable extends JTable {
 		setShowGrid(false);
 		setDoubleBuffered(true);
 		setRowMargin(0);
-		setBorder(BorderFactory.createEmptyBorder(CatalogFrame.BORDER,
-				CatalogFrame.BORDER, CatalogFrame.BORDER, CatalogFrame.BORDER));
+		setBorder(BorderFactory.createEmptyBorder(CatFrame.BORDER,
+				CatFrame.BORDER, CatFrame.BORDER, CatFrame.BORDER));
 
 		ActiveTableItemListener tableItemListener = new ActiveTableItemListener(dbModel, this);
 		getSelectionModel().setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);

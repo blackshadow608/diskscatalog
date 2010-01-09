@@ -7,12 +7,12 @@ import javax.swing.JComponent;
 import al.catalog.ui.action.ActionManager;
 
 
-public class PopupMenuHelper {
+public class PopupHelper {
 	
 	public static final int TYPE_FILE_LIST = 1;
 	public static final int TYPE_TREE = 2;
 	
-	public static void createPopupMenu(JComponent component, ActionManager actionManager, int type) {
+	public static void createMenu(JComponent component, ActionManager actionManager, int type) {
 		switch (type) {			
 			case TYPE_FILE_LIST: createFileViewPopup(component, actionManager); break;
 			case TYPE_TREE: createTreePopup(component, actionManager); break;

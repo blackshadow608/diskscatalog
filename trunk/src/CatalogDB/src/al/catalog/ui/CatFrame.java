@@ -8,6 +8,7 @@ import javax.swing.UIManager;
 
 import al.catalog.MainEntity;
 import al.catalog.ui.action.ActionManager;
+import al.catalog.ui.progress.ProgressListener;
 import al.catalog.ui.resource.ResourceManager;
 
 /**
@@ -16,7 +17,7 @@ import al.catalog.ui.resource.ResourceManager;
  * 
  * @author Alexander Levin
  */
-public class CatalogFrame extends JFrame {
+public class CatFrame extends JFrame {
 	
 	public static final Font FONT = new Font("Verdana", Font.PLAIN, 11);
 	
@@ -35,7 +36,7 @@ public class CatalogFrame extends JFrame {
 	 * @param dbManager -
 	 *            ссылка на <b>DBManager</b> менеджер базы данных.
 	 */
-	public CatalogFrame(MainEntity mainEntity) {
+	public CatFrame(MainEntity mainEntity) {
 		this.mainEntity = mainEntity;
 		customizeFont();
 		createGUI();
@@ -56,11 +57,12 @@ public class CatalogFrame extends JFrame {
 	private void createGUI() {
 		mainEntity.getActionManager().setProperty(ActionManager.PROPERTY_OWNER_FRAME, this);
 		
-		contentPanel = new ContentPanel(mainEntity, this);
+		contentPanel = new ContentPanel(mainEntity);
 		getContentPane().add(contentPanel);
 		
-		CatalogMenuBar menuBar = new CatalogMenuBar(mainEntity);		
-		setJMenuBar(menuBar);
+		setJMenuBar(new CatalogMenuBar(mainEntity));
+		
+		new ProgressListener(mainEntity, this);		
 	}
 	
 	private void customizeFont() {		
@@ -80,6 +82,12 @@ public class CatalogFrame extends JFrame {
 		UIManager.put("Tree.rowHeight", 20);		
 	}
 	
+	/**
+	 * Возвращает панель содержимого <b>ContentPanel</b>, на которой
+	 * располагаются остальные компоненты граыического интерфейса пользователя.
+	 * 
+	 * @return <b>ContentPanel</b> панель содержиого.
+	 */
 	public ContentPanel getContentPanel() {
 		return contentPanel;
 	}
