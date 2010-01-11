@@ -26,13 +26,10 @@ public class Main {
 		Logger.setShowLineNumbers(true);
 		Logger.disable();
 		
-		MainEntity mainEntity = new MainEntity();
-		
 		DBManager dbManager = new DBManager();
-		mainEntity.setDBManager(dbManager);
+		ActionManager aManager = new ActionManager(dbManager);
+		MainEntity mainEntity = new MainEntity(dbManager, aManager);
 		
-		ActionManager actionManager = new ActionManager(dbManager);
-		mainEntity.setActionManager(actionManager);
 		
 		/*
 		 * Читаем и проверяем параметры консоли.

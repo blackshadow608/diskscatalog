@@ -20,6 +20,7 @@ import al.catalog.model.tree.types.file.FileNode;
 import al.catalog.model.tree.types.file.FolderNode;
 import al.catalog.model.tree.types.images.ImageNode;
 import al.catalog.model.tree.types.images.ImgCategoryNode;
+import al.catalog.ui.CatFrame;
 import al.catalog.ui.action.edit.MoveAction;
 import al.catalog.ui.action.edit.ShowMoveDialogAction;
 import al.catalog.ui.action.edit.RedoAction;
@@ -55,8 +56,6 @@ import al.catalog.ui.action.view.history.ForwardAction;
 public class ActionManager implements IConnectionListener, IDBActionListener, IHistoryListener, IDBTreeModelListener {
 	
 	public static final String PROPERTY_TREE = "Tree";
-	public static final String PROPERTY_OWNER_FRAME = "OwnerFrame";
-	public static final String PROPERTY_VIEW_PANEL = "ViewPanel";
 	
 	private List<IErrorListener> listeners = new ArrayList<IErrorListener>();
 	private Map<String, CustomAction> actions = new HashMap<String, CustomAction>();
@@ -64,6 +63,8 @@ public class ActionManager implements IConnectionListener, IDBActionListener, IH
 	private Map<String, Object> properties = new HashMap<String, Object>(); 
 	
 	private DBManager dbManager;
+	
+	private CatFrame mainFrame;
 	
 	public ActionManager(DBManager dbManager) {
 		this.dbManager = dbManager;
@@ -448,6 +449,14 @@ public class ActionManager implements IConnectionListener, IDBActionListener, IH
             	removeAction.setEnabled(false);
         	}
         }		
+	}
+	
+	public CatFrame getMainFrame() {
+		return mainFrame;
+	}
+	
+	public void setMainFrame(CatFrame mainFrame) {
+		this.mainFrame = mainFrame;
 	}
 
 	public void backBecameDisabled() {

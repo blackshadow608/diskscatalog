@@ -21,7 +21,7 @@ public class ShowPropertiesDialogAction extends CustomAction {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		JFrame owner = (JFrame) actionManager.getProperty(ActionManager.PROPERTY_OWNER_FRAME);
+		JFrame owner = actionManager.getMainFrame();
 		DBTreeModel dbModel = actionManager.getDBManager().getTreeModel();
 		PropertiesDialog propertiesDailog = new PropertiesDialog(owner, dbModel, actionManager);
 		propertiesDailog.setVisible(true);

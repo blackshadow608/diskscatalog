@@ -31,7 +31,7 @@ public class RunDetachImageAction extends CustomAction {
 		ITreeNode treeNode = dbManager.getTreeModel().getActiveNodes().get(0);
 		if (treeNode instanceof ImageNode) {
 			ImageNode image = (ImageNode) treeNode;
-			JFrame frame = (JFrame) actionManager.getProperty(ActionManager.PROPERTY_OWNER_FRAME);
+			JFrame frame = actionManager.getMainFrame();
 			String question = ResourceManager.getString(QUESTION);
 			Object[] options = {ResourceManager.getString(YES), ResourceManager.getString(NO)};
 			int n = JOptionPane.showOptionDialog(frame, question, ResourceManager.getString(KEY), JOptionPane.YES_NO_OPTION,

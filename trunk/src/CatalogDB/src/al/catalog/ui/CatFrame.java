@@ -7,9 +7,9 @@ import javax.swing.JFrame;
 import javax.swing.UIManager;
 
 import al.catalog.MainEntity;
-import al.catalog.ui.action.ActionManager;
 import al.catalog.ui.progress.ProgressListener;
 import al.catalog.ui.resource.ResourceManager;
+import al.catalog.ui.view.ViewPanel;
 
 /**
  * Основное окно приложения. Именно это окно появляется сразу после того, как
@@ -41,6 +41,8 @@ public class CatFrame extends JFrame {
 		customizeFont();
 		createGUI();
 		configWindow();
+		
+		mainEntity.getActionManager().setMainFrame(this);
 	}
 	
 	private void configWindow() {		
@@ -55,13 +57,9 @@ public class CatFrame extends JFrame {
     }
 	
 	private void createGUI() {
-		mainEntity.getActionManager().setProperty(ActionManager.PROPERTY_OWNER_FRAME, this);
-		
 		contentPanel = new ContentPanel(mainEntity);
-		getContentPane().add(contentPanel);
-		
-		setJMenuBar(new CatalogMenuBar(mainEntity));
-		
+		getContentPane().add(contentPanel);		
+		setJMenuBar(new CatalogMenuBar(mainEntity));		
 		new ProgressListener(mainEntity, this);		
 	}
 	
@@ -90,5 +88,9 @@ public class CatFrame extends JFrame {
 	 */
 	public ContentPanel getContentPanel() {
 		return contentPanel;
+	}
+	
+	public ViewPanel getViewPanel() {
+		return contentPanel.getViewPanel();
 	}
 }

@@ -31,7 +31,6 @@ public class ContentPanel extends JPanel {
 		JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
 
 		viewPanel = new ViewPanel(mainEntity);		
-		aManager.setProperty(ActionManager.PROPERTY_VIEW_PANEL, viewPanel);
 
 		TreePanel treePanel = new TreePanel(mainEntity);
 		
@@ -68,6 +67,10 @@ public class ContentPanel extends JPanel {
 			remove(progressBar);
 			revalidate();
 		}
+	}
+	
+	public ViewPanel getViewPanel() {
+		return viewPanel;
 	}
 
 }

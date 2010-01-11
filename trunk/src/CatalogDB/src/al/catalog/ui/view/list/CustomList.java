@@ -41,8 +41,6 @@ public class CustomList extends JList {
 		
 		ListPopupMouseListener listMouseListener = new ListPopupMouseListener(this, actionManager);
 		
-		actionManager.setProperty(ActionManager.PROPERTY_VIEW_PANEL, this);
-		
 		setLayoutOrientation(JList.HORIZONTAL_WRAP);
 		setVisibleRowCount(0);		
 		setCellRenderer(listRenderer);

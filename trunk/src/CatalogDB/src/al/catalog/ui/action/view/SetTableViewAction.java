@@ -18,7 +18,7 @@ public class SetTableViewAction extends CustomAction {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		ViewPanel viewPanel = (ViewPanel) actionManager.getProperty(ActionManager.PROPERTY_VIEW_PANEL);
+		ViewPanel viewPanel = actionManager.getMainFrame().getViewPanel();
 		viewPanel.setDetailedView();				
 	}
 }

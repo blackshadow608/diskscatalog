@@ -24,7 +24,7 @@ public class ShowMoveDialogAction extends CustomAction {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		JFrame owner = (JFrame) actionManager.getProperty(ActionManager.PROPERTY_OWNER_FRAME);		
+		JFrame owner = actionManager.getMainFrame();		
 		DBTreeModel dbModel = actionManager.getDBManager().getTreeModel();
 		treeNodes = dbModel.getActiveNodes();
 		MoveDialog dialog = new MoveDialog(owner, dbModel, actionManager);
