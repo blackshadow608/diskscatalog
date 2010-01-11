@@ -19,7 +19,7 @@ public class ExitAction extends CustomAction {
 	
 	public void actionPerformed(ActionEvent e) {
 		try {
-			actionManager.getDBManager().close();
+			aManager.getDBManager().close();
 		} catch (DBException ex) {
 			ex.printStackTrace();
 		}

@@ -19,14 +19,14 @@ import al.catalog.ui.action.ActionManager;
  * 
  * @author Alexander Levin
  */
-public class CustomTable extends JTable {
+public class CatalogTable extends JTable {
 	
 	private int lastSelIndex = 0;
 	private Object lastSelValue = null;
 	
 	private TabKeyListener tabKeyListener = new TabKeyListener();
 	
-	public CustomTable(DBTreeModel dbModel, ActionManager actionManager) {
+	public CatalogTable(DBTreeModel dbModel, ActionManager actionManager) {
 		super(new CustomTableModel(dbModel));
 		
 		getModel().addTableModelListener(new CustomTableModelListener(this));
@@ -58,9 +58,9 @@ public class CustomTable extends JTable {
 	
 	private class CustomTableModelListener implements TableModelListener {
 		
-		private CustomTable table;
+		private CatalogTable table;
 		
-		public CustomTableModelListener(CustomTable table) {
+		public CustomTableModelListener(CatalogTable table) {
 			this.table = table;
 		}
 
@@ -175,7 +175,7 @@ public class CustomTable extends JTable {
 
 		public void keyPressed(KeyEvent e) {
 			if (e.getKeyCode() == KeyEvent.VK_TAB) {
-				CustomTable.this.transferFocus();
+				CatalogTable.this.transferFocus();
 			}
 		}
 

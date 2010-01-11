@@ -4,7 +4,7 @@ import javax.swing.AbstractAction;
 
 public abstract class CustomAction extends AbstractAction {
 	
-	protected ActionManager actionManager;
+	protected ActionManager aManager;
 	
 	public CustomAction(String text) {
 		super(text);		
@@ -12,6 +12,6 @@ public abstract class CustomAction extends AbstractAction {
 		
 	public CustomAction(ActionManager actionManager, String text) {
 		super(text);
-		this.actionManager = actionManager;				
+		this.aManager = actionManager;				
 	}
 }

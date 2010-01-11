@@ -19,8 +19,8 @@ public class BackAction extends CustomAction {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		actionManager.getDBManager().getTreeModel().back();
-		JTree tree = (JTree) actionManager.getProperty(ActionManager.PROPERTY_TREE);;
+		aManager.getDBManager().getTreeModel().back();
+		JTree tree = aManager.getMainFrame().getContentPanel().getTreePanel().getTree();
 		tree.requestFocus();
 	}
 }

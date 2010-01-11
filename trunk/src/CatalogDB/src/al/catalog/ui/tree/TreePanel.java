@@ -22,7 +22,6 @@ public class TreePanel extends JScrollPane {
 		DBManager dbManager = mainEntity.getDBManager();
 
 		tree = new CatalogTree(dbManager);
-		aManager.setProperty(ActionManager.PROPERTY_TREE, tree);
 
 		PopupHelper.createMenu(tree, aManager, PopupHelper.TYPE_TREE);
 
@@ -40,5 +39,8 @@ public class TreePanel extends JScrollPane {
 
 		setViewportView(treePanel);
 	}
-
+	
+	public CatalogTree getTree() {
+		return tree;
+	}
 }

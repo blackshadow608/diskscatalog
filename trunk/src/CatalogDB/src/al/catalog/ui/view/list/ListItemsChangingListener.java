@@ -10,9 +10,9 @@ import al.catalog.model.tree.types.ITreeNode;
 
 public class ListItemsChangingListener implements IDBTreeModelListener {
 	
-	private CustomList list;
+	private CatalogList list;
 	
-	public ListItemsChangingListener(CustomList list) {
+	public ListItemsChangingListener(CatalogList list) {
 		this.list = list;		
 	}
 

@@ -13,9 +13,9 @@ import al.catalog.model.tree.types.ITreeNode;
 public class ActiveListItemListener extends MouseAdapter {
 	
 	private DBTreeModel dbModel;
-	private CustomList list;
+	private CatalogList list;
 	
-	public ActiveListItemListener(DBTreeModel dbModel, CustomList list) {		
+	public ActiveListItemListener(DBTreeModel dbModel, CatalogList list) {		
 		this.dbModel = dbModel;
 		this.list = list;
 	}

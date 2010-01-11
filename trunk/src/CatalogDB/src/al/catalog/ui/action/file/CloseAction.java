@@ -24,7 +24,7 @@ public class CloseAction extends CustomAction {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		DBManager dbManager = actionManager.getDBManager();		
+		DBManager dbManager = aManager.getDBManager();		
 		CloseConnectionAction closeAction = new CloseConnectionAction(dbManager);
 		closeAction.execute();
 	}

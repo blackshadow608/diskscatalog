@@ -34,7 +34,7 @@ public class RenameAction extends CustomAction {
 	}
 
 	public void actionPerformed(ActionEvent e) {		
-		DBTreeModel dbModel = actionManager.getDBManager().getTreeModel();
+		DBTreeModel dbModel = aManager.getDBManager().getTreeModel();
 		ITreeNode activeNode = dbModel.getActiveNodes().get(0);
 		activeNode.setName(name);
 		

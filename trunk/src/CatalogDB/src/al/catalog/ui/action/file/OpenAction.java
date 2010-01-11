@@ -24,7 +24,7 @@ public class OpenAction extends CustomAction {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		DBManager dbManager = actionManager.getDBManager();		
+		DBManager dbManager = aManager.getDBManager();		
 		OpenConnectionAction action = new OpenConnectionAction(dbManager);
 		action.execute();
 	}

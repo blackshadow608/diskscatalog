@@ -21,14 +21,14 @@ import al.catalog.ui.popup.ListPopupMouseListener;
 import al.catalog.ui.popup.PopupHelper;
 import al.catalog.ui.view.list.event.CustomListDataEvent;
 
-public class CustomList extends JList {
+public class CatalogList extends JList {
 
 	private int lastSelIndex = -1;
 	private Object lastSelValue = null;
 	
 	ListItemsChangingListener listChangeListener;
 	
-	public CustomList(DBTreeModel dbModel, ActionManager actionManager) {		
+	public CatalogList(DBTreeModel dbModel, ActionManager actionManager) {		
 		super(new CustomListModel(dbModel));		
 		getModel().addListDataListener(new CustomListDataListener(this));
 		setBorder(BorderFactory.createEmptyBorder(CatFrame.BORDER, CatFrame.BORDER, CatFrame.BORDER, CatFrame.BORDER));
@@ -57,9 +57,9 @@ public class CustomList extends JList {
 	
 	private class CustomListDataListener implements ListDataListener {
 		
-		private CustomList list;
+		private CatalogList list;
 		
-		public CustomListDataListener(CustomList list) {
+		public CustomListDataListener(CatalogList list) {
 			this.list = list;
 		}
 

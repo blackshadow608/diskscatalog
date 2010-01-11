@@ -21,6 +21,7 @@ public class ContentPanel extends JPanel {
 	private static final int DIVIDER_SIZE = 8;
 	private static final int DIVIDER_POS = 250;
 	
+	private TreePanel treePanel;
 	private ViewPanel viewPanel;
 
 	public ContentPanel(MainEntity mainEntity) {
@@ -32,7 +33,7 @@ public class ContentPanel extends JPanel {
 
 		viewPanel = new ViewPanel(mainEntity);		
 
-		TreePanel treePanel = new TreePanel(mainEntity);
+		treePanel = new TreePanel(mainEntity);
 		
 		splitPane.setLeftComponent(treePanel);
 		splitPane.setRightComponent(viewPanel);
@@ -72,5 +73,8 @@ public class ContentPanel extends JPanel {
 	public ViewPanel getViewPanel() {
 		return viewPanel;
 	}
-
+	
+	public TreePanel getTreePanel() {
+		return treePanel;
+	}
 }

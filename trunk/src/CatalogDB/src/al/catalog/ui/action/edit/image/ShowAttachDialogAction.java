@@ -24,10 +24,10 @@ public class ShowAttachDialogAction extends CustomAction {
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-		JFrame owner = actionManager.getMainFrame();
-		DBTreeModel dbModel = actionManager.getDBManager().getTreeModel();
+		JFrame owner = aManager.getMainFrame();
+		DBTreeModel dbModel = aManager.getDBManager().getTreeModel();
 		treeNode = dbModel.getActiveNodes().get(0);
-		AttachDialog dialog = new AttachDialog(owner, dbModel, actionManager);
+		AttachDialog dialog = new AttachDialog(owner, dbModel, aManager);
 		dialog.setVisible(true);
 	}
 	

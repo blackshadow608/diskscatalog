@@ -15,17 +15,17 @@ import al.catalog.ui.action.ActionManager;
  */
 public class ListFocusListener implements FocusListener {
 	
-	private ActionManager actionManager;
+	private ActionManager aManager;
 	
 	public ListFocusListener(ActionManager actionManager) {
-		this.actionManager = actionManager;		
+		this.aManager = actionManager;		
 	}
 	
 	public void focusGained(FocusEvent e) {
 		Logger.openStack();
-		Object tree = actionManager.getProperty(ActionManager.PROPERTY_TREE);
+		Object tree = aManager.getMainFrame().getContentPanel().getTreePanel().getTree();
 		if (e.getOppositeComponent() == tree) {
-			CustomList list = (CustomList) e.getSource();			
+			CatalogList list = (CatalogList) e.getSource();			
 			list.selectLast();
 		}
 		Logger.closeStack();
@@ -33,9 +33,9 @@ public class ListFocusListener implements FocusListener {
 	
 	public void focusLost(FocusEvent e) {
 		Logger.openStack();
-		Object tree = actionManager.getProperty(ActionManager.PROPERTY_TREE);
+		Object tree = aManager.getMainFrame().getContentPanel().getTreePanel().getTree();
 		if (e.getOppositeComponent() == tree) {
-			CustomList list = (CustomList) e.getSource();
+			CatalogList list = (CatalogList) e.getSource();
 			list.clearSelection();
 		}
 		Logger.closeStack();

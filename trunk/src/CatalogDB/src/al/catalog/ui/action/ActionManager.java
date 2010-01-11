@@ -55,8 +55,6 @@ import al.catalog.ui.action.view.history.ForwardAction;
  */
 public class ActionManager implements IConnectionListener, IDBActionListener, IHistoryListener, IDBTreeModelListener {
 	
-	public static final String PROPERTY_TREE = "Tree";
-	
 	private List<IErrorListener> listeners = new ArrayList<IErrorListener>();
 	private Map<String, CustomAction> actions = new HashMap<String, CustomAction>();
 	private Map<String, Boolean> actionsStates = new HashMap<String, Boolean>();

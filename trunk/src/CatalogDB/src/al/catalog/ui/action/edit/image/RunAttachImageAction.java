@@ -26,7 +26,7 @@ public class RunAttachImageAction extends CustomAction {
 	}
 
 	public void actionPerformed(ActionEvent e) {		
-		AttachImageAction dbAction = new AttachImageAction(actionManager.getDBManager(), folder, image);		
+		AttachImageAction dbAction = new AttachImageAction(aManager.getDBManager(), folder, image);		
 		dbAction.execute();
 		owner.setVisible(false);
 	}

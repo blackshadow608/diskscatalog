@@ -5,7 +5,7 @@ import javax.swing.JScrollPane;
 
 public class ListPanel extends JScrollPane {
 	
-	public ListPanel(CustomList list) {
+	public ListPanel(CatalogList list) {
 		super(list);
 		
 		setBorder(BorderFactory.createEmptyBorder());

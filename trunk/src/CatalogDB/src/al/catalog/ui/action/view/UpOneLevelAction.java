@@ -21,12 +21,11 @@ public class UpOneLevelAction extends CustomAction {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		DBTreeModel dbModel = actionManager.getDBManager().getTreeModel();
+		DBTreeModel dbModel = aManager.getDBManager().getTreeModel();
 		ITreeNode openedNode = dbModel.getOpenedNode();
 
 		if (openedNode != null && openedNode.hasParent()) {
-			JTree tree = (JTree) actionManager
-					.getProperty(ActionManager.PROPERTY_TREE);
+			JTree tree = aManager.getMainFrame().getContentPanel().getTreePanel().getTree();
 			tree.requestFocus();
 			ITreeNode parentNode = openedNode.getParent();
 			dbModel.setOpenedNode(parentNode);

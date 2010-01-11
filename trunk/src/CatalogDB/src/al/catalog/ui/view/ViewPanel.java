@@ -10,9 +10,9 @@ import al.catalog.MainEntity;
 import al.catalog.model.DBManager;
 import al.catalog.model.tree.DBTreeModel;
 import al.catalog.ui.action.ActionManager;
-import al.catalog.ui.view.list.CustomList;
+import al.catalog.ui.view.list.CatalogList;
 import al.catalog.ui.view.list.ListPanel;
-import al.catalog.ui.view.table.CustomTable;
+import al.catalog.ui.view.table.CatalogTable;
 import al.catalog.ui.view.table.TablePanel;
 
 /**
@@ -29,8 +29,8 @@ public class ViewPanel extends JPanel {
 	private JScrollPane listPanel;
 	private JScrollPane tablePanel;
 
-	private CustomList list;
-	private CustomTable table;
+	private CatalogList list;
+	private CatalogTable table;
 
 	private JComponent active;
 
@@ -45,10 +45,10 @@ public class ViewPanel extends JPanel {
 		ActionManager aManager = mainEntity.getActionManager();
 		DBTreeModel dbModel = dbManager.getTreeModel();
 		
-		list = new CustomList(dbModel, aManager);
+		list = new CatalogList(dbModel, aManager);
 		listPanel = new ListPanel(list);
 
-		table = new CustomTable(dbModel, aManager);
+		table = new CatalogTable(dbModel, aManager);
 		tablePanel = new TablePanel(table);
 
 		setLayout(new BorderLayout());
@@ -90,5 +90,13 @@ public class ViewPanel extends JPanel {
 
 	public JComponent getActive() {
 		return active;
+	}
+	
+	public CatalogList getList() {
+		return list;
+	}
+	
+	public CatalogTable getTable() {
+		return table;
 	}
 }

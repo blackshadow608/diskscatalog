@@ -24,7 +24,7 @@ public class SaveAction extends CustomAction {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		DBManager dbManager = actionManager.getDBManager();		
+		DBManager dbManager = aManager.getDBManager();		
 		SaveChangesAction saveAction = new SaveChangesAction(dbManager);
 		saveAction.execute();
 		setEnabled(false);

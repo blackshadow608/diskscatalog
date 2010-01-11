@@ -18,7 +18,7 @@ public class SetIconsViewAction extends CustomAction {
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-		ViewPanel viewPanel = actionManager.getMainFrame().getViewPanel();
+		ViewPanel viewPanel = aManager.getMainFrame().getViewPanel();
 		viewPanel.setIconsView();
 	}
 }

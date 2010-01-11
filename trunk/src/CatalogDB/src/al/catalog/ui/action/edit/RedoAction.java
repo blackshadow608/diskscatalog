@@ -22,7 +22,7 @@ public class RedoAction extends CustomAction {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		final DBManager dbManager = actionManager.getDBManager();		
+		final DBManager dbManager = aManager.getDBManager();		
 		dbManager.redoAction();
 	}
 }

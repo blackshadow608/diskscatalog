@@ -27,17 +27,17 @@ public class RunDetachImageAction extends CustomAction {
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-		DBManager dbManager = actionManager.getDBManager();
+		DBManager dbManager = aManager.getDBManager();
 		ITreeNode treeNode = dbManager.getTreeModel().getActiveNodes().get(0);
 		if (treeNode instanceof ImageNode) {
 			ImageNode image = (ImageNode) treeNode;
-			JFrame frame = actionManager.getMainFrame();
+			JFrame frame = aManager.getMainFrame();
 			String question = ResourceManager.getString(QUESTION);
 			Object[] options = {ResourceManager.getString(YES), ResourceManager.getString(NO)};
 			int n = JOptionPane.showOptionDialog(frame, question, ResourceManager.getString(KEY), JOptionPane.YES_NO_OPTION,
 					JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 			if (n == JOptionPane.YES_OPTION) {
-				DetachImageAction detachAction = new DetachImageAction(actionManager.getDBManager(), image);
+				DetachImageAction detachAction = new DetachImageAction(aManager.getDBManager(), image);
 				detachAction.execute();				
 			}			
 		}						

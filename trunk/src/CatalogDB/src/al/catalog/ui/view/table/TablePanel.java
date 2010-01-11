@@ -5,7 +5,7 @@ import javax.swing.JScrollPane;
 
 public class TablePanel extends JScrollPane {
 	
-	public TablePanel(CustomTable table) {
+	public TablePanel(CatalogTable table) {
 		super(table);
 		setBorder(BorderFactory.createEmptyBorder());		
 	}
