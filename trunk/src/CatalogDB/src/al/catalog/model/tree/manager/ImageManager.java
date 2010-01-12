@@ -64,12 +64,19 @@ public class ImageManager implements INodeManager {
 		}
 	}
 
-	public boolean removeNode(ITreeNode treeNode) {
-		// TODO Auto-generated method stub
+	public boolean removeNode(ITreeNode treeNode, DBTreeModel dbModel) {
+		ImageNode image = (ImageNode) treeNode;
+		try {
+			DAOFactory daoFactory = dbModel.getDAOFactory();
+			IImageDAO imageDAO = daoFactory.getImageDAO();
+			imageDAO.remove(image);
+		} catch (DAOException e) {
+			e.printStackTrace();			
+		}
 		return false;
 	}
 
-	public boolean updateNode(ITreeNode treeNode) {
+	public boolean updateNode(ITreeNode treeNode, DBTreeModel dbModel) {
 		// TODO Auto-generated method stub
 		return false;
 	}

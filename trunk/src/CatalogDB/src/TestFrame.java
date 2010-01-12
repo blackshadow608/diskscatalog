@@ -31,7 +31,7 @@ public class TestFrame extends JFrame {
 		panel.addKeyListener(new KeyAdapter() {
 
 			public void keyReleased(KeyEvent e) {
-				label.setText(e.getKeyText(e.getKeyCode()));				
+				label.setText(KeyEvent.getKeyText(e.getKeyCode()));				
 			}
 			
 		});

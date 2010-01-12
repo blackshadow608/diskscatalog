@@ -63,12 +63,19 @@ public class ImgCategoryManager implements INodeManager {
 		}
 	}
 
-	public boolean removeNode(ITreeNode treeNode) {
-		// TODO Auto-generated method stub
+	public boolean removeNode(ITreeNode treeNode, DBTreeModel dbModel) {
+		ImgCategoryNode imgCategory = (ImgCategoryNode) treeNode;
+		try {
+			DAOFactory daoFactory = dbModel.getDAOFactory();
+			IImgCategoryDAO imgCategoryDAO = daoFactory.getImgCategoryDAO();
+			imgCategoryDAO.remove(imgCategory);
+		} catch (DAOException e) {
+			e.printStackTrace();			
+		}
 		return false;
 	}
 
-	public boolean updateNode(ITreeNode treeNode) {
+	public boolean updateNode(ITreeNode treeNode, DBTreeModel dbModel) {
 		// TODO Auto-generated method stub
 		return false;
 	}
