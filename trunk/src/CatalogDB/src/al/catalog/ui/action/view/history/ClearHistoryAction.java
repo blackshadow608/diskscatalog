@@ -18,7 +18,7 @@ public class ClearHistoryAction extends CustomAction {
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-		DBTreeModel treeModel = aManager.getDBManager().getTreeModel();
+		DBTreeModel treeModel = aManager.getModel();
 		treeModel.setOpenedNode(null);
 		treeModel.setActiveNode(null);
 		treeModel.fireChangeOpenedNode(null);

@@ -22,7 +22,7 @@ public class ShowPropertiesDialogAction extends CustomAction {
 
 	public void actionPerformed(ActionEvent e) {
 		JFrame owner = aManager.getMainFrame();
-		DBTreeModel dbModel = aManager.getDBManager().getTreeModel();
+		DBTreeModel dbModel = aManager.getModel();
 		PropertiesDialog propertiesDailog = new PropertiesDialog(owner, dbModel, aManager);
 		propertiesDailog.setVisible(true);
 	}

@@ -24,7 +24,7 @@ public class ShowRenameDialogAction extends CustomAction {
 
 	public void actionPerformed(ActionEvent e) {
 		JFrame owner = aManager.getMainFrame();
-		DBTreeModel dbModel = aManager.getDBManager().getTreeModel();
+		DBTreeModel dbModel = aManager.getModel();
 		treeNode = dbModel.getActiveNodes().get(0);
 		RenameDialog dialog = new RenameDialog(owner, dbModel, aManager);
 		dialog.setVisible(true);		

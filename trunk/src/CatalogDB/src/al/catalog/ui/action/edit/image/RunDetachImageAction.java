@@ -5,7 +5,6 @@ import java.awt.event.ActionEvent;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-import al.catalog.model.DBManager;
 import al.catalog.model.tree.action.DetachImageAction;
 import al.catalog.model.tree.types.ITreeNode;
 import al.catalog.model.tree.types.images.ImageNode;
@@ -27,8 +26,7 @@ public class RunDetachImageAction extends CustomAction {
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-		DBManager dbManager = aManager.getDBManager();
-		ITreeNode treeNode = dbManager.getTreeModel().getActiveNodes().get(0);
+		ITreeNode treeNode = aManager.getModel().getActiveNodes().get(0);
 		if (treeNode instanceof ImageNode) {
 			ImageNode image = (ImageNode) treeNode;
 			JFrame frame = aManager.getMainFrame();
@@ -37,8 +35,8 @@ public class RunDetachImageAction extends CustomAction {
 			int n = JOptionPane.showOptionDialog(frame, question, ResourceManager.getString(KEY), JOptionPane.YES_NO_OPTION,
 					JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 			if (n == JOptionPane.YES_OPTION) {
-				DetachImageAction detachAction = new DetachImageAction(aManager.getDBManager(), image);
-				detachAction.execute();				
+				DetachImageAction detachAction = new DetachImageAction(aManager.getModel(), image);
+				detachAction.execute();
 			}			
 		}						
 	}

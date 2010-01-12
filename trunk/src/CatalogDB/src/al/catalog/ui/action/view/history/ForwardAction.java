@@ -19,7 +19,7 @@ public class ForwardAction extends CustomAction {
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-		aManager.getDBManager().getTreeModel().forward();
+		aManager.getModel().forward();
 		JTree tree = aManager.getMainFrame().getContentPanel().getTreePanel().getTree();
 		tree.requestFocus();
 	}

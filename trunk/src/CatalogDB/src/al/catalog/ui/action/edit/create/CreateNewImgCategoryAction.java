@@ -21,7 +21,7 @@ public class CreateNewImgCategoryAction extends CustomAction {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		final DBTreeModel dbModel = aManager.getDBManager().getTreeModel();
+		final DBTreeModel dbModel = aManager.getModel();
 		
 		if (dbModel != null) {
 			IActionCallback callBack = CreateAction.getCreateCallback(dbModel, e.getActionCommand());

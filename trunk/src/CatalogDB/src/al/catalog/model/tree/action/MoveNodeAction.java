@@ -3,19 +3,19 @@ package al.catalog.model.tree.action;
 import java.util.ArrayList;
 import java.util.List;
 
+import al.catalog.model.DBAction;
 import al.catalog.model.DBManager;
 import al.catalog.model.dao.DAOException;
 import al.catalog.model.dao.DAOFactory;
 import al.catalog.model.dao.IImageDAO;
 import al.catalog.model.dao.IImgCategoryDAO;
 import al.catalog.model.tree.DBTreeModel;
-import al.catalog.model.tree.DBTreeModelAction;
 import al.catalog.model.tree.types.ITreeNode;
 import al.catalog.model.tree.types.images.ImageNode;
 import al.catalog.model.tree.types.images.ImgCategoryNode;
 import al.catalog.ui.resource.ResourceManager;
 
-public class MoveNodeAction extends DBTreeModelAction {
+public class MoveNodeAction extends DBAction {
 	
 	private DBTreeModel dbModel;
 	private List<ITreeNode> treeNodes;

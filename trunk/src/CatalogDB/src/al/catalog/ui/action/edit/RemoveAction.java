@@ -30,7 +30,7 @@ public class RemoveAction extends CustomAction {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		DBTreeModel dbModel = aManager.getDBManager().getTreeModel();
+		DBTreeModel dbModel = aManager.getModel();
 		JFrame frame = aManager.getMainFrame();
 		String  question = ResourceManager.getString(QUESTION);
 		Object[] options = {ResourceManager.getString(YES), ResourceManager.getString(NO)};

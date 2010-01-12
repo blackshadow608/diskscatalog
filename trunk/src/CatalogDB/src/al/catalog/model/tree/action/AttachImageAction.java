@@ -5,13 +5,11 @@ import java.util.List;
 import javax.swing.SwingUtilities;
 
 import al.catalog.model.DBAction;
-import al.catalog.model.DBManager;
 import al.catalog.model.dao.DAOException;
 import al.catalog.model.dao.DAOFactory;
 import al.catalog.model.dao.IFileDAO;
 import al.catalog.model.dao.IFolderDAO;
 import al.catalog.model.tree.DBTreeModel;
-import al.catalog.model.tree.DBTreeModelAction;
 import al.catalog.model.tree.types.ITreeNode;
 import al.catalog.model.tree.types.file.FileNode;
 import al.catalog.model.tree.types.file.FolderNode;
@@ -25,17 +23,20 @@ import al.catalog.ui.resource.ResourceManager;
  * 
  * @author Alexander Levin
  */
-public class AttachImageAction extends DBTreeModelAction {
+public class AttachImageAction extends DBAction {
 	
 	private FolderNode folder;
 	private ImageNode image;
 	private Thread thread;
 	private DBAction action;
 	
+	private DBTreeModel dbModel;
+	
 	private static final String PROGRESS_TEXT = "attachImageAction.progressText";
 	
-	public AttachImageAction(DBManager dbManager, FolderNode folder, ImageNode image) {
-		super(dbManager);
+	public AttachImageAction(DBTreeModel dbModel, FolderNode folder, ImageNode image) {
+		super(dbModel.getDBManager());
+		this.dbModel = dbModel;
 		this.folder = folder;
 		this.image = image;
 		this.action = this;
@@ -52,9 +53,7 @@ public class AttachImageAction extends DBTreeModelAction {
 			
 			private boolean isInterrupted = false;
 			
-			public void run() {				
-				final DBTreeModel dbModel = dbManager.getTreeModel();
-				
+			public void run() {
 				/*
 				 * Делаем refresh у folder'а, чтобы обновить список дочерних элементов 
 				 */
@@ -82,10 +81,7 @@ public class AttachImageAction extends DBTreeModelAction {
 					
 					SwingUtilities.invokeLater(new Runnable() {
 						public void run() {
-							if (firstExecute) {
-								//TODO Пересмотреть работу механизма
-								/*setOpenedNode(dbModel.getOpenedNodes().get(0));
-								setActiveNode(dbModel.getActiveNodes());*/
+							if (firstExecute) {								
                                 dbManager.addAction(action);
 							}
 							
@@ -110,7 +106,7 @@ public class AttachImageAction extends DBTreeModelAction {
 				 * и не сохраняется.
 				 */
 				if (!isInterrupted) {
-					DAOFactory daoFactory = dbManager.getTreeModel().getDAOFactory();
+					DAOFactory daoFactory = dbModel.getDAOFactory();
 					if (treeNode instanceof FileNode) {			
 						IFileDAO fileDAO = daoFactory.getFileDAO();
 						FileNode file = (FileNode) treeNode;
@@ -160,8 +156,8 @@ public class AttachImageAction extends DBTreeModelAction {
 		
 		runGarbageCollector();
 		
-		dbManager.getTreeModel().fireChangeStructureNode(image);
-		dbManager.getTreeModel().fireChangeOpenedNode(image);
+		dbModel.fireChangeStructureNode(image);
+		dbModel.fireChangeOpenedNode(image);
 	}
 	
 	public void abort() {
@@ -184,7 +180,7 @@ public class AttachImageAction extends DBTreeModelAction {
 			children.clear();
 		}
 			    
-		dbManager.getTreeModel().fireChangeStructureNode(image);
+		dbModel.fireChangeStructureNode(image);
 	}
 	
 	public void pause() {

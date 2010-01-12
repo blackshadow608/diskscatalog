@@ -4,13 +4,12 @@ import javax.swing.JTree;
 import javax.swing.tree.TreeCellRenderer;
 import javax.swing.tree.TreeSelectionModel;
 
-import al.catalog.model.DBManager;
 import al.catalog.model.tree.DBTreeModel;
 import al.catalog.ui.CatFrame;
 
 public class CatalogTree extends JTree {
 	
-	protected DBManager dbManager;
+	protected DBTreeModel dbModel;
 	
 	protected TreeCellRenderer renderer;
 	
@@ -19,8 +18,8 @@ public class CatalogTree extends JTree {
 	protected TreeFocusListener focusListener;
 	protected CustomTreeExpansionListener expListener;
 	
-	public CatalogTree(DBManager dbManager) {
-		this.dbManager = dbManager;
+	public CatalogTree(DBTreeModel dbModel) {
+		this.dbModel = dbModel;
 		
 		setFont(CatFrame.FONT);
 		setScrollsOnExpand(false);
@@ -37,8 +36,6 @@ public class CatalogTree extends JTree {
 	}
 	
 	private void initListeners() {
-		DBTreeModel dbModel = dbManager.getTreeModel();
-		
 		treeActiveListener = new ActiveTreeNodeListener(dbModel, this);
 		nodesListener = new NodesChangingListener(dbModel, this);		
 		focusListener = new TreeFocusListener(this, dbModel);
@@ -53,7 +50,7 @@ public class CatalogTree extends JTree {
 		addTreeExpansionListener(expListener);
 		addFocusListener(focusListener);
 		
-		dbManager.getTreeModel().addListener(nodesListener);
+		dbModel.addListener(nodesListener);
 	}
 	
 	private void initRenderer() {
@@ -65,8 +62,8 @@ public class CatalogTree extends JTree {
 	}
 	
 	private void setTreeModel() {
-		CustomTreeModel treeModel = new CustomTreeModel(dbManager.getTreeModel());
-		dbManager.addConnectionListener(treeModel);
+		CustomTreeModel treeModel = new CustomTreeModel(dbModel);
+		dbModel.getDBManager().addConnectionListener(treeModel);
 		setModel(treeModel);
 	}
 	

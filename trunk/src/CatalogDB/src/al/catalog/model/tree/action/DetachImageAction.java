@@ -5,31 +5,32 @@ import java.util.List;
 import javax.swing.SwingUtilities;
 
 import al.catalog.model.DBAction;
-import al.catalog.model.DBManager;
 import al.catalog.model.dao.DAOException;
 import al.catalog.model.dao.DAOFactory;
 import al.catalog.model.dao.IFileDAO;
 import al.catalog.model.dao.IFolderDAO;
 import al.catalog.model.tree.DBTreeModel;
-import al.catalog.model.tree.DBTreeModelAction;
 import al.catalog.model.tree.types.ITreeNode;
 import al.catalog.model.tree.types.file.FileNode;
 import al.catalog.model.tree.types.file.FolderNode;
 import al.catalog.model.tree.types.images.ImageNode;
 import al.catalog.ui.resource.ResourceManager;
 
-public class DetachImageAction extends DBTreeModelAction {
+public class DetachImageAction extends DBAction {
 	
 	private ImageNode image;
 	private Thread thread;
 	private DBAction action;
 	
+	private DBTreeModel dbModel;
+	
 	private List<ITreeNode> children;
 	
 	private static final String PROGRESS_TEXT = "detachImageAction.progressText";
 	
-	public DetachImageAction(DBManager dbManager, ImageNode  image) {
-		super(dbManager);
+	public DetachImageAction(DBTreeModel dbModel, ImageNode  image) {
+		super(dbModel.getDBManager());
+		this.dbModel = dbModel;
 		this.image = image;
 		this.action = this;
 	}
@@ -47,8 +48,8 @@ public class DetachImageAction extends DBTreeModelAction {
 		
 		dbManager.rollback(savepoint);
 		image.setChildren(children);		
-		dbManager.getTreeModel().fireChangeStructureNode(image);
-		dbManager.getTreeModel().fireChangeOpenedNode(image);
+		dbModel.fireChangeStructureNode(image);
+		dbModel.fireChangeOpenedNode(image);
 		
 		runGarbageCollector();
 		
@@ -61,7 +62,6 @@ public class DetachImageAction extends DBTreeModelAction {
 			private boolean isInterrupted = false;
 			
 			public void run() {
-				final DBTreeModel dbModel = dbManager.getTreeModel();				
 				savepoint = dbManager.setSavepoint();
 				
 				children = image.getChildren();
@@ -88,7 +88,7 @@ public class DetachImageAction extends DBTreeModelAction {
 			
 			private void remove(ITreeNode treeNode) {
 				if (!isInterrupted) {
-					DAOFactory daoFactory = dbManager.getTreeModel().getDAOFactory();
+					DAOFactory daoFactory = dbModel.getDAOFactory();
 					IFolderDAO folderDAO = daoFactory.getFolderDAO();
 					IFileDAO fileDAO = daoFactory.getFileDAO();					
 					if (treeNode instanceof FolderNode) {
@@ -128,8 +128,8 @@ public class DetachImageAction extends DBTreeModelAction {
 	public void unexecute() {
 		dbManager.rollback(savepoint);		
 		image.setChildren(children);		
-		dbManager.getTreeModel().fireChangeStructureNode(image);
-		dbManager.getTreeModel().fireChangeOpenedNode(image);
+		dbModel.fireChangeStructureNode(image);
+		dbModel.fireChangeOpenedNode(image);
 	}
 	
 	public void pause() {

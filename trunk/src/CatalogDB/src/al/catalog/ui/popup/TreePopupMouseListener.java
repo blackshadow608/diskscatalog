@@ -36,7 +36,7 @@ public class TreePopupMouseListener extends AbstractTreeMouseListener {
 		//TODO Здесь надо составить список всех Class, которые имеют узлы из activeNodes и составить список доступных действий, которые отобразить в popupMenu
 		/*ITreeNode node = actionManager.getDBManager().getTreeModel().getActiveNodes();*/
 		ITreeNode node = null;
-		List<ITreeNode> activeNodes = actionManager.getDBManager().getTreeModel().getActiveNodes();		
+		List<ITreeNode> activeNodes = actionManager.getModel().getActiveNodes();		
 		if (activeNodes != null) {
 			node = activeNodes.get(0);			
 		}

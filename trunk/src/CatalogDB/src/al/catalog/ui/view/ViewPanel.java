@@ -7,7 +7,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import al.catalog.MainEntity;
-import al.catalog.model.DBManager;
 import al.catalog.model.tree.DBTreeModel;
 import al.catalog.ui.action.ActionManager;
 import al.catalog.ui.view.list.CatalogList;
@@ -41,9 +40,8 @@ public class ViewPanel extends JPanel {
 	 */
 	public ViewPanel(MainEntity mainEntity) {
 
-		DBManager dbManager = mainEntity.getDBManager();
 		ActionManager aManager = mainEntity.getActionManager();
-		DBTreeModel dbModel = dbManager.getTreeModel();
+		DBTreeModel dbModel = aManager.getModel();
 		
 		list = new CatalogList(dbModel, aManager);
 		listPanel = new ListPanel(list);

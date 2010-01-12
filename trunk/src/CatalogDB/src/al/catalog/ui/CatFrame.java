@@ -21,7 +21,7 @@ public class CatFrame extends JFrame {
 	
 	public static final Font FONT = new Font("Verdana", Font.PLAIN, 11);
 	
-	private static final Dimension SIZE = new Dimension(700, 400);
+	private static final Dimension SIZE = new Dimension(660, 400);
 	private static final String TITLE = "mainFrame.title";
 	
 	public static final int BORDER = 5;
@@ -68,7 +68,7 @@ public class CatFrame extends JFrame {
 		UIManager.put("Tree.font", FONT);
 		UIManager.put("MenuItem.font", FONT);
 		UIManager.put("Menu.font", FONT);
-		UIManager.put("TabbedPane.font", FONT);		
+		UIManager.put("TabbedPane.font", FONT);
 		UIManager.put("Label.font", FONT);
 		UIManager.put("List.font", FONT);
 		UIManager.put("TextField.font", FONT);
@@ -77,7 +77,7 @@ public class CatFrame extends JFrame {
 		UIManager.put("RadioButtonMenuItem.font", FONT);
 		UIManager.put("ComboBox.font", FONT);
 		UIManager.put("Table.font", FONT);
-		UIManager.put("Tree.rowHeight", 20);		
+		UIManager.put("Tree.rowHeight", 20);
 	}
 	
 	/**

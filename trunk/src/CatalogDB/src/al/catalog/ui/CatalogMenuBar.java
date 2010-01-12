@@ -10,25 +10,24 @@ import javax.swing.JMenuItem;
 import javax.swing.JRadioButtonMenuItem;
 
 import al.catalog.MainEntity;
-import al.catalog.model.DBManager;
 import al.catalog.model.tree.IDBTreeModelListener;
 import al.catalog.model.tree.types.ITreeNode;
 import al.catalog.model.tree.types.images.ImgCategoryNode;
 import al.catalog.ui.action.ActionManager;
-import al.catalog.ui.action.edit.ShowMoveDialogAction;
 import al.catalog.ui.action.edit.RedoAction;
 import al.catalog.ui.action.edit.RemoveAction;
+import al.catalog.ui.action.edit.ShowMoveDialogAction;
 import al.catalog.ui.action.edit.ShowPropertiesDialogAction;
 import al.catalog.ui.action.edit.ShowRenameDialogAction;
 import al.catalog.ui.action.edit.UndoAction;
 import al.catalog.ui.action.edit.create.CreateAction;
 import al.catalog.ui.action.edit.create.CreateNewImageAction;
 import al.catalog.ui.action.edit.create.CreateNewImgCategoryAction;
-import al.catalog.ui.action.edit.image.ShowAttachDialogAction;
 import al.catalog.ui.action.edit.image.RunDetachImageAction;
+import al.catalog.ui.action.edit.image.ShowAttachDialogAction;
+import al.catalog.ui.action.file.CloseAction;
 import al.catalog.ui.action.file.ExitAction;
 import al.catalog.ui.action.file.OpenAction;
-import al.catalog.ui.action.file.CloseAction;
 import al.catalog.ui.action.file.SaveAction;
 import al.catalog.ui.action.view.GoToAction;
 import al.catalog.ui.action.view.SetIconsViewAction;
@@ -65,29 +64,28 @@ public class CatalogMenuBar extends JMenuBar implements IDBTreeModelListener {
 		
 		this.mainEntity = mainEntity;
 		
-		ActionManager actionManager = mainEntity.getActionManager();
-		DBManager dbManager = mainEntity.getDBManager();
+		ActionManager aManager = mainEntity.getActionManager();
 		
 		setFocusable(false);
-		dbManager.getTreeModel().addListener(this);
+		aManager.getModel().addListener(this);
 		
 		String file = ResourceManager.getString(FILE);
 		fileMenu = new JMenu(file);
 		
 		JMenuItem menuItem = new JMenuItem();				
-		Action action = actionManager.getAction(OpenAction.ACTION_NAME);		
+		Action action = aManager.getAction(OpenAction.ACTION_NAME);		
 		menuItem.setAction(action);
 		fileMenu.add(menuItem);
 		
 		menuItem = new JMenuItem();
-		action = actionManager.getAction(CloseAction.ACTION_NAME);
+		action = aManager.getAction(CloseAction.ACTION_NAME);
 		menuItem.setAction(action);
 		fileMenu.add(menuItem);
 		
 		fileMenu.addSeparator();
 		
 		menuItem = new JMenuItem();
-		action = actionManager.getAction(SaveAction.ACTION_NAME);
+		action = aManager.getAction(SaveAction.ACTION_NAME);
 		menuItem.setAction(action);
 		fileMenu.add(menuItem);
 		
@@ -106,7 +104,7 @@ public class CatalogMenuBar extends JMenuBar implements IDBTreeModelListener {
 		fileMenu.addSeparator();
 		
 		menuItem = new JMenuItem();
-		action = actionManager.getAction(ExitAction.ACTION_NAME);
+		action = aManager.getAction(ExitAction.ACTION_NAME);
 		menuItem.setAction(action);
 		fileMenu.add(menuItem);
 		
@@ -116,7 +114,7 @@ public class CatalogMenuBar extends JMenuBar implements IDBTreeModelListener {
 		editMenu = new JMenu(edit);
 		
 		createMenu = new JMenu();
-		action = actionManager.getAction(CreateAction.ACTION_NAME);
+		action = aManager.getAction(CreateAction.ACTION_NAME);
 		createMenu.setAction(action);
 		editMenu.add(createMenu);
 		
@@ -124,29 +122,29 @@ public class CatalogMenuBar extends JMenuBar implements IDBTreeModelListener {
 		customizeEditMenu(node);
 		
 		menuItem = new JMenuItem();
-		action = actionManager.getAction(RemoveAction.ACTION_NAME);		
+		action = aManager.getAction(RemoveAction.ACTION_NAME);		
 		menuItem.setAction(action);
 		editMenu.add(menuItem);
 		
 		menuItem = new JMenuItem();
-		action = actionManager.getAction(ShowMoveDialogAction.ACTION_NAME);
+		action = aManager.getAction(ShowMoveDialogAction.ACTION_NAME);
 		menuItem.setAction(action);
 		editMenu.add(menuItem);
 		
 		menuItem = new JMenuItem();
-		action = actionManager.getAction(ShowRenameDialogAction.ACTION_NAME);		
+		action = aManager.getAction(ShowRenameDialogAction.ACTION_NAME);		
 		menuItem.setAction(action);
 		editMenu.add(menuItem);
 		
 		editMenu.addSeparator();
 		
 		menuItem = new JMenuItem();
-		action = actionManager.getAction(ShowAttachDialogAction.ACTION_NAME);
+		action = aManager.getAction(ShowAttachDialogAction.ACTION_NAME);
 		menuItem.setAction(action);
 		editMenu.add(menuItem);
 		
 		menuItem = new JMenuItem();
-		action = actionManager.getAction(RunDetachImageAction.ACTION_NAME);
+		action = aManager.getAction(RunDetachImageAction.ACTION_NAME);
 		menuItem.setAction(action);
 		editMenu.add(menuItem);	
 		
@@ -154,19 +152,19 @@ public class CatalogMenuBar extends JMenuBar implements IDBTreeModelListener {
 		editMenu.addSeparator();		
 		
 		menuItem = new JMenuItem();
-		action = actionManager.getAction(UndoAction.ACTION_NAME);
+		action = aManager.getAction(UndoAction.ACTION_NAME);
 		menuItem.setAction(action);
 		editMenu.add(menuItem);
 		
 		menuItem = new JMenuItem();
-		action = actionManager.getAction(RedoAction.ACTION_NAME);
+		action = aManager.getAction(RedoAction.ACTION_NAME);
 		menuItem.setAction(action);
 		editMenu.add(menuItem);
 		
 		editMenu.addSeparator();
 		
 		menuItem = new JMenuItem();
-		action = actionManager.getAction(ShowPropertiesDialogAction.ACTION_NAME);
+		action = aManager.getAction(ShowPropertiesDialogAction.ACTION_NAME);
 		menuItem.setAction(action);
 		editMenu.add(menuItem);
 		
@@ -176,27 +174,27 @@ public class CatalogMenuBar extends JMenuBar implements IDBTreeModelListener {
 		viewMenu = new JMenu(view);
 		
 		JMenu gotoMenu = new JMenu();
-		action = actionManager.getAction(GoToAction.ACTION_NAME);
+		action = aManager.getAction(GoToAction.ACTION_NAME);
 		gotoMenu.setAction(action);
 		viewMenu.add(gotoMenu);		
 		
 		menuItem = new JMenuItem();
-		action = actionManager.getAction(BackAction.ACTION_NAME);
+		action = aManager.getAction(BackAction.ACTION_NAME);
 		menuItem.setAction(action);
 		gotoMenu.add(menuItem);
 		
 		menuItem = new JMenuItem();
-		action = actionManager.getAction(ForwardAction.ACTION_NAME);
+		action = aManager.getAction(ForwardAction.ACTION_NAME);
 		menuItem.setAction(action);
 		gotoMenu.add(menuItem);
 		
 		menuItem = new JMenuItem();
-		action = actionManager.getAction(UpOneLevelAction.ACTION_NAME);
+		action = aManager.getAction(UpOneLevelAction.ACTION_NAME);
 		menuItem.setAction(action);
 		gotoMenu.add(menuItem);
 		
 		menuItem = new JMenuItem();
-		action = actionManager.getAction(ClearHistoryAction.ACTION_NAME);
+		action = aManager.getAction(ClearHistoryAction.ACTION_NAME);
 		menuItem.setAction(action);
 		viewMenu.add(menuItem);
 		
@@ -205,20 +203,20 @@ public class CatalogMenuBar extends JMenuBar implements IDBTreeModelListener {
 		ButtonGroup group = new ButtonGroup();
 				
 		menuItem = new JRadioButtonMenuItem();
-		action = actionManager.getAction(SetIconsViewAction.ACTION_NAME);
+		action = aManager.getAction(SetIconsViewAction.ACTION_NAME);
 		menuItem.setAction(action);
 		menuItem.setSelected(true);
 		group.add(menuItem);
 		viewMenu.add(menuItem);
 				
 		menuItem = new JRadioButtonMenuItem();
-		action = actionManager.getAction(SetListViewAction.ACTION_NAME);
+		action = aManager.getAction(SetListViewAction.ACTION_NAME);
 		menuItem.setAction(action);
 		group.add(menuItem);
 		viewMenu.add(menuItem);
 		
 		menuItem = new JRadioButtonMenuItem();
-		action = actionManager.getAction(SetTableViewAction.ACTION_NAME);
+		action = aManager.getAction(SetTableViewAction.ACTION_NAME);
 		menuItem.setAction(action);
 		group.add(menuItem);
 		viewMenu.add(menuItem);

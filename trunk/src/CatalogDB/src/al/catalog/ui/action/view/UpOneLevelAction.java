@@ -21,7 +21,7 @@ public class UpOneLevelAction extends CustomAction {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		DBTreeModel dbModel = aManager.getDBManager().getTreeModel();
+		DBTreeModel dbModel = aManager.getModel();
 		ITreeNode openedNode = dbModel.getOpenedNode();
 
 		if (openedNode != null && openedNode.hasParent()) {

@@ -6,11 +6,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Savepoint;
 import java.sql.Statement;
-
-import java.util.List;
 import java.util.ArrayList;
-
-import al.catalog.model.tree.DBTreeModel;
+import java.util.List;
 
 /**
  * Представляет собой более или менее универсальный инструмент для работы
@@ -49,11 +46,9 @@ public class DBManager implements IConnectionProvider {
 	private List<IConnectionListener> conListeners = new ArrayList<IConnectionListener>();
 	private List<IDBActionListener> actionListeners = new ArrayList<IDBActionListener>();
 	
-	private DBTreeModel dbModel;	
 	private String curPath;
 	
-	public DBManager() {
-		this.dbModel = new DBTreeModel(this);
+	public DBManager() {		
 		File currentFile = new File("");
 		curPath = currentFile.getAbsolutePath();		
 	}
@@ -202,7 +197,6 @@ public class DBManager implements IConnectionProvider {
 		if (dbAction != null) {
 			if (actions.contains(dbAction) && dbAction == lastAction) {
 				int index = actions.indexOf(lastAction);
-				//lastAction.abort();
 				if (index < 1) {
 					lastAction = null;
 					fireUndoDisabled();								
@@ -220,10 +214,6 @@ public class DBManager implements IConnectionProvider {
 	 */
 	public DBAction getLastAction() {
 		return lastAction;
-	}
-	
-	public DBTreeModel getTreeModel() {
-		return dbModel;
 	}
 	
 	/**

@@ -8,7 +8,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import al.catalog.MainEntity;
-import al.catalog.model.DBManager;
 import al.catalog.ui.CatFrame;
 import al.catalog.ui.action.ActionManager;
 import al.catalog.ui.popup.PopupHelper;
@@ -19,9 +18,8 @@ public class TreePanel extends JScrollPane {
 
 	public TreePanel(MainEntity mainEntity) {
 		ActionManager aManager = mainEntity.getActionManager();
-		DBManager dbManager = mainEntity.getDBManager();
 
-		tree = new CatalogTree(dbManager);
+		tree = new CatalogTree(aManager.getModel());
 
 		PopupHelper.createMenu(tree, aManager, PopupHelper.TYPE_TREE);
 

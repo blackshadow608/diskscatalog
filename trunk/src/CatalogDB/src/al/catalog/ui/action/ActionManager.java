@@ -61,18 +61,20 @@ public class ActionManager implements IConnectionListener, IDBActionListener, IH
 	private Map<String, Object> properties = new HashMap<String, Object>(); 
 	
 	private DBManager dbManager;
+	private DBTreeModel dbModel;
 	
 	private CatFrame mainFrame;
 	
-	public ActionManager(DBManager dbManager) {
+	public ActionManager(DBManager dbManager, DBTreeModel dbModel) {
 		this.dbManager = dbManager;
+		this.dbModel = dbModel;
 		
 		ActionManager actionManager = this;
-		dbManager.getTreeModel().addListener(this);
+		dbModel.addListener(this);
 		
 		dbManager.addConnectionListener(actionManager);
 		dbManager.addActionListener(actionManager);
-		dbManager.getTreeModel().addHistoryListener(actionManager);
+		dbModel.addHistoryListener(actionManager);
 		
 		CustomAction action = new CreateNewImgCategoryAction(actionManager);
 		action.setEnabled(false);
@@ -207,6 +209,10 @@ public class ActionManager implements IConnectionListener, IDBActionListener, IH
 		return dbManager;
 	}
 	
+	public DBTreeModel getModel() {
+		return dbModel;
+	}
+	
 	public void addErrorListener(IErrorListener listener) {
 		listeners.add(listener);
 	}
@@ -260,7 +266,7 @@ public class ActionManager implements IConnectionListener, IDBActionListener, IH
 		actionsStates.put(UndoAction.ACTION_NAME, false);
 		action.setEnabled(false);
 		
-		dbManager.getTreeModel().clearHistory();
+		dbModel.clearHistory();
 	}
 
 	public void connectionWasOpened() {
@@ -341,8 +347,7 @@ public class ActionManager implements IConnectionListener, IDBActionListener, IH
         Action attachImageAction = getAction(ShowAttachDialogAction.ACTION_NAME);
         Action detachImageAction = getAction(RunDetachImageAction.ACTION_NAME);
         Action showPropertiesAction = getAction(ShowPropertiesDialogAction.ACTION_NAME);
-        
-        DBTreeModel dbModel = getDBManager().getTreeModel();        
+                        
         List<ITreeNode> nodes = dbModel.getActiveNodes();
         
         if (nodes == null || nodes.size() == 0) {

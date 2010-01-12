@@ -5,6 +5,7 @@ import javax.swing.JFrame;
 
 import al.catalog.logger.Logger;
 import al.catalog.model.DBManager;
+import al.catalog.model.tree.DBTreeModel;
 import al.catalog.ui.CatFrame;
 import al.catalog.ui.action.ActionManager;
 
@@ -27,9 +28,9 @@ public class Main {
 		Logger.disable();
 		
 		DBManager dbManager = new DBManager();
-		ActionManager aManager = new ActionManager(dbManager);
-		MainEntity mainEntity = new MainEntity(dbManager, aManager);
-		
+		DBTreeModel dbModel = new DBTreeModel(dbManager);
+		ActionManager aManager = new ActionManager(dbManager, dbModel);		
+		MainEntity mainEntity = new MainEntity(dbManager, aManager);		
 		
 		/*
 		 * Читаем и проверяем параметры консоли.
