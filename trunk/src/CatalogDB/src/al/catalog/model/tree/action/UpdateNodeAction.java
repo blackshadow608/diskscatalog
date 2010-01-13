@@ -1,7 +1,5 @@
 package al.catalog.model.tree.action;
 
-import javax.swing.SwingUtilities;
-
 import al.catalog.model.DBAction;
 import al.catalog.model.dao.DAOException;
 import al.catalog.model.dao.DAOFactory;
@@ -50,13 +48,7 @@ public class UpdateNodeAction extends DBAction {
 		
 		isExecuted = true;
 		
-		dbModel.fireAfterChangeNode(treeNode);
-		
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {				
-				dbModel.fireChangeActiveNode(treeNode);				
-			}
-		});		
+		dbModel.fireAfterChangeNode(treeNode);		
 		
 		firstExecute = false;
 	}
@@ -90,7 +82,7 @@ public class UpdateNodeAction extends DBAction {
 	}
 	
 	private void rollbackImage(ImageNode treeNode) {
-		ImageNode oldImage = (ImageNode) newTreeNode;
+		ImageNode oldImage = (ImageNode) oldTreeNode;
 		treeNode.setName(oldImage.getName());
 		treeNode.setComments(oldImage.getComments());
 		treeNode.setType(oldImage.getType());

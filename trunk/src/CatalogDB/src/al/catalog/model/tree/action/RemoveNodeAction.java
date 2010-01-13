@@ -5,14 +5,10 @@ import java.util.List;
 
 import al.catalog.model.DBAction;
 import al.catalog.model.DBManager;
-import al.catalog.model.dao.DAOException;
-import al.catalog.model.dao.DAOFactory;
-import al.catalog.model.dao.IImageDAO;
-import al.catalog.model.dao.IImgCategoryDAO;
 import al.catalog.model.tree.DBTreeModel;
+import al.catalog.model.tree.manager.INodeManager;
+import al.catalog.model.tree.manager.ManagerFactory;
 import al.catalog.model.tree.types.ITreeNode;
-import al.catalog.model.tree.types.images.ImageNode;
-import al.catalog.model.tree.types.images.ImgCategoryNode;
 import al.catalog.ui.resource.ResourceManager;
 
 public class RemoveNodeAction extends DBAction {
@@ -50,7 +46,11 @@ public class RemoveNodeAction extends DBAction {
 					List<ITreeNode> children = parent.getChildren();
 					int index = children.indexOf(treeNode);
 					parent.removeChild(treeNode);
-					removeNodeFromDB(treeNode);
+					
+					Class<?> clazz = treeNode.getClass();
+					INodeManager nodeManager = ManagerFactory.getNodeManager(clazz);
+					nodeManager.removeNode(treeNode, dbModel);
+					
 					dbModel.fireRemoveNode(treeNode, treeNode.getParent(), index);
 				}
 				
@@ -75,42 +75,12 @@ public class RemoveNodeAction extends DBAction {
 		dbManager.rollback(savepoint);
 		
 		for (ITreeNode treeNode : treeNodes) {
-			ITreeNode parent = treeNode.getParent();				
+			ITreeNode parent = treeNode.getParent();	
 			parent.addChild(treeNode);
-			dbModel.fireInsertNode(treeNode, parent);						
+			dbModel.fireInsertNode(treeNode, parent);
 		}
 		
 		isExecuted = false;		
-	}
-	
-	private void removeNodeFromDB(ITreeNode treeNode) {
-		if (treeNode instanceof ImgCategoryNode) {
-			removeImgCategory(treeNode);
-		} else if (treeNode instanceof ImageNode) {
-			removeImage(treeNode);
-		}
-	}
-	
-	private void removeImgCategory(ITreeNode treeNode) {
-		ImgCategoryNode imgCategory = (ImgCategoryNode) treeNode;
-		try {
-			DAOFactory daoFactory = dbModel.getDAOFactory();
-			IImgCategoryDAO imgCategoryDAO = daoFactory.getImgCategoryDAO();
-			imgCategoryDAO.remove(imgCategory);
-		} catch (DAOException e) {
-			e.printStackTrace();			
-		}
-	}
-	
-	private void removeImage(ITreeNode treeNode) {
-		ImageNode image = (ImageNode) treeNode;
-		try {
-			DAOFactory daoFactory = dbModel.getDAOFactory();
-			IImageDAO imageDAO = daoFactory.getImageDAO();
-			imageDAO.remove(image);
-		} catch (DAOException e) {
-			e.printStackTrace();			
-		}		
 	}
 	
 	public String getProgressText() {
