@@ -4,8 +4,6 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.font.FontRenderContext;
-import java.awt.geom.Rectangle2D;
 
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListCellRenderer;
@@ -88,11 +86,14 @@ public class CustomListCellRenderer extends DefaultListCellRenderer {
 					Font font = list.getFont();
 					for (int i = 0; i <= fullText.length(); i++) {
 						partText = fullText.substring(0, i);
-						FontRenderContext context = list.getGraphics()
-								.getFontMetrics(font).getFontRenderContext();
-						Rectangle2D bounds = font
-								.getStringBounds(partText, context);
+						/*FontRenderContext context = list.getGraphics().getFontMetrics(font).getFontRenderContext();
+						Rectangle2D bounds = font.getStringBounds(partText, context);
 						if (bounds.getWidth() > getPreferredSize().width) {
+							partText += "...";
+							break;
+						}*/
+						int width = list.getGraphics().getFontMetrics(font).stringWidth(partText);						
+						if (width > getPreferredSize().width) {
 							partText += "...";
 							break;
 						}
@@ -132,19 +133,16 @@ public class CustomListCellRenderer extends DefaultListCellRenderer {
 	 * @param type - тип визуализации элементов списка.
 	 */
 	public void setType(int type) {
-		this.type = type;
-		
+		this.type = type;		
 		if (type == TYPE_ICONS) {
 			int maxWidth = 120;
 			int maxHeight = 50;
-			setPreferredSize(new Dimension(maxWidth, maxHeight));
-			
+			setPreferredSize(new Dimension(maxWidth, maxHeight));			
 			setHorizontalAlignment(JLabel.CENTER);
 			setVerticalTextPosition(JLabel.BOTTOM);
 			setHorizontalTextPosition(JLabel.CENTER);			
 		} else if (type == TYPE_LIST) {
-			setPreferredSize(new Dimension(250, 20));
-			
+			setPreferredSize(new Dimension(250, 20));			
 			setHorizontalAlignment(JLabel.LEFT);
 			setVerticalTextPosition(JLabel.CENTER);
 			setHorizontalTextPosition(JLabel.RIGHT);						
