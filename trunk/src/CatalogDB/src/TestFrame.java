@@ -1,68 +1,89 @@
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.FontMetrics;
-import java.awt.Graphics;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
-import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.JScrollPane;
 
 public class TestFrame extends JFrame {
+	
+	private static List<JLabel> labels = new ArrayList<JLabel>();
 
 	public static void createGUI() {
 		JFrame frame = new JFrame("Test frame");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-		JPanel panel = new JPanel();
-		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-		panel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
-
-		final JLabel label = new JLabel();
-		label.setPreferredSize(new Dimension(150, 200));
-		label.setHorizontalAlignment(JLabel.CENTER);
-		label.setAlignmentX(JLabel.CENTER_ALIGNMENT);
-		label.setFont(new Font("Verdana", Font.PLAIN, 20));
-		panel.add(label);
-
-		final JTextField textField = new JTextField();
-		textField.setAlignmentX(JTextField.CENTER_ALIGNMENT);
 		
-		textField.addKeyListener(new KeyAdapter() {
-			public void keyReleased(KeyEvent e) {
-				String fullText = textField.getText();
-				String newText = "";
+		final Font font = new Font("Verdana", Font.PLAIN, 25);
 
-				for (int i = 0; i <= fullText.length(); i++) {
-					String text = fullText.substring(0, i);
-					Graphics g = label.getGraphics();
-					FontMetrics fm = g.getFontMetrics(label.getFont()); 
-					int width = fm.stringWidth(text);
-					
-					if (width > 200) {
-						newText += "...";
-						break;
-					}
-					
-					newText = text;
-				}
+		JPanel butPanel = new JPanel();		
 
-				label.setText(newText);
-			}
+		JButton addButton = new JButton("+");
+		addButton.setFont(font);
+		addButton.setFocusable(false);
+		butPanel.add(addButton);
+		
+		JButton remButton = new JButton("-");
+		remButton.setFont(font);
+		remButton.setFocusable(false);
+		butPanel.add(remButton);
+				
+		final JPanel labPanel = new JPanel();
+		final JScrollPane scrollPane = new JScrollPane(labPanel);
+		labPanel.setLayout(new BoxLayout(labPanel, BoxLayout.Y_AXIS));
+
+		addButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int number = labels.size() + 1;
+				JLabel label = new JLabel("Label " + number);
+				labels.add(label);
+				label.setAlignmentX(JLabel.CENTER_ALIGNMENT);
+				label.setFont(font);
+				labPanel.add(label);				
+				scrollPane.revalidate();				
+			}			
 		});
 		
-		panel.add(textField);
-
-		frame.getContentPane().add(panel);
+		remButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(labels.size() > 0) {
+					JLabel label = labels.remove(labels.size() - 1);
+					labPanel.remove(label);
+					labPanel.repaint();
+					scrollPane.revalidate();					
+				}				
+			}			
+		});
+		
+		frame.getContentPane().setLayout(new BorderLayout());
+		frame.getContentPane().add(butPanel, BorderLayout.NORTH);
+		frame.getContentPane().add(scrollPane, BorderLayout.CENTER);
+		
 		frame.setPreferredSize(new Dimension(250, 200));
 		frame.pack();
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 	}
+	
+	protected static ImageIcon createIcon(String path) {
+		URL imgURL = TestFrame.class.getResource(path);		
+		if (imgURL != null) {
+			return new ImageIcon(imgURL);
+		} else {
+			System.err.println("File not found " + path);
+			return null;
+		}
+	}
+
 
 	public static void main(String[] args) {
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {

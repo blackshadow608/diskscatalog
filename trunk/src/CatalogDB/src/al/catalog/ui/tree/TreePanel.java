@@ -6,6 +6,7 @@ import java.awt.Color;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.border.Border;
 
 import al.catalog.MainEntity;
 import al.catalog.ui.CatFrame;
@@ -24,8 +25,8 @@ public class TreePanel extends JScrollPane {
 		PopupHelper.createMenu(tree, aManager, PopupHelper.TYPE_TREE);
 
 		JPanel treePanel = new JPanel();
-		treePanel.setBorder(BorderFactory.createEmptyBorder(CatFrame.BORDER,
-				CatFrame.BORDER, CatFrame.BORDER, CatFrame.BORDER));
+		Border border = createEmptyBorder(CatFrame.BORDER);
+		treePanel.setBorder(border);
 		treePanel.setLayout(new BorderLayout());
 		treePanel.add(tree, BorderLayout.CENTER);
 		treePanel.setBackground(Color.WHITE);
@@ -36,6 +37,10 @@ public class TreePanel extends JScrollPane {
 		getHorizontalScrollBar().setUnitIncrement(10);
 
 		setViewportView(treePanel);
+	}
+	
+	private Border createEmptyBorder(int border) {
+		return BorderFactory.createEmptyBorder(border, border, border, border);		
 	}
 	
 	public CatalogTree getTree() {

@@ -1,4 +1,4 @@
 Manifest-Version: 1.0
-Main-Class: al.catalog.Main
+Main-Class: TestFrame
 Class-Path: ./lib/hsqldb.jar ./res/
 
