@@ -1,89 +1,73 @@
-import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 
 public class TestFrame extends JFrame {
 	
-	private static List<JLabel> labels = new ArrayList<JLabel>();
-
 	public static void createGUI() {
 		JFrame frame = new JFrame("Test frame");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		final Font font = new Font("Verdana", Font.PLAIN, 25);
-
-		JPanel butPanel = new JPanel();		
-
-		JButton addButton = new JButton("+");
-		addButton.setFont(font);
-		addButton.setFocusable(false);
-		butPanel.add(addButton);
+		JPanel panel = new JPanel();
+		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 		
-		JButton remButton = new JButton("-");
-		remButton.setFont(font);
-		remButton.setFocusable(false);
-		butPanel.add(remButton);
-				
-		final JPanel labPanel = new JPanel();
-		final JScrollPane scrollPane = new JScrollPane(labPanel);
-		labPanel.setLayout(new BoxLayout(labPanel, BoxLayout.Y_AXIS));
-
-		addButton.addActionListener(new ActionListener() {
+		ActionListener listener = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int number = labels.size() + 1;
-				JLabel label = new JLabel("Label " + number);
-				labels.add(label);
-				label.setAlignmentX(JLabel.CENTER_ALIGNMENT);
-				label.setFont(font);
-				labPanel.add(label);				
-				scrollPane.revalidate();				
+				Object source = e.getSource();
+				if(source instanceof JButton) {
+					JButton button = (JButton) e.getSource();
+					float align = button.getAlignmentX();
+					String title = "";
+					if(align == JComponent.LEFT_ALIGNMENT) {
+						align = JComponent.CENTER_ALIGNMENT;
+						title = "CENTER_ALIGNMENT";
+					} else if (align == JComponent.CENTER_ALIGNMENT) {
+						align = JComponent.RIGHT_ALIGNMENT;
+						title = "RIGHT_ALIGNMENT";
+					} else {
+						align = JComponent.LEFT_ALIGNMENT;
+						title = "LEFT_ALIGNMENT";
+					}
+					button.setAlignmentX(align);
+					button.setText(title);
+				}												
 			}			
-		});
+		};
+
+		JButton button1 = new JButton("LEFT_ALIGNMENT");
+		panel.add(button1);
+		button1.setAlignmentX(JComponent.LEFT_ALIGNMENT);
+		button1.setMaximumSize(new Dimension(150, 100));
+		button1.addActionListener(listener);
+		button1.setFocusable(false);
+
+		JButton button2 = new JButton("LEFT_ALIGNMENT");
+		panel.add(button2);
+		button2.setAlignmentX(JComponent.LEFT_ALIGNMENT);
+		button2.setMaximumSize(new Dimension(200, 100));
+		button2.addActionListener(listener);
+		button2.setFocusable(false);
+
+		JButton button3 = new JButton("LEFT_ALIGNMENT");
+		panel.add(button3);
+		button3.setAlignmentX(JComponent.LEFT_ALIGNMENT);
+		button3.setMaximumSize(new Dimension(250, 100));
+		button3.addActionListener(listener);
+		button3.setFocusable(false);
 		
-		remButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(labels.size() > 0) {
-					JLabel label = labels.remove(labels.size() - 1);
-					labPanel.remove(label);
-					labPanel.repaint();
-					scrollPane.revalidate();					
-				}				
-			}			
-		});
+		frame.getContentPane().add(panel);
 		
-		frame.getContentPane().setLayout(new BorderLayout());
-		frame.getContentPane().add(butPanel, BorderLayout.NORTH);
-		frame.getContentPane().add(scrollPane, BorderLayout.CENTER);
-		
-		frame.setPreferredSize(new Dimension(250, 200));
+		frame.setPreferredSize(new Dimension(300, 220));
 		frame.pack();
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 	}
-	
-	protected static ImageIcon createIcon(String path) {
-		URL imgURL = TestFrame.class.getResource(path);		
-		if (imgURL != null) {
-			return new ImageIcon(imgURL);
-		} else {
-			System.err.println("File not found " + path);
-			return null;
-		}
-	}
-
 
 	public static void main(String[] args) {
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {
