@@ -29,7 +29,7 @@ public class Main {
 		
 		DBManager dbManager = new DBManager();
 		DBTreeModel dbModel = new DBTreeModel(dbManager);
-		ActionManager aManager = new ActionManager(dbManager, dbModel);		
+		ActionManager aManager = new ActionManager(dbManager, dbModel);
 		MainEntity mainEntity = new MainEntity(dbManager, aManager);		
 		
 		/*
