@@ -1,4 +1,5 @@
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -39,13 +40,16 @@ public class TestFrame extends JFrame {
 				}												
 			}			
 		};
+		
+		Font font = new Font("Verdana", Font.PLAIN, 11);
 
 		JButton button1 = new JButton("LEFT_ALIGNMENT");
 		panel.add(button1);
 		button1.setAlignmentX(JComponent.LEFT_ALIGNMENT);
-		button1.setMaximumSize(new Dimension(150, 100));
+		button1.setMaximumSize(new Dimension(160, 100));
 		button1.addActionListener(listener);
 		button1.setFocusable(false);
+		button1.setFont(font);
 
 		JButton button2 = new JButton("LEFT_ALIGNMENT");
 		panel.add(button2);
@@ -53,6 +57,7 @@ public class TestFrame extends JFrame {
 		button2.setMaximumSize(new Dimension(200, 100));
 		button2.addActionListener(listener);
 		button2.setFocusable(false);
+		button2.setFont(font);
 
 		JButton button3 = new JButton("LEFT_ALIGNMENT");
 		panel.add(button3);
@@ -60,6 +65,7 @@ public class TestFrame extends JFrame {
 		button3.setMaximumSize(new Dimension(250, 100));
 		button3.addActionListener(listener);
 		button3.setFocusable(false);
+		button3.setFont(font);
 		
 		frame.getContentPane().add(panel);
 		
