@@ -17,6 +17,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.w3c.dom.Document;
+import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
@@ -69,10 +70,9 @@ public class TestFrame1 extends JFrame {
 	 */
 	private static Document getDocument() throws Exception {
 		try {
-			DocumentBuilderFactory factory = DocumentBuilderFactory
-					.newInstance();
-			factory.setValidating(false);
-			DocumentBuilder builder = factory.newDocumentBuilder();
+			DocumentBuilderFactory f = DocumentBuilderFactory.newInstance();
+			f.setValidating(false);
+			DocumentBuilder builder = f.newDocumentBuilder();
 			return builder.parse(new File("test.xml"));
 		} catch (Exception exception) {
 			String message = "XML parsing error!";
@@ -84,20 +84,21 @@ public class TestFrame1 extends JFrame {
 		StringBuffer content = new StringBuffer();
 		Node node = doc.getChildNodes().item(0);
 		ApplicationNode appNode = new ApplicationNode(node);
-		
+
 		content.append("Application \n");
-		
+
 		List<ClassNode> classes = appNode.getClasses();
-		
-		for(int i = 0; i < classes.size(); i++) {
-			ClassNode classNode = classes.get(i);			
+
+		for (int i = 0; i < classes.size(); i++) {
+			ClassNode classNode = classes.get(i);
 			content.append(SPACE + "Class: " + classNode.getName() + " \n");
-			
+
 			List<MethodNode> methods = classNode.getMethods();
-			
-			for(int j = 0; j < methods.size(); j++) {
-				MethodNode methodNode = methods.get(j); 
-				content.append(SPACE + SPACE + "Method: " + methodNode.getName() + " \n");								
+
+			for (int j = 0; j < methods.size(); j++) {
+				MethodNode methodNode = methods.get(j);
+				content.append(SPACE + SPACE + "Method: "
+						+ methodNode.getName() + " \n");
 			}
 		}
 
@@ -113,6 +114,9 @@ public class TestFrame1 extends JFrame {
 		});
 	}
 
+	/**
+	 * Объектное представление приложения.
+	 */
 	public static class ApplicationNode {
 
 		Node node;
@@ -123,11 +127,24 @@ public class TestFrame1 extends JFrame {
 
 		public List<ClassNode> getClasses() {
 			ArrayList<ClassNode> classes = new ArrayList<ClassNode>();
+			
+			/*
+			 * Получаем список дочерних узлов для данного узла XML, который
+			 * соответствует приложению application. Здесь будут располагаться
+			 * все узлы Node, каждый из которых является объектным
+			 * представлением тега class для текущего тега application.
+			 */
 			NodeList classNodes = node.getChildNodes();
 
 			for (int i = 0; i < classNodes.getLength(); i++) {
 				Node node = classNodes.item(i);
+				
 				if (node.getNodeType() == Node.ELEMENT_NODE) {
+					
+					/*
+					 * Создаем на основе Node узла своё объектное представление
+					 * класса.
+					 */
 					ClassNode classNode = new ClassNode(node);
 					classes.add(classNode);
 				}
@@ -138,22 +155,43 @@ public class TestFrame1 extends JFrame {
 
 	}
 
+	/**
+	 * Объектное представление класса.
+	 */
 	public static class ClassNode {
 
 		Node node;
 
+		/**
+		 * Создаем новый экземпляр объекта на основе Node узла.
+		 */
 		public ClassNode(Node node) {
 			this.node = node;
 		}
 
+		/**
+		 * Возвращает список методов класса.
+		 */
 		public List<MethodNode> getMethods() {
 			ArrayList<MethodNode> methods = new ArrayList<MethodNode>();
+			
+			/*
+			 * Получаем список дочерних узлов для данного узла XML, который
+			 * соответствует классу class. Здесь будут располагаться все узлы Node,
+			 * каждый из которых является объектным представлением тега method
+			 * для текущего тега class.
+			 */
 			NodeList methodNodes = node.getChildNodes();
 
 			for (int i = 0; i < methodNodes.getLength(); i++) {
 				node = methodNodes.item(i);
 
 				if (node.getNodeType() == Node.ELEMENT_NODE) {
+					
+					/*
+					 * Создаем на основе Node узла своё объектное представление
+					 * метода.
+					 */
 					MethodNode methodNode = new MethodNode(node);
 					methods.add(methodNode);
 				}
@@ -162,21 +200,61 @@ public class TestFrame1 extends JFrame {
 			return methods;
 		}
 
+		/**
+		 * Возвращае имя класса.
+		 */
 		public String getName() {
-			return node.getAttributes().getNamedItem("name").getNodeValue();
+			
+			/*
+			 * Получаем атрибуты узла метода.
+			 */
+			NamedNodeMap attributes = node.getAttributes();
+			
+			/*
+			 * Получаем узел аттрибута.
+			 */
+			Node nameAttrib = attributes.getNamedItem("name");
+			
+			/*
+			 * Возвращаем значение атрибута.
+			 */
+			return nameAttrib.getNodeValue();			
 		}
 	}
 
+	/**
+	 * Объектное представление сущности метод класса.
+	 */
 	public static class MethodNode {
 
 		Node node;
 
+		/**
+		 * Создаем новый экземпляр объекта на основе Node узла.
+		 */
 		public MethodNode(Node node) {
 			this.node = node;
 		}
 
+		/**
+		 * Возвращает имя метода.
+		 */
 		public String getName() {
-			return node.getAttributes().getNamedItem("name").getNodeValue();
+			
+			/*
+			 * Получаем атрибуты узла метода.
+			 */
+			NamedNodeMap attributes = node.getAttributes();
+			
+			/*
+			 * Получаем узел аттрибута.
+			 */
+			Node nameAttrib = attributes.getNamedItem("name");
+			
+			/*
+			 * Возвращаем значение атрибута.
+			 */
+			return nameAttrib.getNodeValue();
 		}
 
 	}
