@@ -1,3 +1,3 @@
 Здесь будет представлен краткий обзор приложения с описанием функционала.
 
-<img src = "http://diskscatalog.googlecode.com/svn/wiki/images/catalog1.PNG">
+http://diskscatalog.googlecode.com/svn/wiki/images/catalog1.PNG
