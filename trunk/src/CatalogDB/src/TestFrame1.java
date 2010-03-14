@@ -127,8 +127,8 @@ public class TestFrame1 extends JFrame {
 
 		public List<ClassNode> getClasses() {
 			ArrayList<ClassNode> classes = new ArrayList<ClassNode>();
-			
-			/*
+
+			/**
 			 * Получаем список дочерних узлов для данного узла XML, который
 			 * соответствует приложению application. Здесь будут располагаться
 			 * все узлы Node, каждый из которых является объектным
@@ -138,10 +138,10 @@ public class TestFrame1 extends JFrame {
 
 			for (int i = 0; i < classNodes.getLength(); i++) {
 				Node node = classNodes.item(i);
-				
+
 				if (node.getNodeType() == Node.ELEMENT_NODE) {
-					
-					/*
+
+					/**
 					 * Создаем на основе Node узла своё объектное представление
 					 * класса.
 					 */
@@ -174,8 +174,8 @@ public class TestFrame1 extends JFrame {
 		 */
 		public List<MethodNode> getMethods() {
 			ArrayList<MethodNode> methods = new ArrayList<MethodNode>();
-			
-			/*
+
+			/**
 			 * Получаем список дочерних узлов для данного узла XML, который
 			 * соответствует классу class. Здесь будут располагаться все узлы Node,
 			 * каждый из которых является объектным представлением тега method
@@ -187,8 +187,8 @@ public class TestFrame1 extends JFrame {
 				node = methodNodes.item(i);
 
 				if (node.getNodeType() == Node.ELEMENT_NODE) {
-					
-					/*
+
+					/**
 					 * Создаем на основе Node узла своё объектное представление
 					 * метода.
 					 */
@@ -204,21 +204,21 @@ public class TestFrame1 extends JFrame {
 		 * Возвращае имя класса.
 		 */
 		public String getName() {
-			
-			/*
+
+			/**
 			 * Получаем атрибуты узла метода.
 			 */
 			NamedNodeMap attributes = node.getAttributes();
-			
-			/*
+
+			/**
 			 * Получаем узел аттрибута.
 			 */
 			Node nameAttrib = attributes.getNamedItem("name");
-			
-			/*
+
+			/**
 			 * Возвращаем значение атрибута.
 			 */
-			return nameAttrib.getNodeValue();			
+			return nameAttrib.getNodeValue();
 		}
 	}
 
@@ -240,18 +240,18 @@ public class TestFrame1 extends JFrame {
 		 * Возвращает имя метода.
 		 */
 		public String getName() {
-			
-			/*
+
+			/**
 			 * Получаем атрибуты узла метода.
 			 */
 			NamedNodeMap attributes = node.getAttributes();
-			
-			/*
+
+			/**
 			 * Получаем узел аттрибута.
 			 */
 			Node nameAttrib = attributes.getNamedItem("name");
-			
-			/*
+
+			/**
 			 * Возвращаем значение атрибута.
 			 */
 			return nameAttrib.getNodeValue();
