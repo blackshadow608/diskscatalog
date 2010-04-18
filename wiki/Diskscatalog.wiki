@@ -6,7 +6,7 @@
 
 Ниже представлены снимки главного окна приложения.
 
-<a href = "<img src = "http://diskscatalog.googlecode.com/svn/wiki/images/catalog1.PNG">"><img src = "http://diskscatalog.googlecode.com/svn/wiki/images/catalog1_thumb.PNG"></a>
+<a href = "http://diskscatalog.googlecode.com/svn/wiki/images/catalog1.PNG"><img src = "http://diskscatalog.googlecode.com/svn/wiki/images/catalog1_thumb.PNG"></a>
 <br>
 <img src = "http://diskscatalog.googlecode.com/svn/wiki/images/catalog2.PNG">
 <br>
