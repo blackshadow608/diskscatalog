@@ -6,8 +6,12 @@
 
 Ниже представлены снимки главного окна приложения.
 
-<a href = "http://diskscatalog.googlecode.com/svn/wiki/images/catalog1.PNG"><img src = "http://diskscatalog.googlecode.com/svn/wiki/images/catalog1_thumb.PNG"/></a>
+<img src = "http://diskscatalog.googlecode.com/svn/wiki/images/catalog1.PNG"/>
+<img src = "http://diskscatalog.googlecode.com/svn/wiki/images/catalog2.PNG"/>
+<img src = "http://diskscatalog.googlecode.com/svn/wiki/images/catalog3.PNG"/>
+
+<!--a href = "http://diskscatalog.googlecode.com/svn/wiki/images/catalog1.PNG"><img src = "http://diskscatalog.googlecode.com/svn/wiki/images/catalog1_thumb.PNG"/></a>
 <a href = "http://diskscatalog.googlecode.com/svn/wiki/images/catalog2.PNG">
 <img src = "http://diskscatalog.googlecode.com/svn/wiki/images/catalog2_thumb.PNG"/></a>
 <a href = "http://diskscatalog.googlecode.com/svn/wiki/images/catalog3.PNG">
-<img src = "http://diskscatalog.googlecode.com/svn/wiki/images/catalog3_thumb.PNG"/></a>
+<img src = "http://diskscatalog.googlecode.com/svn/wiki/images/catalog3_thumb.PNG"/></a-->
