@@ -20,7 +20,6 @@ public class Main {
 	
 	private static final String SERVER_MODE = "serverMode=true";
 	
-	
 	public Main(String[] args) {
 		/*
 		 * Настраиваем логер.
