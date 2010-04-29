@@ -1,6 +1,6 @@
 package disks.catalog.ui.action.edit.create;
 
-import disks.catalog.model.IActionCallback;
+import disks.catalog.model.action.IActionCallback;
 import disks.catalog.model.tree.DBTreeModel;
 import disks.catalog.model.tree.types.ITreeNode;
 

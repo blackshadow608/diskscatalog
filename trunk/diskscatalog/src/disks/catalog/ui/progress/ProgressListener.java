@@ -3,9 +3,9 @@ package disks.catalog.ui.progress;
 import javax.swing.JOptionPane;
 
 import disks.catalog.MainEntity;
-import disks.catalog.model.DBAction;
 import disks.catalog.model.DBManager;
-import disks.catalog.model.IDBActionAdapter;
+import disks.catalog.model.action.DBAction;
+import disks.catalog.model.action.IDBActionAdapter;
 import disks.catalog.ui.CatFrame;
 
 

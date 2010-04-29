@@ -5,7 +5,7 @@ import java.util.List;
 
 import disks.catalog.logger.Logger;
 import disks.catalog.model.DBManager;
-import disks.catalog.model.IActionCallback;
+import disks.catalog.model.action.IActionCallback;
 import disks.catalog.model.dao.DAOFactory;
 import disks.catalog.model.dao.hsql.HSQLDAOFactory;
 import disks.catalog.model.tree.action.CreateNodeAction;

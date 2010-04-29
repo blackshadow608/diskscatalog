@@ -7,7 +7,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import disks.catalog.model.IConnectionProvider;
+import disks.catalog.model.connection.IConnectionProvider;
 import disks.catalog.model.dao.DAOException;
 import disks.catalog.model.dao.IImageDAO;
 import disks.catalog.model.dao.IImgCategoryDAO;

@@ -1,4 +1,4 @@
-package disks.catalog.model;
+package disks.catalog.model.action;
 
 /**
  * Абстрактный адаптер <b>IDBActionAdapter</b> представляет собой пустую

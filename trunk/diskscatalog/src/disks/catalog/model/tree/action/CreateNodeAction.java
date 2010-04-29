@@ -2,8 +2,8 @@ package disks.catalog.model.tree.action;
 
 import java.util.List;
 
-import disks.catalog.model.DBAction;
-import disks.catalog.model.IActionCallback;
+import disks.catalog.model.action.DBAction;
+import disks.catalog.model.action.IActionCallback;
 import disks.catalog.model.tree.DBTreeModel;
 import disks.catalog.model.tree.manager.INodeManager;
 import disks.catalog.model.tree.manager.ManagerFactory;

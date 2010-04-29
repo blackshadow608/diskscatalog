@@ -1,6 +1,6 @@
 package disks.catalog.ui.progress;
 
-import disks.catalog.model.DBAction;
+import disks.catalog.model.action.DBAction;
 import disks.catalog.ui.CatFrame;
 
 /**

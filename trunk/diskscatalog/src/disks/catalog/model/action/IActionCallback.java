@@ -1,4 +1,4 @@
-package disks.catalog.model;
+package disks.catalog.model.action;
 
 public interface IActionCallback {
 	

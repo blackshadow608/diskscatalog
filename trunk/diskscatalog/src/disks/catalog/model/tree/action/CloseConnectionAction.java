@@ -1,8 +1,8 @@
 package disks.catalog.model.tree.action;
 
-import disks.catalog.model.DBAction;
 import disks.catalog.model.DBException;
 import disks.catalog.model.DBManager;
+import disks.catalog.model.action.DBAction;
 import disks.catalog.ui.resource.ResourceManager;
 
 /**

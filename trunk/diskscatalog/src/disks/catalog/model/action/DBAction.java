@@ -1,6 +1,8 @@
-package disks.catalog.model;
+package disks.catalog.model.action;
 
 import java.sql.Savepoint;
+
+import disks.catalog.model.DBManager;
 
 /**
  * Все действия с БД: открытие, закрытие, добавление, удаление и изменение узлов дерева, создание и

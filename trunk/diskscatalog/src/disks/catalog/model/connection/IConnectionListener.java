@@ -1,4 +1,4 @@
-package disks.catalog.model;
+package disks.catalog.model.connection;
 
 /**
  * Интерфейс, который должен реализовать слушатель, желающий прослушивать события открытия
