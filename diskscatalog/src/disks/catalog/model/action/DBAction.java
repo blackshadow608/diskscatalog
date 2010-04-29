@@ -21,13 +21,13 @@ public abstract class DBAction {
 	protected String label;
 	
 	public DBAction(DBManager dbManager) {
-		this.dbManager = dbManager;                
+		this.dbManager = dbManager;
 	}
 	
 	/**
 	 * Устанавливает значение метки, которую можно отображать в UI.
 	 * 
-	 * @param label
+	 * @param label - новая {@link String} строка для метки.
 	 */
 	public void setLabel(String label) {
 		this.label = label;
@@ -36,17 +36,19 @@ public abstract class DBAction {
 	/**
 	 * Возвращает значение метки.
 	 * 
-	 * @return - текст метки
+	 * @return {@link String} строка текста метки.
 	 */
 	public String getLabel() {
 		return label;
 	}
 	
 	/**
-	 * Возвращает Savepoint, который должен быть установлен перед началом выполнения действия, чтобы
-	 * быда возможность сделать откат БД при отмене действия.
+	 * Возвращает Savepoint, который должен быть установлен перед началом
+	 * выполнения действия, чтобы быда возможность сделать откат БД при отмене
+	 * действия.
 	 * 
-	 * @return - Savepoint до выполнения действия
+	 * @return {@link Savepoint}, который был установлен до выполнения действия.
+	 *         Данный {@link Savepoint} для возможности отката действия.
 	 */
 	public Savepoint getSavepoint() {
 		return savepoint;
@@ -55,7 +57,7 @@ public abstract class DBAction {
 	/**
 	 * Дает возможность определить статус действия.
 	 * 
-	 * @return - true, если действие выполнено, false - если нет.
+	 * @return <code>true</code>, если действие выполнено, <code>false</code> - если нет.
 	 */
 	public boolean isExecuted() {
 		return isExecuted;
@@ -78,6 +80,9 @@ public abstract class DBAction {
 		
 	}
 	
+	/**
+	 * Содержит код, который вызывается при приостановке выполнения действия.
+	 */
 	public void pause() {
 		
 	}
@@ -86,7 +91,7 @@ public abstract class DBAction {
 	 * Возвращает текст, который должен будет отображаться в прогресс-диалоге или, например,
 	 * в логах приложения при выполнении данного action'а.
 	 * 
-	 * @return прогресс текст.
+	 * @return {@link String} текст прогресс выполнения действия.
 	 */
 	abstract public String getProgressText();
 	
@@ -94,7 +99,7 @@ public abstract class DBAction {
 	 * Возвращает флаг, который говорит о том, можно ли action прерывать или
 	 * отменять в процессе его работы. Некоторые
 	 * 
-	 * @return - <b>true</b>, если действие может быть отменено или прервано в
+	 * @return <b>true</b>, если действие может быть отменено или прервано в
 	 *         процессе его выполнения и <b>false</b>, если нет.
 	 */
 	abstract public boolean isCancelable();
@@ -104,8 +109,8 @@ public abstract class DBAction {
 	 * action'а на время, чтобы далее прололжить его. Другими словами - можно ил
 	 * поставить action на паузу или нет.
 	 * 
-	 * @return - <b>true</b>, если действие может быть поставлено на паузу,
-	 *         <b>false</b>, если нет.
+	 * @return Возвращает <code>true</code>, если действие может быть поставлено на паузу и
+	 *         <code>false</code>, если нет.
 	 */
 	abstract public boolean isPausable();
 }
