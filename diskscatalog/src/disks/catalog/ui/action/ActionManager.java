@@ -8,10 +8,10 @@ import java.util.Map;
 import javax.swing.Action;
 
 import disks.catalog.logger.Logger;
-import disks.catalog.model.DBAction;
 import disks.catalog.model.DBManager;
-import disks.catalog.model.IConnectionListener;
-import disks.catalog.model.IDBActionListener;
+import disks.catalog.model.action.DBAction;
+import disks.catalog.model.action.IDBActionListener;
+import disks.catalog.model.connection.IConnectionListener;
 import disks.catalog.model.tree.DBTreeModel;
 import disks.catalog.model.tree.IDBTreeModelListener;
 import disks.catalog.model.tree.IHistoryListener;

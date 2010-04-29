@@ -7,7 +7,7 @@ import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreePath;
 
 import disks.catalog.logger.Logger;
-import disks.catalog.model.IConnectionListener;
+import disks.catalog.model.connection.IConnectionListener;
 import disks.catalog.model.tree.DBTreeModel;
 import disks.catalog.model.tree.IDBTreeModelListener;
 import disks.catalog.model.tree.types.ITreeNode;

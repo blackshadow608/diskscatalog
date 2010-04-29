@@ -1,4 +1,4 @@
-package disks.catalog.model;
+package disks.catalog.model.action;
 
 /**
  * Интерфейс, который должны реализовать слушатели, желающие прослушивать события, связанные

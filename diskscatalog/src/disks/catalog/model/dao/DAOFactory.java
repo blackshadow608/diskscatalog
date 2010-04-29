@@ -1,6 +1,6 @@
 package disks.catalog.model.dao;
 
-import disks.catalog.model.IConnectionProvider;
+import disks.catalog.model.connection.IConnectionProvider;
 
 /**
  * Типичная DAOFactory в паттерне DAO.

@@ -1,6 +1,6 @@
 package disks.catalog.model.tree.action;
 
-import disks.catalog.model.DBAction;
+import disks.catalog.model.action.DBAction;
 import disks.catalog.model.dao.DAOException;
 import disks.catalog.model.dao.DAOFactory;
 import disks.catalog.model.dao.IImageDAO;

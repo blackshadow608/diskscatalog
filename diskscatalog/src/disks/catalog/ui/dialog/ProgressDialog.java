@@ -17,7 +17,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 
-import disks.catalog.model.DBAction;
+import disks.catalog.model.action.DBAction;
 import disks.catalog.ui.progress.ProgressPanelManager;
 import disks.catalog.ui.resource.ResourceManager;
 

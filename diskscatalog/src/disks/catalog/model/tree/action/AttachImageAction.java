@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.swing.SwingUtilities;
 
-import disks.catalog.model.DBAction;
+import disks.catalog.model.action.DBAction;
 import disks.catalog.model.dao.DAOException;
 import disks.catalog.model.dao.DAOFactory;
 import disks.catalog.model.dao.IFileDAO;

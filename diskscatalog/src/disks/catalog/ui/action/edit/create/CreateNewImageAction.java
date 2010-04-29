@@ -2,7 +2,7 @@ package disks.catalog.ui.action.edit.create;
 
 import java.awt.event.ActionEvent;
 
-import disks.catalog.model.IActionCallback;
+import disks.catalog.model.action.IActionCallback;
 import disks.catalog.model.tree.DBTreeModel;
 import disks.catalog.model.tree.types.images.ImageNode;
 import disks.catalog.ui.action.ActionManager;

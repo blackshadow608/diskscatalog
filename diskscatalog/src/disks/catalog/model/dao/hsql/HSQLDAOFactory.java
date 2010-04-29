@@ -5,7 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import disks.catalog.model.IConnectionProvider;
+import disks.catalog.model.connection.IConnectionProvider;
 import disks.catalog.model.dao.DAOException;
 import disks.catalog.model.dao.DAOFactory;
 import disks.catalog.model.dao.IFileDAO;

@@ -9,6 +9,11 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import disks.catalog.model.action.DBAction;
+import disks.catalog.model.action.IDBActionListener;
+import disks.catalog.model.connection.IConnectionListener;
+import disks.catalog.model.connection.IConnectionProvider;
+
 /**
  * Представляет собой более или менее универсальный инструмент для работы
  * с базой данных. Всё взаимодействие с БД, состоящее из некоторого перечня

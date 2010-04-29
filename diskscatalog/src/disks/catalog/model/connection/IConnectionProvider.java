@@ -1,4 +1,4 @@
-package disks.catalog.model;
+package disks.catalog.model.connection;
 
 import java.sql.Connection;
 
