@@ -20,29 +20,15 @@ import java.util.List;
  * 
  * @author Alexander Levin
  */
-public class DBManager implements IConnectionProvider {
+public class DBManager implements IConnectionProvider, IConstants {
 	
-	private static final String PATH_SERVER = "jdbc:hsqldb:hsql://localhost/CatDB";
-	private static final String USER = "sa";
-	private static final String PASSWORD = "";
-	private static final String SAVEPOINT = "CatalogSavepoint_";
-    private static final String DEFAULT_SAVEPOINT = "DefaultSavePoint";
-	
-	public static final int MODE_STANDALONE = 0;
-	public static final int MODE_SERVER = 1;
-	
-	private static final String DB_NAME = "CatDB";
-	private static final String DB_PREFIX = "jdbc:hsqldb:file:";
-	
-	private Connection connection = null;
-	private boolean driverIsLoaded = false;
 	private int mode = MODE_STANDALONE;
 	
-	private List<DBAction> actions = new ArrayList<DBAction>();
+	private Connection connection = null;
+	
 	private DBAction lastAction = null;
-	
 	private List<String> savepoints = new ArrayList<String>();
-	
+	private List<DBAction> actions = new ArrayList<DBAction>();	
 	private List<IConnectionListener> conListeners = new ArrayList<IConnectionListener>();
 	private List<IDBActionListener> actionListeners = new ArrayList<IDBActionListener>();
 	
@@ -56,12 +42,14 @@ public class DBManager implements IConnectionProvider {
 	/**
 	 * Открывает БД для дальнейшей работы приложения.
 	 * 
-	 * @throws DBException - если при открытии БД произошли ошибки.
+	 * @throws DBException если при открытии БД произошли ошибки.
 	 */
 	public void open() throws DBException {		
 		try {
-            loadDriver();
-            if (connection == null || connection.isClosed()) {            	
+			
+            DriverLoader.loadDriver();
+            
+            if (connection == null || connection.isClosed()) {
             	connection = DriverManager.getConnection(getDBPath(), USER, PASSWORD);
             	connection.setAutoCommit(false);
             	addDefaultSavepoint();
@@ -434,12 +422,6 @@ public class DBManager implements IConnectionProvider {
 	 */
 	public void setMode(int mode) {
 		this.mode = mode;
-	}
-	
-	private void loadDriver() throws ClassNotFoundException{
-		if (!driverIsLoaded) {
-			Class.forName("org.hsqldb.jdbcDriver");			
-		}		
 	}
 	
 	private String getDBFolder(String curPath) {

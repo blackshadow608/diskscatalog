@@ -5,6 +5,7 @@ import javax.swing.JFrame;
 
 import disks.catalog.logger.Logger;
 import disks.catalog.model.DBManager;
+import disks.catalog.model.IConstants;
 import disks.catalog.model.tree.DBTreeModel;
 import disks.catalog.ui.CatFrame;
 import disks.catalog.ui.action.ActionManager;
@@ -41,7 +42,7 @@ public class Main {
 				for (int i = 0; i < args.length; i++) {
 					String arg = args[i];
 					if (SERVER_MODE.equals(arg)) {
-						dbManager.setMode(DBManager.MODE_SERVER);						
+						dbManager.setMode(IConstants.MODE_SERVER);						
 					}
 				}									
 			}
