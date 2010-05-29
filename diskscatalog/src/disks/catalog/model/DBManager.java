@@ -17,19 +17,68 @@ import disks.catalog.model.connection.IConnectionProvider;
 /**
  * Представляет собой более или менее универсальный инструмент для работы
  * с базой данных. Всё взаимодействие с БД, состоящее из некоторого перечня
- * операций, идёт именно через DBManager. Операции можно поделить на два вида.
+ * операций, идёт именно через этот класс. Операции можно поделить на два вида.
  * Первый вид - общие операции. Примером таких операций может служить
  * открытие/закрытие БД, создание SavePoint'ов, откат изменений БД к
  * определенному SavePoint'у. Второй вид операций - конкретная работа с БД,
- * редактирование таблиц. Практически все операции с БД инкапсулируются в DBAction.
+ * редактирование таблиц. Практически все операции с БД инкапсулируются в {@link DBAction}.
  * 
  * @author Alexander Levin
  */
 public class DBManager implements IConnectionProvider, IConstants {
 	
-	private int mode = MODE_STANDALONE;
+<<<<<<< .mine
+	/*
+	 * Путь к серверу, который используется только в отладочных целях.
+	 */
+	private static final String PATH_SERVER = "jdbc:hsqldb:hsql://localhost/CatDB";
 	
+	/*
+	 * Пользователь для доступа к БД.
+	 */
+	private static final String USER = "sa";
+	
+	/*
+	 * Праоль для доступа к БД.
+	 */
+	private static final String PASSWORD = "";
+	private static final String SAVEPOINT = "CatalogSavepoint_";
+    private static final String DEFAULT_SAVEPOINT = "DefaultSavePoint";
+=======
+	private int mode = MODE_STANDALONE;
+>>>>>>> .r117
+	
+<<<<<<< .mine
+    /*
+	 * Режими работы с БД. В отладочных целях используется MODE_SERVER, который
+	 * позволяет держать с БД несколько соединений.
+	 */
+	public static final int MODE_STANDALONE = 0;
+	public static final int MODE_SERVER = 1;
+	
+	/*
+	 * Имя базы данных.
+	 */
+	private static final String DB_NAME = "CatDB";
+	
+	/*
+	 * JDBC префикс для доступа к БД.
+	 */
+	private static final String DB_PREFIX = "jdbc:hsqldb:file:";
+	
+=======
+>>>>>>> .r117
 	private Connection connection = null;
+<<<<<<< .mine
+	
+	private boolean driverIsLoaded = false;
+	
+	/*
+	 * Режим работы с БД, по умолчанию MODE_STANDALONE.
+	 */
+	private int mode = MODE_STANDALONE;
+=======
+>>>>>>> .r117
 	
 	private DBAction lastAction = null;
 	private List<String> savepoints = new ArrayList<String>();
@@ -39,6 +88,9 @@ public class DBManager implements IConnectionProvider, IConstants {
 	
 	private String curPath;
 	
+	/**
+	 * Создает новый объект {@link DBManager}.
+	 */
 	public DBManager() {		
 		File currentFile = new File("");
 		curPath = currentFile.getAbsolutePath();		
@@ -69,7 +121,7 @@ public class DBManager implements IConnectionProvider, IConstants {
 	/**
 	 * Закрывает БД.
 	 * 
-	 * @throws DBException - если при закрытии БД произошли ошибки.
+	 * @throws DBException если при закрытии БД произошли ошибки.
 	 */
 	public void close() throws DBException { 
 		try {
@@ -94,7 +146,7 @@ public class DBManager implements IConnectionProvider, IConstants {
 	 * Сохраняет все изменения, которые были произведены с БД с момента её открытия
 	 * или последнего сохранения.
 	 * 
-	 * @throws DBException - если при сохранении изменений произошла ошибка.
+	 * @throws DBException если при сохранении изменений произошла ошибка.
 	 */
 	public void save() throws DBException {
 		try {		
@@ -118,13 +170,12 @@ public class DBManager implements IConnectionProvider, IConstants {
 	}
 		
 	/**
-	 * Добавляет dbAction в стек и запускает действие на выполнение. Скорее всего лучше сделать так, чтобы
-	 * сам DBAction вызывал этот метод, так как только сам DBAction знает нужно ли его добавлять в стек
-	 * или нет.
+	 * Добавляет dbAction в стек и запускает действие на выполнение.
 	 * 
-	 * @param dbAction - DBAction, который нужно добавить и выполнить.
+	 * @param dbAction - {@link DBAction} объект, который нужно добавить и выполнить.
 	 */
 	public void addAction(DBAction dbAction) {
+		
 		if (lastAction != null) {
 			int nextIndex = actions.indexOf(lastAction) + 1;			
 			while (nextIndex < actions.size()) {				
@@ -181,10 +232,9 @@ public class DBManager implements IConnectionProvider, IConstants {
 	}
 	
 	/**
-	 * Прерывает выполнение действия. Аналогично и методу addAction, лучше, чтобы сам DBAction
-	 * вызывал этот метод.
+	 * Прерывает выполнение действия.
 	 * 
-	 * @param dbAction - DBAction, выполнение которого необходимо прервать.
+	 * @param dbAction - {@link DBAction} объект, выполнение которого необходимо прервать.
 	 */
 	public void abortAction(DBAction dbAction) {
 		if (dbAction != null) {
@@ -201,45 +251,45 @@ public class DBManager implements IConnectionProvider, IConstants {
 	}
 	
 	/**
-	 * Возвращает последний выполненный DBAction.
+	 * Возвращает последний выполненный {@link DBAction}.
 	 * 
-	 * @return - последний выполненный DBAction.
+	 * @return Возвращает последний выполненный {@link DBAction}.
 	 */
 	public DBAction getLastAction() {
 		return lastAction;
 	}
 	
 	/**
-	 * Добавляет IConnectionListener слушателя.
+	 * Добавляет {@link IConnectionListener} слушателя.
 	 * 
-	 * @param listener - добавляемый IConnectionListener слушатель.
+	 * @param listener - добавляемый {@link IConnectionListener} слушатель.
 	 */
 	public void addConnectionListener(IConnectionListener listener) {
 		conListeners.add(listener);
 	}
 	
 	/**
-	 * Удаляет IConnectionListener слушателя.
+	 * Удаляет {@link IConnectionListener} слушателя.
 	 * 
-	 * @param listener - удаляемый IConnectionListener слушатль.
+	 * @param listener - удаляемый {@link IConnectionListener} слушатль.
 	 */
 	public void removeConnectionListener(IConnectionListener listener) {
 		conListeners.remove(listener);
 	}
 	
 	/**
-	 * Добавляет DBActionListener слушателя.
+	 * Добавляет {@link DBActionListener} слушателя.
 	 * 
-	 * @param listener - добавляемый DBActionListener слушаткль.
+	 * @param listener - добавляемый {@link DBActionListener} слушаткль.
 	 */
 	public void addActionListener(IDBActionListener listener) {
 		actionListeners.add(listener);
 	}
 	
 	/**
-	 * Удаляет IDBActionListener слушателя.
+	 * Удаляет {@link IDBActionListener} слушателя.
 	 * 
-	 * @param listener - удаляемый IDBActionListener слушатель.
+	 * @param listener - удаляемый {@link IDBActionListener} слушатель.
 	 */
 	public void removeDBActionListener(IDBActionListener listener) {
 		actionListeners.remove(listener);
@@ -338,10 +388,10 @@ public class DBManager implements IConnectionProvider, IConstants {
 	}
 	
 	/**
-	 * Откатывает состояние базы данных к точке сохранения (Savepoint), переданному
-	 * в качестве параметра методу.
+	 * Откатывает состояние базы данных к точке сохранения {@link Savepoint},
+	 * переданному в качестве параметра методу.
 	 * 
-	 * @param savepoint - Savepoint, к которому требуется произвести откат. 
+	 * @param savepoint - {@link Savepoint} объект, к которому требуется произвести откат.
 	 */
 	public void rollback(Savepoint savepoint) {
 		try {
@@ -423,16 +473,35 @@ public class DBManager implements IConnectionProvider, IConstants {
 	 * приложение обращается к серверу базы данных, если таковой запущен и на нем имеется база
 	 * данных с определенным именем.
 	 * 
-	 * @param mode - режим работы.
+	 * @param mode - режим работы БД.
 	 */
 	public void setMode(int mode) {
 		this.mode = mode;
 	}
 	
+<<<<<<< .mine
+	/**
+	 * Осуществляет загрузку драйвера.
+	 * 
+	 * @throws ClassNotFoundException если указанный класс драйвера не обнаружен.
+	 */
+	private void loadDriver() throws ClassNotFoundException{
+		if (!driverIsLoaded) {
+			Class.forName("org.hsqldb.jdbcDriver");			
+		}		
+	}
+	
+=======
+>>>>>>> .r117
 	private String getDBFolder(String curPath) {
 		return curPath + "\\hsqldb\\data\\CatDB\\";
 	}
 	
+	/**
+	 * Возвращает JDBC url в зависимости от режима работы с БД.
+	 * 
+	 * @return Возвращает JDBC url в виде {@link String} строки.
+	 */
 	private String getDBPath() {
 		if (mode == MODE_STANDALONE) {
 			String dbPath = getDBFolder(curPath);

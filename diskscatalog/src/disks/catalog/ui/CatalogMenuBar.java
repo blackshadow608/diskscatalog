@@ -10,7 +10,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JRadioButtonMenuItem;
 
 import disks.catalog.MainEntity;
-import disks.catalog.model.tree.IDBTreeModelListener;
+import disks.catalog.model.tree.DBTreeModelAdapter;
 import disks.catalog.model.tree.types.ITreeNode;
 import disks.catalog.model.tree.types.images.ImgCategoryNode;
 import disks.catalog.ui.action.ActionManager;
@@ -40,8 +40,7 @@ import disks.catalog.ui.action.view.history.ForwardAction;
 import disks.catalog.ui.resource.ResourceManager;
 import disks.catalog.ui.util.MenuItemSizeUtil;
 
-
-public class CatalogMenuBar extends JMenuBar implements IDBTreeModelListener {
+public class CatalogMenuBar extends JMenuBar {
 	
 	private static final String FILE = "mainMenu.file";
 	private static final String IMPORT = "mainMenu.import";
@@ -68,7 +67,7 @@ public class CatalogMenuBar extends JMenuBar implements IDBTreeModelListener {
 		ActionManager aManager = mainEntity.getActionManager();
 		
 		setFocusable(false);
-		aManager.getModel().addListener(this);
+		aManager.getModel().addListener(new TreeModelListener());
 		
 		String file = ResourceManager.getString(FILE);
 		fileMenu = new JMenu(file);
@@ -272,55 +271,26 @@ public class CatalogMenuBar extends JMenuBar implements IDBTreeModelListener {
 				
 	}
 	
-	public void activeNodeWasChanged(ITreeNode node) {
-		customizeEditMenu(node);
-	}
-	
-	public void activeNodeWasChanged(ITreeNode node, Object source) {
-		customizeEditMenu(node);		
-	}
-	
-	public void activeNodesWasChanged(List<ITreeNode> nodes) {
-		if (nodes != null && nodes.size() == 1) {
-			customizeEditMenu(nodes.get(0));			
-		} else {
-			customizeEditMenu(nodes);			
-		}				
-	}
-	
-	public void activeNodesWasChanged(List<ITreeNode> nodes, Object source) {
-		activeNodesWasChanged(nodes);		
-	}
-
-	public void nodeWasChanged(ITreeNode node) {
+	private class TreeModelListener extends DBTreeModelAdapter {
 		
-	}
-
-	public void nodeWasInserted(ITreeNode node, ITreeNode parent) {
+		public void activeNodeWasChanged(ITreeNode node) {
+			customizeEditMenu(node);
+		}
 		
-	}
-
-	public void nodeWasRemoved(ITreeNode node, ITreeNode parent, int index) {
+		public void activeNodeWasChanged(ITreeNode node, Object source) {
+			customizeEditMenu(node);		
+		}
 		
-	}
-
-	public void onAfterChangeNode(ITreeNode node) {
+		public void activeNodesWasChanged(List<ITreeNode> nodes) {
+			if (nodes != null && nodes.size() == 1) {
+				customizeEditMenu(nodes.get(0));			
+			} else {
+				customizeEditMenu(nodes);			
+			}				
+		}
 		
+		public void activeNodesWasChanged(List<ITreeNode> nodes, Object source) {
+			activeNodesWasChanged(nodes);		
+		}		
 	}
-
-	public void onBeforeChangeNode(ITreeNode node) {
-		
-	}
-
-	public void openedNodeWasChanged(ITreeNode node) {
-		
-	}
-
-	public void nodeStructureWasChanged(ITreeNode node) {
-		
-	}
-
-	public void openedNodeWasChanged(ITreeNode node, Object source) {
-		
-	}		
 }

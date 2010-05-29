@@ -3,13 +3,23 @@ package disks.catalog.ui.progress;
 import javax.swing.JOptionPane;
 
 import disks.catalog.MainEntity;
+import disks.catalog.model.DBAction;
 import disks.catalog.model.DBManager;
-import disks.catalog.model.action.DBAction;
-import disks.catalog.model.action.IDBActionAdapter;
+<<<<<<< .mineimport disks.catalog.model.DBActionAdapter;
+=======import disks.catalog.model.action.DBAction;
+>>>>>>> .theirsimport disks.catalog.model.action.IDBActionAdapter;
 import disks.catalog.ui.CatFrame;
 
-
-public class ProgressListener extends IDBActionAdapter {
+/**
+ * Отслеживает события начала и завершения выполнения объектов {@link DBAction}.
+ * Как только начинает выполняться какой-то {@link DBAction}, то {@link ProgressListener}
+ * показывает диалог прогресса выполнения или панель прогресса выполнения.
+ * При завершении {@link DBAction} слушатель {@link ProgressListener}
+ * скрывает диалог прогресса или панель прогерсса. 
+ * 
+ * @author Alexander Levin
+ */
+public class ProgressListener extends DBActionAdapter {
     
     private CatFrame mainFrame;    
     private ProgressPanelManager progressManager;
@@ -26,6 +36,7 @@ public class ProgressListener extends IDBActionAdapter {
     public void afterActionExecuting(DBAction dbAction) {
         
         if (progressManager != null) {
+        	
         	/*
 			 * Чтобы диалог прогресса выполнения и прогресс панель не мелькали,
 			 * а показывались хотя бы секунду.
@@ -35,6 +46,7 @@ public class ProgressListener extends IDBActionAdapter {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+            
             /*
 			 * Как только выполнения action'а завершено, нужно скрыть диалог и
 			 * прогресс панель.

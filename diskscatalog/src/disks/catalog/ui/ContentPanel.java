@@ -10,7 +10,6 @@ import disks.catalog.ui.action.ActionManager;
 import disks.catalog.ui.tree.TreePanel;
 import disks.catalog.ui.view.ViewPanel;
 
-
 /**
  * Представляет собой панель содержимого окна приложения. Все компоненты
  * приложения располагаются именно на этой панели.
