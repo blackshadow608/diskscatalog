@@ -27,7 +27,6 @@ import disks.catalog.model.connection.IConnectionProvider;
  */
 public class DBManager implements IConnectionProvider, IConstants {
 	
-<<<<<<< .mine
 	/*
 	 * Путь к серверу, который используется только в отладочных целях.
 	 */
@@ -44,11 +43,7 @@ public class DBManager implements IConnectionProvider, IConstants {
 	private static final String PASSWORD = "";
 	private static final String SAVEPOINT = "CatalogSavepoint_";
     private static final String DEFAULT_SAVEPOINT = "DefaultSavePoint";
-=======
-	private int mode = MODE_STANDALONE;
->>>>>>> .r117
 	
-<<<<<<< .mine
     /*
 	 * Режими работы с БД. В отладочных целях используется MODE_SERVER, который
 	 * позволяет держать с БД несколько соединений.
@@ -66,19 +61,12 @@ public class DBManager implements IConnectionProvider, IConstants {
 	 */
 	private static final String DB_PREFIX = "jdbc:hsqldb:file:";
 	
-=======
->>>>>>> .r117
 	private Connection connection = null;
-<<<<<<< .mine
-	
-	private boolean driverIsLoaded = false;
 	
 	/*
 	 * Режим работы с БД, по умолчанию MODE_STANDALONE.
 	 */
 	private int mode = MODE_STANDALONE;
-=======
->>>>>>> .r117
 	
 	private DBAction lastAction = null;
 	private List<String> savepoints = new ArrayList<String>();
@@ -479,20 +467,6 @@ public class DBManager implements IConnectionProvider, IConstants {
 		this.mode = mode;
 	}
 	
-<<<<<<< .mine
-	/**
-	 * Осуществляет загрузку драйвера.
-	 * 
-	 * @throws ClassNotFoundException если указанный класс драйвера не обнаружен.
-	 */
-	private void loadDriver() throws ClassNotFoundException{
-		if (!driverIsLoaded) {
-			Class.forName("org.hsqldb.jdbcDriver");			
-		}		
-	}
-	
-=======
->>>>>>> .r117
 	private String getDBFolder(String curPath) {
 		return curPath + "\\hsqldb\\data\\CatDB\\";
 	}
