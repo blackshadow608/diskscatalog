@@ -19,10 +19,10 @@ public class CatalogWindowListener implements WindowListener {
 	protected MainEntity mainEntity;
 	
 	/**
-	 * Создает новый <b>CatalogWindowListener</b> с параметром <b>DBManager</b>,
+	 * Создает новый {@link CatalogWindowListener} с параметром {@link DBManager},
 	 * через который и происходит закоытие соединения с базой данных.
 	 * 
-	 * @param dbManager - ссылка на <b>DBManager</b>, который управляет базой данных.
+	 * @param dbManager - ссылка на {@link DBManager}, который управляет базой данных.
 	 */
 	public CatalogWindowListener(MainEntity mainEntity) {
 		this.mainEntity = mainEntity;

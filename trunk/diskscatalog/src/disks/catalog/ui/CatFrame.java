@@ -20,14 +20,25 @@ import disks.catalog.ui.view.ViewPanel;
  */
 public class CatFrame extends JFrame {
 	
+	/*
+	 * Шрифт, который будет использоваться для всех компонентов.
+	 */
 	public static final Font FONT = new Font("Verdana", Font.PLAIN, 11);
 	
+	/*
+	 * Начальные размеры окна.
+	 */
 	private static final Dimension SIZE = new Dimension(660, 400);
+	
+	/*
+	 * Заголовок окна.
+	 */
 	private static final String TITLE = "mainFrame.title";
 	
 	public static final int BORDER = 5;
 	
 	private MainEntity mainEntity;
+	
 	private ContentPanel contentPanel;
 	
 	/**
@@ -35,10 +46,11 @@ public class CatFrame extends JFrame {
 	 * передается в качестве параметра.
 	 * 
 	 * @param dbManager -
-	 *            ссылка на <b>DBManager</b> менеджер базы данных.
+	 *            ссылка на {@link DBManager} менеджер базы данных.
 	 */
 	public CatFrame(MainEntity mainEntity) {
 		this.mainEntity = mainEntity;
+		
 		customizeFont();
 		createGUI();
 		configWindow();
@@ -59,11 +71,14 @@ public class CatFrame extends JFrame {
 	
 	private void createGUI() {
 		contentPanel = new ContentPanel(mainEntity);
-		getContentPane().add(contentPanel);		
-		setJMenuBar(new CatalogMenuBar(mainEntity));		
-		new ProgressListener(mainEntity, this);		
+		getContentPane().add(contentPanel);
+		setJMenuBar(new CatalogMenuBar(mainEntity));
+		new ProgressListener(mainEntity, this);
 	}
 	
+	/*
+	 * Устанавливает шрифт для всех компонентов приложения.
+	 */
 	private void customizeFont() {		
 		UIManager.put("Button.font", FONT);
 		UIManager.put("Tree.font", FONT);
@@ -82,10 +97,10 @@ public class CatFrame extends JFrame {
 	}
 	
 	/**
-	 * Возвращает панель содержимого <b>ContentPanel</b>, на которой
-	 * располагаются остальные компоненты граыического интерфейса пользователя.
+	 * Возвращает панель содержимого {@link ContentPanel}, на которой
+	 * располагаются остальные компоненты графического интерфейса пользователя.
 	 * 
-	 * @return <b>ContentPanel</b> панель содержиого.
+	 * @return Возвращает {@link ContentPanel} панель содержиого.
 	 */
 	public ContentPanel getContentPanel() {
 		return contentPanel;
