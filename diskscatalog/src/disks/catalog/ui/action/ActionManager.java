@@ -463,33 +463,33 @@ public class ActionManager implements IConnectionListener, IDBActionListener, IH
 		this.mainFrame = mainFrame;
 	}
 
-	public void backBecameDisabled() {
+	public void backDisabled() {
 		Action action = actions.get(BackAction.ACTION_NAME);
 		action.setEnabled(false);
 	}
 
-	public void backBecameEnabled() {
+	public void backEnabled() {
 		Action action = actions.get(BackAction.ACTION_NAME);
 		action.setEnabled(true);		
 	}
 
-	public void forwardBecameDisabled() {
+	public void forwardDisabled() {
 		Action action = actions.get(ForwardAction.ACTION_NAME);
 		action.setEnabled(false);
 	}
 
-	public void forwardBecameEnabled() {
+	public void forwardEnabled() {
 		Action action = actions.get(ForwardAction.ACTION_NAME);
 		action.setEnabled(true);		
 	}
 
-	public void clearBecameDisabled() {
+	public void clearDisabled() {
 		Action action = actions.get(ClearHistoryAction.ACTION_NAME);
 		action.setEnabled(false);
 		
 	}
 
-	public void clearBecameEnabled() {
+	public void clearEnabled() {
 		Action action = actions.get(ClearHistoryAction.ACTION_NAME);
 		action.setEnabled(true);		
 	}
