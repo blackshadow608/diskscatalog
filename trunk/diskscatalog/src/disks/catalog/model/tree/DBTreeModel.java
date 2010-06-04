@@ -405,37 +405,37 @@ public class DBTreeModel {
 
 	public void fireBackBecameDisabled() {
 		for (IHistoryListener listener : historyListeners) {
-			listener.backBecameDisabled();
+			listener.backDisabled();
 		}
 	}
 
 	public void fireForwardBecameDisabled() {
 		for (IHistoryListener listener : historyListeners) {
-			listener.forwardBecameDisabled();
+			listener.forwardDisabled();
 		}
 	}
 
 	public void fireBackBecameEnabled() {
 		for (IHistoryListener listener : historyListeners) {
-			listener.backBecameEnabled();
+			listener.backEnabled();
 		}
 	}
 
 	public void fireForwardBecameEnabled() {
 		for (IHistoryListener listener : historyListeners) {
-			listener.forwardBecameEnabled();
+			listener.forwardEnabled();
 		}
 	}
 
 	public void fireClearBecameDisabled() {
 		for (IHistoryListener listener : historyListeners) {
-			listener.clearBecameDisabled();
+			listener.clearDisabled();
 		}
 	}
 
 	public void fireClearBecameEnabled() {
 		for (IHistoryListener listener : historyListeners) {
-			listener.clearBecameEnabled();
+			listener.clearEnabled();
 		}
 	}
 }

@@ -12,32 +12,32 @@ public interface IHistoryListener {
 	 * Вызывается у слушателя, когда Back становится доступен, то есть возможно перейти
 	 * к предыдущему открытому узлу дерева.
 	 */
-	public void backBecameEnabled();
+	public void backEnabled();
 	
 	/**
 	 * Вызывается у слушателя, когда Back становится недоступен, то есть нельзя перейти
 	 * к предыдущиму открытому узлу дерева.
 	 */
-	public void backBecameDisabled();
+	public void backDisabled();
 	
 	/**
 	 * Вызывается у слушателя, когда Forward доступен.
 	 */
-	public void forwardBecameEnabled();
+	public void forwardEnabled();
 	
 	/**
 	 * Вызывается у слушателя, когда Forward не доступен.
 	 */
-	public void forwardBecameDisabled();
+	public void forwardDisabled();
 	
 	/**
 	 * Вызывается у слушателя, когда доступна операция очистки истории Clear.
 	 */
-	public void clearBecameEnabled();
+	public void clearEnabled();
 	
 	/**
 	 * Вызывается у слушателя, когда операция очистки истории Clear
 	 * становится недоступна.
 	 */
-	public void clearBecameDisabled();
+	public void clearDisabled();
 }
